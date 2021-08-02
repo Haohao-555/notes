@@ -1,0 +1,135 @@
+.container {
+  width: 1000px;
+}
+/* 头部 */
+.mod_header {
+  .header_container {
+    width: 1000px;
+    margin: 0 auto;
+    .mod_top_subnav {
+      min-width: max-content;
+    }
+    .qqmusic_title {
+      margin-right: 0px;
+    }
+    .mod_top_nav {
+      margin-left: -20px;
+    }
+    .mod_top_search {
+      margin-left: -20px;
+    }
+    .header_opt {
+      clear: left;
+      float: none;
+      position: absolute;
+      right: -51px;
+      transform: scale(0.6);
+    }
+    .mod_top_subnav {
+      justify-content: space-between;
+      padding-left: 0px;
+      margin-right: 0px;
+      li {
+        margin-right: 0px;
+      }
+    }
+    .media_scale {
+      transform: scale(0.83);
+    }
+  }
+}
+/* 歌单推荐 */
+.mod_index-hot {
+  .section_inner {
+    .mod_playlist {
+      .playlist_item {
+        justify-content: space-between;
+        li {
+          &:nth-child(n + 6) {
+            display: block;
+          }
+          &:nth-child(6) {
+            margin-left: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+/* 歌单首发 */
+.mod_index-song {
+  .section_inner {
+    .mod_index_tab {
+      .all {
+        transform: scale(0.83);
+        left: 89px;
+      }
+    }
+    .slide_list {
+      justify-content: space-around;
+      .colum {
+        &:nth-child(3) {
+          display: none;
+        }
+      }
+    }
+  }
+}
+/* 精彩推荐 */
+.mod_index-event {
+  .section_inner {
+    .slide_list {
+      justify-content: center;
+      li {
+        &:last-child {
+          display: none;
+        }
+      }
+    }
+  }
+}
+/* 新碟首发 */
+.mod_index-album {
+  .section_inner {
+    .js_list {
+      li {
+        &:nth-child(n + 9) {
+          display: none;
+        }
+      }
+    }
+  }
+}
+/* 排行榜 */
+.toplist_list {
+  li {
+    /* 将最右一个 li 隐藏掉 */
+    &:last-child {
+      display: none;
+    }
+  }
+}
+/* MV */
+.mod_index-mv {
+  .section_inner {
+    .mod_mv {
+      li {
+        &:nth-child(n + 9) {
+          display: none;
+        }
+      }
+    }
+  }
+}
+/* 向左向右 */
+.mod_slide_box {
+    z-index: -10;
+  .slide_action {
+    display: none;
+  }
+}
+/* 客户端 */
+.popup_guide {
+  transform: scale(0.83);
+  right: 0px;
+}

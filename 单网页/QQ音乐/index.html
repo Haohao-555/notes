@@ -1,0 +1,1109 @@
+<!--
+ * @Date: 2021-07-21 18:27:21
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \GZ2145\qqmusic\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QQ音乐</title>
+    <link rel="stylesheet" href="./css/index.css" media="all" />
+    <link rel="stylesheet" href="./css/reset.css" media="all"/>
+    <link rel="stylesheet" href="./css/icon.css" media="all"/>
+    <link rel="stylesheet" href="./css/media_index.css" media="(max-width: 1300px)" />
+  </head>
+  <body>
+    <!-- 头部 -->
+   <div class="mod_header">
+      <div class="header_container clearfix">
+        <h1 class="qqmusic_title media_scale">
+          <img
+            src="./image/logo.png"
+            alt="QQ音乐"
+            class="qqmusic_logo"
+          />
+        </h1>
+        <ul class="mod_top_nav clearfix media_scale">
+          <li>
+            <a href="javascript:;">音乐馆</a>
+          </li>
+          <li>
+            <a href="javascript:;">我的音乐</a>
+          </li>
+          <li>
+            <a href="javascript:;">客户端</a>
+            <img
+              src="./image/mark_1.png"
+              class="top_nav_mark"
+              alt="抢特权"
+            />
+            <div class="popup_data_detail">
+              <p>
+                <i class="icon-hq"></i>
+                HQ高品质 全员开启
+              </p>
+              <p>
+                <i class="icon-dts"></i>
+                独家音效 全面升级
+              </p>
+              <p>
+                <i class="icon-skin"></i>
+                轻盈视觉 动态皮肤
+              </p>
+              <a href="" class="btn">下载体验</a>
+            </div>
+          </li>
+          <li><a href="">开放平台</a></li>
+          <li>
+            <a href="">VIP</a>
+          </li>
+        </ul>
+        <div class="mod_top_search clearfix media_scale">
+          <div class="mod_search_input">
+            <input type="text" placeholder="搜索音乐、MV、歌单、用户" />
+            <button><i class="iconfont icon-fangdajing"></i></button>
+          </div>
+          <div class="mod_search_other">
+            <ul class="search_hot">
+             <li>
+                <div class="info clearfix">
+                  <span class="search_hot_number">1</span>
+                  <span class="search_hot_name">我们的歌 </span>
+                  <span class="search_hot_listen">76.6万</span>
+                </div>
+             </li>  
+             <li>
+              <div class="info clearfix">
+                <span class="search_hot_number">2</span>
+                <span class="search_hot_name">冰雪奇缘2 </span>
+                <span class="search_hot_listen">58.7万</span>
+              </div>
+             </li>
+             <li>
+              <div class="info clearfix">
+                <span class="search_hot_number">3</span>
+                <span class="search_hot_name">张杰</span>
+                <span class="search_hot_listen">32.4万</span>
+              </div>
+             </li>
+             <li>
+              <div class="info clearfix">
+                <span class="search_hot_number">4</span>
+                <span class="search_hot_name">桥边姑娘 </span>
+                <span class="search_hot_listen">28.8万</span>
+              </div>
+             </li>
+             <li>
+              <div class="info clearfix">
+                <span class="search_hot_number">1</span>
+                <span class="search_hot_name">星辰大海</span>
+                <span class="search_hot_listen">20.3万</span>
+              </div>
+             </li>
+            </ul>
+            <div class="search_history clearfix">
+              <span>历史搜索</span>
+              <i></i>
+            </div>
+          </div>
+        </div>
+        <div class="header_opt clearfix ">
+          <a href="javascript:;" class="top_login__link">登录</a>
+          <div class="mod_select">
+            <a href="javascript:;" class="select_choose"> 开通VIP</a>
+            <ul class="select_box">
+              <li class="select_item">开通绿钻豪华版</li>
+              <li class="select_item">开通付费包</li>
+            </ul>
+          </div>
+          <div class="mod_select-pay">
+            <a href="javascript:;" class="select_choose"> 充值</a>
+            <ul class="select_box">
+              <li class="select_item">购买乐币</li>
+              <li class="select_item">充值饭票</li>
+            </ul>
+          </div>
+        </div>
+        <ul class="mod_top_subnav media_scale">
+          <li>
+            <a href="javascript:;">首页</a>
+          </li>
+          <li>
+            <a href="javascript:;">歌手</a>
+          </li>
+          <li>
+            <a href="javascript:;">新碟</a>
+          </li>
+          <li>
+            <a href="javascript:;">排行榜</a>
+          </li>
+          <li>
+            <a href="javascript:;">分类歌单</a>
+          </li>
+          <li>
+            <a href="javascript:;">电台</a>
+          </li>
+          <li>
+            <a href="javascript:;">MV</a>
+          </li>
+          <li>
+            <a href="javascript:;">数字专辑</a>
+          </li>
+          <li>
+            <a href="javascript:;">票务</a>
+          </li>
+        </ul>
+      </div>
+    </div> 
+    <!-- 歌单推荐 -->
+    <div class="mod_index-hot mod_slide_box">
+      <div class="slide_action-left slide_action">
+        <a href="javascript:;"></a>
+      </div>
+      <!-- 主体 -->
+      <div class="section_inner container">
+        <div class="index_hd">
+          <h2 class="index_tit"></h2>
+        </div>
+        <div class="mod_index_tab">
+          <a href="javascript:;" style="color: #31c27c">为你推荐</a>
+          <a href="javascript:;">官方歌单</a>
+          <a href="javascript:;">情歌</a>
+          <a href="javascript:;">网络歌曲</a>
+          <a href="javascript:;">经典</a>
+          <a href="javascript:;">KTV热歌</a>
+        </div>
+        <div class="mod_playlist">
+          <ul class="playlist_item">
+            <li>
+              <div class="playlist_item_box">
+                <div class="playlist_cover img_cover_box">
+                  <img
+                    src="./image/hot_1.jpg"
+                    alt=""
+                  />
+                  <i></i>
+                </div>
+                <h4 class="playlist__title">上分必备|身法操作不可少的BGM</h4>
+                <div class="playlist__other">播放量：163.6万</div>
+              </div>
+            </li>
+            <li>
+              <div class="playlist_item_box ">
+                <div class="playlist_cover img_cover_box">
+                  <img
+                    src="./image/hot_2.jpg"
+                    alt=""
+                  />
+                  <i></i>
+                </div>
+                <h4 class="playlist__title">100首精选粤语歌 怀念旧时光</h4>
+                <div class="playlist__other">播放量：1.1亿</div>
+              </div>
+            </li>
+            <li>
+              <div class="playlist_item_box ">
+                <div class="playlist_cover img_cover_box">
+                  <img
+                    src="./image/hot_3.jpg"
+                    alt=""
+                  />
+                  <i></i>
+                </div>
+                <h4 class="playlist__title">
+                  绝对典藏！400首欧美动感热曲全收录
+                </h4>
+                <div class="playlist__other">播放量：1.5亿</div>
+              </div>
+            </li>
+            <li>
+              <div class="playlist_item_box ">
+                <div class="playlist_cover img_cover_box">
+                  <img
+                    src="./image/hot_4.jpg"
+                    alt=""
+                  />
+                  <i></i>
+                </div>
+                <h4 class="playlist__title">国产嘻哈：rap们的高能时刻！</h4>
+                <div class="playlist__other">播放量：154.3万</div>
+              </div>
+            </li>
+            <li>
+              <div class="playlist_item_box ">
+                <div class="playlist_cover img_cover_box">
+                  <img
+                    src="./image/hot_5.jpg"
+                    alt=""
+                  />
+                  <i></i>
+                </div>
+                <h4 class="playlist__title">流行｜一秒倾心的神仙歌曲</h4>
+                <div class="playlist__other">播放量：487.9万</div>
+              </div>
+            </li>
+            <li>
+              <div class="playlist_item_box ">
+                <div class="playlist_cover img_cover_box">
+                  <img
+                    src="./image/hot_6.jpg"
+                    alt=""
+                  />
+                  <i></i>
+                </div>
+                <h4 class="playlist__title">官方精选：小鬼-王琳凯 Lil Ghost </h4>
+                <div class="playlist__other">播放量：879.1万</div>
+              </div>
+            </li>
+            <li>
+              <div class="playlist_item_box ">
+                <div class="playlist_cover img_cover_box">
+                  <img
+                    src="./image/hot_7.jpg"
+                    alt=""
+                  />
+                  <i></i>
+                </div>
+                <h4 class="playlist__title">欧美流行向｜爱于前奏 死于高潮</h4>
+                <div class="playlist__other">播放量：1019.7万</div>
+              </div>
+            </li>
+            <li>
+              <div class="playlist_item_box ">
+                <div class="playlist_cover img_cover_box">
+                  <img
+                    src="./image/hot_8.jpg"
+                    alt=""
+                  />
+                  <i></i>
+                </div>
+                <h4 class="playlist__title">轻柔小众 | 愿你遇见所有的甜</h4>
+                <div class="playlist__other">播放量：134.9万</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="mod_slide_switch">
+          <a href="javascript:;">
+            <i class="slide_switch__bg"></i>
+          </a>
+          <a href="javascript:;">
+            <i class="slide_switch__bg"></i>
+          </a>
+          <a href="javascript:;">
+            <i class="slide_switch__bg"></i>
+          </a>
+        </div>
+      </div>
+      <!-- 主体 end -->
+      <div class="slide_action-right slide_action">
+        <a href="javascript:;"></a>
+      </div>
+    </div>
+    <!-- 歌单首发 -->
+    <div class="mod_index-song mod_slide_box">
+      <div class="slide_action-left slide_action">
+        <a href="javascript:;"></a>
+      </div>
+      <!-- 主体 -->
+      <div class="section_inner container">
+        <div class="index_hd">
+          <h2 class="index_tit"></h2>
+        </div>
+        <div class="mod_index_tab">
+          <a href="javascript:;" style="color: #31c27c">最新</a>
+          <a href="javascript:;">内地</a>
+          <a href="javascript:;">港台</a>
+          <a href="javascript:;">欧美</a>
+          <a href="javascript:;">韩国</a>
+          <a href="javascript:;">日本</a>
+          <div class="all">
+            <i></i>
+            播放全部
+          </div>
+        </div>
+        <div class="slide_list">
+          <div class="colum">
+            <ul>
+              <li>
+                <div class="img_cover img_cover_box">
+                  <img
+                    src="./image/song_1.jpg"
+                    alt=""
+                  />
+                  <i></i>
+                </div>
+                <div class="debutlist_song">新造的人(feat. SHIMICA)</div>
+                <div class="debutlist_author">
+                  <span>郑秀文</span>/<span>黄宇希</span>
+                </div>
+                <div class="debutlist_time">03:26</div>
+              </li>
+              <li>
+                <div class="img_cover img_cover_box">
+                  <img
+                    src="./image/song_2.jpg"
+                    alt=""
+                  />
+                  <i></i>
+                </div>
+                <div class="debutlist_song">Shining in the dark</div>
+                <div class="debutlist_author">
+                  <span>Ghost小鬼</span>
+                </div>
+                <div class="debutlist_time">03:42</div>
+              </li>
+              <li>
+                <div class="img_cover img_cover_box">
+                  <img
+                    src="./image/song_3.jpg"
+                    alt=""
+                  />
+                  <i></i>
+                </div>
+                <div class="debutlist_song">泊 Anchor (Tomorrow 中文版)</div>
+                <div class="debutlist_author">
+                  <span>CORSAK胡梦周</span>
+                </div>
+                <div class="debutlist_time">03:25</div>
+              </li>
+            </ul>
+          </div>
+          <div class="colum">
+            <ul>
+              <li>
+                <div class="img_cover img_cover_box">
+                  <img
+                    src="./image/song_4.jpg"
+                    alt=""
+                  />
+                  <i></i>
+                </div>
+                <div class="debutlist_song">心城 《俑之城》电影片尾曲</div>
+                <div class="debutlist_author">
+                  <span>黄霄雲</span>
+                </div>
+                <div class="debutlist_time">04:03</div>
+              </li>
+              <li>
+                <div class="img_cover img_cover_box">
+                  <img
+                    src="./image/song_5.jpg"
+                    alt=""
+                  />
+                  <i></i>
+                </div>
+                <div class="debutlist_song">
+                  Born A Winner 《和平精英》2021超级杯主题曲
+                </div>
+                <div class="debutlist_author">
+                  <span>刘宪华 (Henry)</span>/<span>和平精英</span>
+                </div>
+                <div class="debutlist_time">03:22</div>
+              </li>
+              <li>
+                <div class="img_cover img_cover_box">
+                  <img
+                    src="./image/song_6.jpg"
+                    alt=""
+                  />
+                  <i></i>
+                </div>
+                <div class="debutlist_song">对味 《你好，火焰蓝》网剧插曲</div>
+                <div class="debutlist_author">
+                  <span>BY2</span>
+                </div>
+                <div class="debutlist_time">03:26</div>
+              </li>
+            </ul>
+          </div>
+          <div class="colum">
+            <ul>
+              <li>
+                <div class="img_cover img_cover_box">
+                  <img
+                    src="./image/song_7.jpg"
+                    alt=""
+                  />
+                  <i></i>
+                </div>
+                <div class="debutlist_song">唱支山歌给党听 (致敬版)</div>
+                <div class="debutlist_author">
+                  <span>李光羲</span>/<span>姜昆</span>/<span>王二妮</span>
+                </div>
+                <div class="debutlist_time">03:26</div>
+              </li>
+              <li>
+                <div class="img_cover img_cover_box">
+                  <img
+                    src="./image/song_8.jpg"
+                    alt=""
+                  />
+                  <i></i>
+                </div>
+                <div class="debutlist_song">平行线 (Wish You Were Here)</div>
+                <div class="debutlist_author">
+                  <span>Vicetone</span>/<span>WILLIM缪维霖</span>/<span
+                    >黄霄雲</span
+                  >
+                </div>
+                <div class="debutlist_time">03:26</div>
+              </li>
+              <li>
+                <div class="img_cover img_cover_box">
+                  <img
+                    src="./image/song_9.jpg"
+                    alt=""
+                  />
+                  <i></i>
+                </div>
+                <div class="debutlist_song">Stoned at the Nail Salon</div>
+                <div class="debutlist_author">
+                  <span>Lorde</span>
+                </div>
+                <div class="debutlist_time">04:26</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="mod_slide_switch">
+          <a href="javascript:;">
+            <i class="slide_switch__bg"></i>
+          </a>
+          <a href="javascript:;">
+            <i class="slide_switch__bg"></i>
+          </a>
+          <a href="javascript:;">
+            <i class="slide_switch__bg"></i>
+          </a>
+          <a href="javascript:;">
+            <i class="slide_switch__bg"></i>
+          </a>
+          <a href="javascript:;">
+            <i class="slide_switch__bg"></i>
+          </a>
+          <a href="javascript:;">
+            <i class="slide_switch__bg"></i>
+          </a>
+          <a href="javascript:;">
+            <i class="slide_switch__bg"></i>
+          </a>
+          <a href="javascript:;">
+            <i class="slide_switch__bg"></i>
+          </a>
+        </div>
+      </div>
+      <!-- 主体 end -->
+      <div class="slide_action-right slide_action">
+        <a href="javascript:;"></a>
+      </div>
+    </div>
+    <!-- 精彩推荐 -->
+    <div class="mod_index-event mod_slide_box">
+      <div class="slide_action-left slide_action">
+        <a href="javascript:;"></a>
+      </div>
+      <!-- 主体 -->
+      <div class="section_inner container">
+        <div class="index_hd">
+          <h2 class="index_tit"></h2>
+        </div>
+        <ul class="slide_list">
+          <li>
+            <a href="javascript:;">
+              <img
+                src="./image/event_1.jpg"
+                alt=""
+              />
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <img
+                src="./image/event_2.jpg"
+                alt=""
+              />
+            </a>
+          </li>
+        </ul>
+        <div class="mod_slide_switch">
+          <a href="javascript:;">
+            <i class="slide_switch__bg"></i>
+          </a>
+          <a href="javascript:;">
+            <i class="slide_switch__bg"></i>
+          </a>
+          <a href="javascript:;">
+            <i class="slide_switch__bg"></i>
+          </a>
+        </div>
+      </div>
+      <!-- 主体 end -->
+      <div class="slide_action-right slide_action">
+        <a href="javascript:;"></a>
+      </div>
+    </div>
+    <!-- 新碟首发 -->
+    <div class="mod_index-album mod_slide_box">
+      <div class="slide_action-left slide_action">
+        <a href="javascript:;"></a>
+      </div>
+      <!-- 主体 -->
+      <div class="section_inner container">
+        <div class="index_hd">
+          <h2 class="index_tit"></h2>
+        </div>
+        <div class="mod_index_tab">
+          <a href="javascript:;" style="color: #31c27c">内地</a>
+          <a href="javascript:;">港台</a>
+          <a href="javascript:;">欧美</a>
+          <a href="javascript:;">韩国</a>
+          <a href="javascript:;">日本</a>
+          <a href="javascript:;">其他</a>
+        </div>
+        <ul class="js_list">
+            <li>
+              <div class="playlist_item_box">
+                  <div class="img_cover img_cover_box">
+                    <img src="./image/album_1.jpg" alt="">
+                    <i></i>
+                  </div>
+                  <h4 class="playlist_title">幼学琼林（卷二）</h4>
+                  <div class="playlist_author">
+                    <a href="javascript:;">窦唯</a> /
+                    <a href="javascript:;">朝简</a>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="playlist_item_box">
+                <div class="img_cover img_cover_box">
+                  <img src="./image/album_2.jpg" alt="">
+                  <i></i>
+                </div>
+                <h4 class="playlist_title">单程人生</h4>
+                <div class="playlist_author">
+                  <a href="javascript:;">刘涛</a>  
+              </div>
+              </div>
+            </li>
+            <li>
+              <div class="playlist_item_box">
+                <div class="img_cover img_cover_box">
+                  <img src="./image/album_3.jpg" alt="">
+                  <i></i>
+                </div>
+                <h4 class="playlist_title">太白</h4>
+                <div class="playlist_author">
+                  <a href="jacascript:;">小田音乐社</a> /
+                  <a href="jacascript:;">小魂</a>
+              </div>
+              </div>
+            </li>
+            <li>
+              <div class="playlist_item_box">
+                <div class="img_cover img_cover_box">
+                  <img src="./image/album_4.jpg" alt="">
+                  <i></i>
+                </div>
+                <h4 class="playlist_title">NEW STAR</h4>
+                <div class="playlist_author">
+                  <a href="jacascript:;">张欣尧</a> /
+                  <a href="jacascript:;">星瞳</a>
+              </div>
+              </div>
+            </li>
+            <li>
+              <div class="playlist_item_box">
+                <div class="img_cover img_cover_box">
+                  <img src="./image/album_5.jpg" alt="">
+                  <i></i>
+                </div>
+                <h4 class="playlist_title">微妙</h4>
+                <div class="playlist_author">
+                  <a href="javascript:;">裸儿</a> 
+              </div>
+              </div>
+            </li>
+            <li>
+              <div class="playlist_item_box">
+                <div class="img_cover img_cover_box">
+                  <img src="./image/album_6.jpg" alt="">
+                  <i></i>
+                </div>
+                <h4 class="playlist_title">狼烟</h4>
+                <div class="playlist_author">
+                  <a href="javascript:;">郭皓月</a> 
+              </div>
+              </div>
+            </li>
+            <li>
+              <div class="playlist_item_box">
+                <div class="img_cover img_cover_box">
+                  <img src="./image/album_7.jpg" alt="">
+                  <i></i>
+                </div>
+                <h4 class="playlist_title">自言自语</h4>
+                <div class="playlist_author">
+                  <a href="javascript:;">黄玉儿</a> 
+              </div>
+              </div>
+            </li>
+            <li>
+              <div class="playlist_item_box">
+                <div class="img_cover img_cover_box">
+                  <img src="./image/album_8.jpg" alt="">
+                  <i></i>
+                </div>
+                <h4 class="playlist_title">牵你的手</h4>
+                <div class="playlist_author">
+                  <a href="javascript:;">Kyrie K</a> 
+              </div>
+              </div>
+            </li>
+            <li>
+              <div class="playlist_item_box">
+                <div class="img_cover img_cover_box">
+                  <img src="./image/album_9.jpg" alt="">
+                  <i></i>
+                </div>
+                <h4 class="playlist_title">想去春天</h4>
+                <div class="playlist_author">
+                  <a href="javascript:;">王锵</a> /
+                  <a href="javascript:;">白泽泽</a>/
+                  <a href="javascript:;">边少帅</a> /
+                  <a href="javascript:;">高明辉</a> 
+              </div>
+              </div>
+            </li>
+            <li>
+              <div class="playlist_item_box">
+                <div class="img_cover img_cover_box">
+                  <img src="./image/album_10.jpg" alt="">
+                  <i></i>
+                </div>
+                <h4 class="playlist_title">航海日记</h4>
+                <div class="playlist_author">
+                  <a href="javascript:;">Hayrul 海力</a> 
+              </div>
+              </div>
+            </li>
+        </ul>
+        <div class="mod_slide_switch">
+          <a href="javascript:;">
+            <i class="slide_switch__bg"></i>
+          </a>
+          <a href="javascript:;">
+            <i class="slide_switch__bg"></i>
+          </a>
+        </div>
+      </div>
+      <!-- 主体 end -->
+      <div class="slide_action-right slide_action">
+        <a href="javascript:;"></a>
+      </div>
+    </div>
+    <!-- 排行榜 -->
+    <div class="mod_index-top mod_slide_box">
+      <!-- 主体 -->
+      <div class="section_inner container">
+        <div class="index_hd">
+          <h2 class="index_tit"></h2>
+        </div>
+        <ul class="toplist_list">
+           <li>
+             <div class="toplist_bg_box">
+                  <div class="toplist_bg bg_1"></div>
+             </div>
+             <i class="mod_cover_icon_play"></i>
+             <i class="toplist_line"></i>
+             <h3 class="toplist_head">
+               <a href="javascript:;">热歌</a>
+             </h3>
+             <ul class="toplist_songlist">
+               <li class="toplist_song">
+                <div class="toplist_number">1</div>
+                <div class="toplist_songname">
+                  <a href="javascript:;">不如</a>
+                </div>
+                <div class="toplist_artist">
+                  <a href="javascript:;">秦海清</a>
+                </div>
+               </li>
+               <li class="toplist_song">
+                <div class="toplist_number">2</div>
+                <div class="toplist_songname">
+                  <a href="javascript:;">放空</a>
+                </div>
+                <div class="toplist_artist">
+                  <a href="javascript:;">A1 TRIP/大籽/Lil E</a>
+                </div>
+               </li>
+               <li class="toplist_song">
+                <div class="toplist_number">3</div>
+                <div class="toplist_songname">
+                  <a href="javascript:;">星辰大海</a>
+                </div>
+                <div class="toplist_artist">
+                  <a href="javascript:;">黄霄雲</a>
+                </div>
+               </li>
+             </ul>
+           </li>
+           <li>
+            <div class="toplist_bg_box ">
+              <div class="toplist_bg bg_2"></div>
+             </div>
+            <i class="mod_cover_icon_play"></i>
+            <i class="toplist_line"></i>
+            <h3 class="toplist_head">
+              <a href="javascript:;">新歌</a>
+            </h3>
+            <ul class="toplist_songlist">
+              <li class="toplist_song">
+               <div class="toplist_number">1</div>
+               <div class="toplist_songname">
+                 <a href="javascript:;">Ring Ring Ring</a>
+               </div>
+               <div class="toplist_artist">
+                 <a href="javascript:;">不是花火呀</a>
+               </div>
+              </li>
+              <li class="toplist_song">
+               <div class="toplist_number">2</div>
+               <div class="toplist_songname">
+                 <a href="javascript:;">时光背面的我</a>
+               </div>
+               <div class="toplist_artist">
+                 <a href="javascript:;">刘至佳/韩瞳</a>
+               </div>
+              </li>
+              <li class="toplist_song">
+               <div class="toplist_number">3</div>
+               <div class="toplist_songname">
+                 <a href="javascript:;">雀跃</a>
+               </div>
+               <div class="toplist_artist">
+                 <a href="javascript:;">任然</a>
+               </div>
+              </li>
+            </ul>
+           </li>
+           <li>
+            <div class="toplist_bg_box ">
+              <div class="toplist_bg bg_3"></div>
+             </div>
+            <i class="mod_cover_icon_play"></i>
+            <i class="toplist_line"></i>
+            <h3 class="toplist_head">
+              <a href="javascript:;">流行指数</a>
+            </h3>
+            <ul class="toplist_songlist">
+              <li class="toplist_song">
+               <div class="toplist_number">1</div>
+               <div class="toplist_songname">
+                 <a href="javascript:;">雀跃</a>
+               </div>
+               <div class="toplist_artist">
+                 <a href="javascript:;">任然</a>
+               </div>
+              </li>
+              <li class="toplist_song">
+               <div class="toplist_number">2</div>
+               <div class="toplist_songname">
+                 <a href="javascript:;">变废为宝</a>
+               </div>
+               <div class="toplist_artist">
+                 <a href="javascript:;">薛之谦</a>
+               </div>
+              </li>
+              <li class="toplist_song">
+               <div class="toplist_number">3</div>
+               <div class="toplist_songname">
+                 <a href="javascript:;">骁</a>
+               </div>
+               <div class="toplist_artist">
+                 <a href="javascript:;">井胧/井迪儿</a>
+               </div>
+              </li>
+            </ul>
+           </li>
+           <li>
+            <div class="toplist_bg_box ">
+              <div class="toplist_bg bg_4"></div>
+             </div>
+            <i class="mod_cover_icon_play"></i>
+            <i class="toplist_line"></i>
+            <h3 class="toplist_head">
+              <a href="javascript:;">欧美</a>
+            </h3>
+            <ul class="toplist_songlist">
+              <li class="toplist_song">
+               <div class="toplist_number">1</div>
+               <div class="toplist_songname">
+                 <a href="javascript:;">Stay (Explicit)</a>
+               </div>
+               <div class="toplist_artist">
+                 <a href="javascript:;">The Kid LAROI/Justin Bieber</a>
+               </div>
+              </li>
+              <li class="toplist_song">
+               <div class="toplist_number">2</div>
+               <div class="toplist_songname">
+                 <a href="javascript:;">California (feat. 王嘉尔 & Warren Hue) (Remix)</a>
+               </div>
+               <div class="toplist_artist">
+                 <a href="javascript:;">88rising/Rich Brian/NIKI/王嘉尔/Warren Hue</a>
+               </div>
+              </li>
+              <li class="toplist_song">
+               <div class="toplist_number">3</div>
+               <div class="toplist_songname">
+                 <a href="javascript:;">Don't Wait Up</a>
+               </div>
+               <div class="toplist_artist">
+                 <a href="javascript:;">Shakira</a>
+               </div>
+              </li>
+            </ul>
+           </li>
+           <li>
+            <div class="toplist_bg_box ">
+              <div class="toplist_bg bg_5"></div>
+             </div>
+            <i class="mod_cover_icon_play"></i>
+            <i class="toplist_line"></i>
+            <h3 class="toplist_head">
+              <a href="javascript:;">韩国</a>
+            </h3>
+            <ul class="toplist_songlist">
+              <li class="toplist_song">
+               <div class="toplist_number">1</div>
+               <div class="toplist_songname">
+                 <a href="javascript:;">Lovesick Girls (JP Ver.)</a>
+               </div>
+               <div class="toplist_artist">
+                 <a href="javascript:;">BLACKPINK</a>
+               </div>
+              </li>
+              <li class="toplist_song">
+               <div class="toplist_number">2</div>
+               <div class="toplist_songname">
+                 <a href="javascript:;">When Dawn Comes Again</a>
+               </div>
+               <div class="toplist_artist">
+                 <a href="javascript:;">Colde (콜드)/伯贤 (백현)</a>
+               </div>
+              </li>
+              <li class="toplist_song">
+               <div class="toplist_number">3</div>
+               <div class="toplist_songname">
+                 <a href="javascript:;">Next Level</a>
+               </div>
+               <div class="toplist_artist">
+                 <a href="javascript:;">aespa (에스파)</a>
+               </div>
+              </li>
+            </ul>
+           </li>
+        </ul>
+      </div>
+       <!-- 主体 end -->
+    </div>
+    <!-- MV -->
+    <div class="mod_index-mv mod_slide_box">
+      <div class="slide_action-left slide_action">
+        <a href="javascript:;"></a>
+      </div>
+       <!-- 主体 -->
+       <div class="section_inner container">
+         <div class="index_hd">
+           <h2 class="index_tit"></h2>
+         </div>
+         <div class="mod_index_tab">
+          <a href="javascript:;" style="color: #31c27c">精选</a>
+          <a href="javascript:;">内地</a>
+          <a href="javascript:;">港台</a>
+          <a href="javascript:;">欧美</a>
+          <a href="javascript:;">韩国</a>
+          <a href="javascript:;">日本</a>
+        </div>
+        <ul class="mod_mv">
+          <li>
+            <div class="img_cover img_cover_box">
+              <img src="./image/mv1.jpg" alt="">
+              <i></i>
+            </div>
+            <div class="mv_list_title">
+              唱支山歌给党听（青春版）
+            </div>
+            <p class="mv_list_singer">华语群星</p>
+            <p class="mv_list_info">
+              <i class="mv_list_listen_icon"></i>
+              7290
+            </p>
+          </li>
+          <li>
+            <div class="img_cover img_cover_box">
+              <img src="./image/mv2.jpg" alt="">
+              <i></i>
+            </div>
+            <div class="mv_list_title">
+              风雨彩虹铿锵玫瑰
+            </div>
+            <p class="mv_list_singer">华彩少年全体成员</p>
+            <p class="mv_list_info">
+              <i class="mv_list_listen_icon"></i>
+              2181
+            </p>
+          </li>
+          <li>
+            <div class="img_cover img_cover_box">
+              <img src="./image/mv3.jpg" alt="">
+              <i></i>
+            </div>
+            <div class="mv_list_title">
+              心城
+            </div>
+            <p class="mv_list_singer">黄霄雲</p>
+            <p class="mv_list_info">
+              <i class="mv_list_listen_icon"></i>
+              1.8万
+            </p>
+          </li>
+          <li>
+            <div class="img_cover img_cover_box">
+              <img src="./image/mv4.jpg" alt="">
+              <i></i>
+            </div>
+            <div class="mv_list_title">
+              When Dawn Comes Again (또 새벽이 오면)
+            </div>
+            <p class="mv_list_singer">Colde /伯贤</p>
+            <p class="mv_list_info">
+              <i class="mv_list_listen_icon"></i>
+              7.9万
+            </p>
+          </li>
+          <li>
+            <div class="img_cover img_cover_box">
+              <img src="./image/mv5.jpg" alt="">
+              <i></i>
+            </div>
+            <div class="mv_list_title">
+              深町小夜曲
+            </div>
+            <p class="mv_list_singer">李健</p>
+            <p class="mv_list_info">
+              <i class="mv_list_listen_icon"></i>
+              8.1万
+            </p>
+          </li>
+          <li>
+            <div class="img_cover img_cover_box">
+              <img src="./image/mv6.jpg" alt="">
+              <i></i>
+            </div>
+            <div class="mv_list_title">
+              施舍
+            </div>
+            <p class="mv_list_singer">杨宗纬</p>
+            <p class="mv_list_info">
+              <i class="mv_list_listen_icon"></i>
+              2.0万
+            </p>
+          </li>
+          <li>
+            <div class="img_cover img_cover_box">
+              <img src="./image/mv7.jpg" alt="">
+              <i></i>
+            </div>
+            <div class="mv_list_title">
+              'Hey Kid, Close Your Eyes (with Lee Sun Hee)' OFFICIAL VIDEO (전쟁터)
+            </div>
+            <p class="mv_list_singer">AKMU /李仙姬</p>
+            <p class="mv_list_info">
+              <i class="mv_list_listen_icon"></i>
+              2.3万
+            </p>
+          </li>
+          <li>
+            <div class="img_cover img_cover_box">
+              <img src="./image/mv8.jpg" alt="">
+              <i></i>
+            </div>
+            <div class="mv_list_title">
+              破阵
+            </div>   
+            <p class="mv_list_singer">阿云嘎</p>
+            <p class="mv_list_info">
+              <i class="mv_list_listen_icon"></i>
+              1975
+            </p>
+          </li>
+          <li>
+            <div class="img_cover img_cover_box">
+              <img src="./image/album_9.jpg" alt="">
+              <i></i>
+            </div>
+            <div class="mv_list_title">
+              新造的人
+            </div>
+            <p class="mv_list_singer">郑秀文 /黄宇希</p>
+            <p class="mv_list_info">
+              <i class="mv_list_listen_icon"></i>
+              2.0万
+            </p>
+          </li>
+          <li>
+            <div class="img_cover img_cover_box">
+              <img src="./image/mv10.jpg" alt="">
+              <i></i>
+            </div>
+            <div class="mv_list_title">
+              Leica
+            </div>
+            <p class="mv_list_singer">Epik High/ 金四月</p>
+            <p class="mv_list_info">
+              <i class="mv_list_listen_icon"></i>
+              7290
+            </p>
+          </li>
+        </ul>
+        <div class="mod_slide_switch">
+          <a href="javascript:;">
+            <i class="slide_switch__bg"></i>
+          </a>
+          <a href="javascript:;">
+            <i class="slide_switch__bg"></i>
+          </a>
+          <a href="javascript:;">
+            <i class="slide_switch__bg"></i>
+          </a>
+          <a href="javascript:;">
+            <i class="slide_switch__bg"></i>
+          </a>
+        </div>
+       </div>
+       <!-- 主体end -->
+      <div class="slide_action-right slide_action">
+        <a href="javascript:;"></a>
+      </div>
+    </div>
+    <!-- footer -->
+    <div class="footer">这是底部</div>
+    <!-- 客户端下载 -->
+    <div class="popup_guide">
+      <img src="./image/logo.png" alt="" />
+      <p class="popup_guide_txt">千万高品质曲库尽享</p>
+      <div class="popup_guide_btn">
+        <i class="popup_guide__btn_icon"></i>
+        客户端下载
+      </div>
+    </div>
+  </body>
+</html>
