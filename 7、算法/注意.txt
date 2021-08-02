@@ -1,0 +1,15 @@
+该目录下已经初始化 npm 
+
+只需要进入到每一个案例的上级目录
+
+使用 node index.js 即可
+
+例如 启动 最接近的三数之和 
+
+来到 notes
+
+cd 7*
+
+cd 1*
+
+node index.js
