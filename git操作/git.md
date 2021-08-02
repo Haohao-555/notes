@@ -118,13 +118,18 @@ git add 后 再次查看 git status
 
 ### 四、查看提交日志并进行版本控制
 
+1、查看提交日志
+
 * 方法一：git log 
 
 <img src="https://i.loli.net/2021/08/01/Oa1VrC9znwsbRpj.png" style="zoom:80%;" />
 
+   多屏显示控制方法： 空格向下翻页  b 向上翻页  q退出
 
 
 * 方法二：git log --pretty=oneline 一行显示完
+
+只能显示过去的
 
 <img src="https://i.loli.net/2021/08/01/syVp54KmwIkLGbO.png" style="zoom:80%;" />
 
@@ -132,7 +137,30 @@ git add 后 再次查看 git status
 
 * 方法三：git reflog
 
-​    <img src="https://i.loli.net/2021/08/01/4KuVGtQb5WXefwT.png" style="zoom:80%;" />
+​    可以显示过去和现在的版本号<img src="https://i.loli.net/2021/08/01/4KuVGtQb5WXefwT.png" style="zoom:80%;" />
+
+
+
+2、前进后退
+
+* 基于索引操作【推荐】
+  * git reset --hard 【局部索引值】
+  * git reset --hard 8bdb3ff
+
+<img src="https://i.loli.net/2021/08/02/2tX7JDidFkIQCO3.png" style="zoom:80%;" />
+
+* 使用 ^ 符号，只能后退
+  * git reset --hard^
+  * 注：一个^代表后退一步
+* 使用 ~ 符号，只能后退
+  * git reset --hard~n
+  * 注：表示后退 n 步
+
+
+
+
+
+
 
 
 
