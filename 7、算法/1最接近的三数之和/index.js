@@ -30,11 +30,14 @@ let threeSumClosest = function (nums, target) {
                 min = diff;
                 res = sum;
             }  
+            // 判断当前值是偏大还是偏小
             if (sum > target) {
+                // 偏大，将当前值变小（右指针后退一步）
                 right--;
             } else if (sum < target){
                left++;
             } else {
+                // 当前值刚好等于目标值，直接返回
                 return sum;
             }
         }
