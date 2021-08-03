@@ -1,0 +1,69 @@
+/* start 底部 */
+.edu_footer{
+    background-color: #414141;
+    height: 160px;
+    box-sizing: border-box;
+    padding-top: 28px;
+    padding-bottom: 20px;
+  }
+  .footer_container{
+    width: 810px;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    /* background-color: aqua; */
+  }
+  .footer_container .top{
+    height: 31px;
+    border-bottom: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+    font-size: 17px;
+    color: #fff;
+    box-sizing: border-box;
+    padding-bottom: 53px;
+  }
+  .footer_container .bottom {
+    font-size: 8px;
+    color: #fff;
+    box-sizing: border-box;
+    padding-top: 20px;
+  }
+  .footer_container .bottom span::after{
+    content: "|";
+  }
+  .footer_container .bottom span:nth-child(4)::after{
+    content: "";
+  }
+  .footer_container .bottom span:last-child::after{
+    content: "";
+  }
+  .footer_container .bottom .bottom_top{
+    margin-bottom: 5px;
+  }
+  .footer_container .top .top_left span{
+    margin-right: 12px;
+  }
+  .footer_container .top .top_left{
+    margin-top: 8px;
+  }
+  .footer_container .top .top_right span{
+    display: inline-block;
+    width: 112px;
+    height: 30px;
+  }
+ 
+  .footer_container .top .top_right span p{
+    display: inline-block;
+    margin-left: 26px;
+    margin-top: 7px;
+  }
+  .footer_container .top .top_right span:first-of-type{
+     background: url(../images/weibo.png) no-repeat center left;
+     background-size: 20px;
+  }
+  .footer_container .top .top_right span:last-of-type{
+     background: url(../images/weixin.png) no-repeat center left;
+     background-size: 20px;
+  }
+  /* end 底部 */

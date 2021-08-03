@@ -1,0 +1,182 @@
+.clearfix::before,
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+.edu_header {
+    width: 1200px;
+    margin: 0 auto;
+    /* height: 600px; */
+    /* border: 1px solid blue; */
+}
+
+/* 媒体查询 */
+@media screen and (max-width: 1200px) {
+    .edu_header {
+        width: 960px;
+    }
+    .search_right input{
+        /* !important ==> 设置关键字，提高优先级 */
+        width: 250px!important;
+    } 
+}
+
+.edu_header_bar {
+    display: flex;
+    justify-content: space-between;
+    /* background-color: antiquewhite; */
+}
+   
+.edu_header_bar .logo {
+    width: 148px;
+    height: 50px;
+}
+
+.edu_header_bar .logo img{
+    height: 100%;
+}
+
+.edu_header_bar .search {
+    display: flex;
+    /* 不写，默认主轴从左到右排列 */
+    /* justify-content: space-between; */
+    height: 50px;
+}
+
+.search_left {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.search_left .location_icon {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-right:6px;
+    background: url(../images/local.jpg) no-repeat center/cover;
+}
+
+.search_left .city {
+    color: var(--theme-gray);
+}
+
+.search_right {
+    display: flex;
+    justify-content: space-between;
+
+    position: relative;
+
+    align-items: center;
+}
+
+.search_right input {
+    box-sizing: border-box;
+    width: 414px;
+    height: 40px;
+    padding-left: 46px;
+    border: 1px solid var(--theme-blue);
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    outline: none;
+}
+
+.search_right::before {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    margin-top: -10px;
+
+    content:"";
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: url(../images/star-on-24.png) no-repeat center/cover;
+}
+
+.search_right label {
+    width: 85px;
+    height: 40px;
+    line-height: 40px;
+    background-color: var(--theme-blue);
+    text-align: center;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    font-size: 20px;
+    color: #fff;
+}
+
+.edu_header_bar .link{
+    height: 50px;
+}
+
+.edu_header_bar .link li{
+    float: left;
+    height: 50px;
+    line-height: 50px;
+    /* 给外面的li标签设置外边距值 */
+    margin-left:30px;
+}
+
+.edu_header_bar .link li a{
+    display: inline-block;
+    height: 100%;
+    color: var(--theme-gray);
+}
+
+.edu_header_bar .link li img {
+    width: 40px;
+    height: 40px;
+    margin-top: 5px;
+    border-radius: 50%;
+}
+
+/* header_bar上部分  end  */
+
+/* header_nav start  */
+
+.header_nav {
+    margin-top: 15px;
+}
+
+.nav_list {
+    display: flex;
+    align-items: center;
+    height: 50px;
+}
+
+.nav_list  .nav_item {
+    height: 100%;
+    line-height: 50px;
+    margin-right: 50px;
+    font-size: 20px;
+}
+
+/* 同一个标签设置多个类名，可以这样写 */
+.nav_list  .nav_item.active {
+    border-bottom: 3px solid var(--theme-blue);
+}
+
+.nav_list  .nav_item.active a{
+    /* 字体粗细程度  设置为粗体 */
+    font-weight: bold;
+    color: var(--theme-blue);
+}
+
+/* 把最后一个li标签的外边距值设置为0 */
+.nav_list  .nav_item:last-child {
+    margin-right: 0;
+}
+/* header_nav end */

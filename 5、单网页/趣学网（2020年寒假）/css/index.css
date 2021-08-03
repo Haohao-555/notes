@@ -1,0 +1,524 @@
+
+/* start edu_container */
+.edu_container {
+    position: relative;
+    width: 100%;
+    min-width: 1200px;
+}
+
+.edu_banner {
+    position: relative;
+    width: 100%;
+    min-width: 980px;
+}
+.course , .parent ,.video , .artice{
+    position: relative;
+    width: 100%;
+    min-width: 1200px;
+} 
+.banner_pic {
+    width: 100%;
+}
+
+/* 设置媒体查询 当宽度大于1260px，更改左右按钮的left和right值 */
+@media screen and (max-width: 1260px){
+    .edu_banner .prev_btn {
+        left: 100px!important;
+    }
+
+    .edu_banner .next_btn {
+        right: 100px!important;
+    }
+}
+
+.prev_btn ,
+.next_btn {
+    position: absolute;
+    top: 50%;
+    /* 向上移动自身高度的一半 */
+    margin-top: -25px;
+    width: 50px;
+    height: 50px;
+    /* background-color: ; */
+    border-radius: 50%;
+}
+
+.prev_btn {
+    left: 170px;
+    background:rgba(74, 195, 246, .3) url(../images/left.png) no-repeat center;
+}
+
+.next_btn {
+    right: 180px;
+    background: rgba(74, 195, 246, .3) url(../images/right.png) no-repeat center;
+}
+
+.page_dot {
+    position: absolute;
+    bottom: 6px;
+    left: 50%;
+    /* 向左移动自身宽度的一半 */
+    margin-left: -23px;
+    width: 46px;
+    /* height: 20px; */
+    /* background-color: orange; */
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page_dot .dot{
+    /* 行内元素，设置宽高无效的 */
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+    background-color: var(--theme-gray);
+}
+
+.page_dot .dot.active {
+    width: 12px;
+    height: 12px;
+    background-color: var(--theme-blue);
+}
+
+/* start 广州热门学校 */
+.edu_wrapper {
+    display: flex;
+    justify-content: space-between;
+
+    width: 1200px;
+    margin: 0 auto;
+    padding-top: 55px;
+}
+
+/* 左侧是弹性宽度 */
+.hot_school {
+    flex: 1;
+}
+
+/* 右侧固定宽度 */
+.hot_rating {
+   width: 23%;
+   flex: 0 0 23%;
+   margin-left: 2%;
+}
+
+.school_lesson{
+    position: relative;
+}
+
+.title{
+    display: inline-block;
+    font-size: 32px;
+}
+
+.small_title{
+    display: inline-block;
+    margin-left: 16px;
+    font-size: 16px;
+    color: var(--theme-gray);
+}
+
+.more{
+    position: absolute;
+    top: 9px;
+    right: 0;
+    font-size: 14px;
+    color: var(--theme-blue);
+}
+
+.lesson_items {
+    padding-top: 20px;
+}
+
+.lesson_items>ul{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+} 
+
+.lesson_items>ul>li{
+    width: 32%;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    /* 盒子阴影 */
+    box-shadow: 0px 1px 2px 1px #eee;
+} 
+
+.lesson_items>ul>li>img {
+    height: 200px;
+    width: 100%;
+}
+
+.lesson_items .items_name,
+.lesson_items .items_star,
+.lesson_items .items_tips,
+.lesson_items .items_address {
+    margin-left: 15px;
+}
+
+.lesson_items .items_name{
+    margin-top: 20px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: bold;
+} 
+
+.lesson_items .items_star{
+    margin-bottom: 15px;
+}
+
+.lesson_items .star {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: url(../images/star-on-24.png) no-repeat center/cover;
+}
+
+.lesson_items .score{
+    color: #ecb50d;
+}
+
+.lesson_items .items_tips {
+    margin-bottom: 15px;
+}
+
+.lesson_items .items_tips span{
+    padding:2px 10px;
+    background-color: var(--theme-blue);
+    color: #fff;
+    font-size: 12px;
+    border-radius: 10px;
+}
+.lesson_items .items_address{
+    margin-bottom: 15px;
+    font-size: 12px;
+    color: var(--theme-gray);
+}   
+
+/* 右侧固定的评论 */
+.hot_rating {
+    margin-top: 50px;
+}
+
+.hot_rating article {
+    margin-top: 20px;
+}
+
+.hot_rating  .rating_title {
+    display: inline-block;
+    width: 130px;
+    font-size: 24px;
+    font-weight: 500;
+    /* 设置省略号效果 */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.hot_rating  .rating_look {
+    display: inline-block;
+    font-size: 14px;
+    color: var(--theme-blue);
+}
+
+.hot_rating  .rating_plan {
+    font-size: 15px;
+}
+.hot_rating  .rating_plan span{
+    padding:0 2px;
+    background: orangered;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.hot_rating  .rating_visited {
+    padding: 15px 0;
+    color: var(--theme-gray);
+    font-size: 12px;
+ }
+/* end 广州热门学校 */
+
+/* start 热门兴趣课 */
+.course{
+    background-color: #f7f8fa;
+    /* margin: 0 auto; */
+    padding-top: 24px;
+    box-sizing: border-box;
+}
+.course_container{
+    width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+.course_items{
+    width: 1200px;
+    margin: 18px 0 20px 0;
+    display: flex;
+    justify-content: space-between;
+}
+.course_items .item{
+    width: 280px;
+    padding-bottom: 40px;
+}
+.course_items .item img{
+    width: 100%;
+}
+.course_items .item h6{
+    font-size: 18px;
+    color: #333333;
+    font-weight: bold;
+    margin: 10px 0 5px 0;
+}
+.course_items .item span{
+    font-size: 12px;
+    color: #bdbdbf;  
+}
+/* end 热门兴趣课 */
+
+/* start 家长种草推荐 */
+.parent {
+    padding-top: 24px;
+    box-sizing: border-box;
+  }
+  .parent_container {
+    width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .parent_items{
+     width: 1200px;
+     margin-top: 20px;
+  }
+  .parent_items .top_items , .parent_items .bottom_items {
+       display: flex;
+       justify-content: space-between;
+       margin-bottom: 20px;
+  }
+  .parent_items .item{
+    width: 274px; 
+    box-shadow: 0px 1px 2px 1px #eee;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    position: relative;
+  }
+  .parent_items .item img{
+       width: 100%;
+       height: 178px;
+       
+  }
+  .parent_items .item img:last-of-type{
+    height: 44px;
+    width: 44px;
+    border-radius: 50%;
+    position: absolute;
+    top: 151px;
+    left: 26px;
+  }
+  .parent_items .item span:first-of-type{
+    display: inline-block;
+    width: 75px;
+    height: 20px;
+    background-color: #29b7f5;
+    position: absolute;
+    top: 166px;
+    right:0px;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    color: #fff;
+    font-size: 14px;
+    line-height: 20px;
+    box-sizing: border-box;
+    padding-left: 10px;
+    padding-right: 9px;
+  }
+  .parent_items .item span:last-of-type{
+    position: absolute;
+    top: 178px;
+    left: 78px;
+    font-size: 13px;
+    color: #333;
+    font-weight: bold;
+  }
+  .parent_items .item p{
+    font-size: 13px;
+    color: #dfdfdf;
+    margin-top: 36px;
+    margin-bottom: 20px;
+    height: 36px;
+    width: 199px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 18px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  /* end  家长种草推荐*/
+
+  /* start 直播试听课 */
+  .video {
+    padding-top: 24px;
+    box-sizing: border-box;
+    background-color: #f7f8fa;
+    position: relative;
+    padding-bottom: 48px;
+}
+.video_container {
+  width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+.video_container .video_items{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.video_container .video_items .item{
+  width: 272px;
+  position: relative;
+}
+.video_container .video_items .item img{
+  height: 192px;
+  width: 100%;
+}
+.video_container .video_items .item span{
+  position: absolute;
+  display: inline-block;
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  font-size: 11px;
+  background-color: rgba(0, 0, 0, 0.41);
+  top: 171px;
+  left: 0px;
+  color: #fff;
+  text-align: center;
+}
+.video_container .video_items .item .info{
+  width: 100%;
+  height: 117px;
+  box-sizing: border-box;
+  padding-top: 11px;
+  text-align: center;
+  background-color: #fff;
+  
+}
+.video_container .video_items .item .info h3{
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+.video_container .video_items .item .info p{
+  display: block;
+  margin-bottom: 8px;
+  font-size: 8px;
+  color: #e2e2e2;
+}
+.video_container .video_items .item .info .teacher{
+  padding-top: 10px;
+}
+.video_container .video_items .item .info .teacher img{
+  width: 28px;
+  height: 28px;
+  vertical-align: middle;
+}
+.video_container .video_items .item .teacher p {
+  display: inline-block;
+}
+.left , .right{
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  border-radius: 50%;
+  background-size: 20px 20px;
+}
+.left{
+  top: 202px;
+  left: 100px;
+  background: #dbdbdd url(../images/left.png) no-repeat center center;
+  
+}
+.right{
+  top: 202px;
+  right: 100px;
+  background:#dbdbdd url(../images/right.png) no-repeat center center;
+}
+  /* end 直播试听课 */
+
+ /* start 文章 */
+ .artice{
+    padding-top: 24px;
+    box-sizing: border-box;
+    position: relative;
+  }
+  .artice_container{
+    width: 1200px;
+    margin: 0 auto;
+    position: relative;
+   
+  }
+  .artice_container .artice_content{
+    display: flex;
+    justify-content: space-between;
+  }
+  .artice_container .artice_content .left_content , .artice_container .right_content{
+       width: 588px;
+       margin-bottom: 20px;
+       margin-top: 20px;
+  }
+  .artice_container ul li{
+    border-radius: 12px;
+    width: 100%;
+    height: 190px;
+    margin-bottom: 10px;
+    /* background-color: red; */
+    box-sizing: border-box;
+    padding: 20px 30px;
+    box-shadow: 0px 1px 2px 1px #eee;
+  }
+  .artice_container ul li img{
+    width: 196.5px;
+    height: 146px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius:12px;
+    vertical-align: top;
+    margin-right: 20px;
+  }
+  .artice_container ul li .info {
+     display: inline-block;
+     width: 306px;
+     height: 100%;
+     position: relative;
+  }
+  .artice_container ul li .info p{
+    font-size: 16px;
+    color: #8e8e8e;
+    width: 257px;
+    line-height: 30px;
+  }
+  .artice_container ul li .info span{
+    position: absolute;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background: url(../images/点赞.png) no-repeat center;
+    background-size: 30px;
+    top: 100px;
+    left: -6px;
+  }
+  .artice_container ul li .info .number{
+     position: absolute;
+     top: 110px;
+     left: 41px;
+     color: #2063e8;
+  }
+ /* end 文章 */
+/* end edu_container */

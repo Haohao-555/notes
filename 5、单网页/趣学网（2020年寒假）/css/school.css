@@ -1,0 +1,343 @@
+body {
+    background-color: #f7f8fa;
+  }
+  .school {
+    width: 100%;
+  }
+  .school_container {
+    width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* part01 start */
+  .part01 ul li {
+    display: inline-block;
+  }
+  .part01 ul li a {
+    display: inline-block;
+    margin: 20px 0px;
+    font-size: 12px;
+    color: #a9a9aa;
+  }
+  .part01 ul li a:hover {
+    color: red;
+  }
+  .part01 ul li::after {
+    content: ">";
+    color: #a9a9aa;
+  }
+  .part01 ul li:last-child::after {
+    content: "";
+  }
+  /* part01 end */
+
+  /* part02 start */
+  .part02_container {
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0px 1px 1px 2px #eee;
+  }
+  .part02_container ul li {
+    width: 100%;
+    height: 46px;
+    border-bottom: 1px solid #eee;
+    box-sizing: border-box;
+    padding: 12px 10px;
+  }
+  .part02_container ul li span {
+    font-size: 12px;
+    line-height: 15px;
+    color: #939393;
+  }
+
+  .part02_container ul li span:first-child {
+    color: #a19f9fd5;
+    display: inline-block;
+    width: 70px;
+    height: 100%;
+  }
+  .part02_container ul li span:nth-child(n + 2) {
+    margin-left: 12px;
+  }
+  /* part02 end */
+
+  /* 下部分 start */
+  .main_bottom {
+    width: 100%;
+  }
+  .main_bottom .main_bottom_container {
+    width: 100%;
+    position: relative;
+    margin-bottom: 60px;
+  }
+
+  /* part03 start */
+  .part03_container {
+    width: 960px;
+    margin-top: 12px;
+    box-shadow: 0px 1px 1px 2px #eee;
+    background-color: #fff;
+    border-radius: 12px;
+    box-sizing: border-box;
+    padding: 12px 10px 12px 10px;
+  }
+  .part03_container .label {
+    width: 100%;
+    height: 100px;
+    box-sizing: border-box;
+    padding-top: 40px;
+    border-bottom: 1px solid rgb(177, 168, 168);
+    padding-bottom: 20px;
+  }
+  .part03_container .label span {
+    display: inline-block;
+    font-size: 12px;
+    height: 30px;
+    width: 80px;
+    line-height: 30px;
+    border-radius: 10px;
+    text-align: center;
+    margin-right: 14px;
+  }
+
+  .part03_container .label span:first-child {
+    background-color: #2ab8f6;
+    color: #fff;
+    border: 1px solid #2ab8f6;
+  }
+  .part03_container .label span:nth-child(n + 2) {
+    color: #000;
+    background-color: rgba(255, 255, 255, 0.856);
+    border: 1px solid #f4f5f9;
+  }
+  .part03_container .content {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .part03_container .content ul li {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+    padding: 20px 16px;
+    overflow: hidden;
+    border-bottom: 1px solid rgb(177, 168, 168);
+  }
+  .part03_container .content ul li img {
+    width: 250px;
+    height: 100%;
+    border-radius: 12px;
+    float: left;
+  }
+  .part03_container .content ul li .info {
+    float: right;
+    width: 632px;
+    height: 100%;
+  }
+  .part03_container .content ul li .info a {
+    font-size: 20px;
+    color: #333;
+    font-weight: bolder;
+    margin-bottom: 8px;
+  }
+  .part03_container .content ul li .info a:hover {
+    color: rgb(202, 29, 29);
+    cursor: pointer;
+  }
+  .part03_container .content ul li .info .icon {
+    display: inline-block;
+    width: 120px;
+    height: 30px;
+    background: url(../images/big-star.png) no-repeat center left;
+    background-size: 68px 18px;
+    color: #fec459;
+    box-sizing: border-box;
+    padding-left: 72px;
+    font-size: 16px;
+    padding-top: 7px;
+    display: block;
+    margin-bottom: 10px;
+  }
+  .part03_container .content ul li .info .comment {
+    color: #addffa;
+    font-size: 12px;
+    margin-bottom: 18px;
+    display: block;
+    font-weight: bolder;
+  }
+  .part03_container .content ul li .info .course {
+    width: 100%;
+    font-size: 14px;
+  }
+  .part03_container .content ul li .info .course span:first-child {
+    color: #bebebe;
+  }
+  .part03_container
+    .content
+    ul
+    li
+    .info
+    .course
+    span:nth-child(n + 2)::after {
+    content: "/";
+    margin-left: 4px;
+    margin-right: 4px;
+    color: #c7c7c7;
+  }
+  .part03_container .content ul li .info .course > span:nth-child(n + 2) {
+    color: #addffa;
+    font-size: 15px;
+  }
+  .part03_container .content ul li .info .course span:last-of-type:after {
+    content: "";
+  }
+  .part03_container .content ul li .info .course .adress {
+    margin-top: 20px;
+    color: #bebebe;
+    position: relative;
+  }
+  .part03_container .content ul li .info .course .adress .collect {
+    position: absolute;
+    top: -6px;
+    right: 10px;
+    display: inline-block;
+    width: 46px;
+    height: 26px;
+    line-height: 26px;
+    color: red;
+    border: 1px solid red;
+    padding-left: 8px;
+    box-sizing: border-box;
+    border-radius: 6px;
+  }
+  .part03_container .btn {
+    width: 340px;
+    height: 30px;
+    margin: 20px auto;
+  }
+  .part03_container .btn ul {
+    display: flex;
+    justify-content: space-between;
+  }
+  .part03_container .btn ul li {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-bottom: none;
+    border: 1px solid #f4f5f9;
+    padding: 0;
+    text-align: center;
+    color: #333;
+    font-weight: bold;
+  }
+  .part03_container .btn ul li:hover {
+    cursor: pointer;
+  }
+  .part03_active {
+    color: #fff !important;
+    background-color: #2ab8f6 !important;
+    border: 1px solid #2ab8f6 !important;
+  }
+  /* part03 end */
+
+  /* part04 start */
+  .part04_container {
+    width: 220px;
+    background-color: #fff;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 12px;
+    box-sizing: border-box;
+    box-shadow: 0px 1px 1px 2px #eee;
+  }
+  .part04_container .label {
+    color: #66cbf6;
+    font-size: 20px;
+    margin-bottom: 20px;
+    display: block;
+  }
+  .part04_container .content {
+    width: 100%;
+  }
+  .part04_container > .content > .top {
+    margin-bottom: 29px;
+  }
+  .part04_container > .content > .top > ul > li {
+    width: 100%;
+    height: 61px;
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+  .part04_container > .content > .top > ul > li > img {
+    width: 77px;
+    height: 100%;
+    float: left;
+  }
+  .part04_container > .content > .top > ul > li > .info {
+    width: 104px;
+    height: 100%;
+    float: right;
+  }
+  .part04_container > .content > .top > ul > li > .info > a {
+    font-size: 13px;
+    font-weight: bolder;
+    color: #333;
+  }
+  .part04_container > .content > .top > ul > li > .info > a:hover {
+    color: red;
+    cursor: pointer;
+  }
+  .part04_container > .content > .top > ul > li > .info > .icon {
+    display: inline-block;
+    width: 90px;
+    height: 30px;
+    background: url(../images/big-star.png) no-repeat center left;
+    background-size: 51px 14px;
+    box-sizing: border-box;
+    font-size: 10px;
+    color: #fddca2;
+    padding-left: 60px;
+    padding-top: 10px;
+  }
+  .part04_container > .content > .top > ul > li > .info > p {
+    width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 6px;
+    color: #c1c1c1;
+  }
+  .part04_container > .content > .bottom > ul > li {
+    width: 100%;
+    height: 30px;
+    margin-bottom: 8px;
+    font-size: 8px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .part04_container > .content > .bottom > ul > li > span:first-child {
+    width: 95px;
+    font-size: 12px;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: bolder;
+  }
+  .part04_container > .content > .bottom > ul > li > span:first-child:hover{
+    color: red;
+    cursor: pointer;
+  }
+  .part04_container > .content > .bottom > ul > li > span:nth-child(2) {
+    font-size: 12px;
+    width: 66px;
+    color: #c1c1c1;
+  }
+  .part04_container > .content > .bottom > ul > li > span:nth-child(3) {
+    color: #fddca2;
+    font-size: 6px;
+  }
+  /* part04 end */
+
+  /* 下部分 end */

@@ -1,0 +1,537 @@
+body {
+    background-color: #f7f8fa;
+  }
+  .school_detail {
+    width: 100%;
+  }
+  .school_detail_container {
+    width: 1200px;
+    margin: 0 auto;
+  }
+  /* part01 start */
+  .part01 ul li{
+    display: inline-block;
+  }
+  .part01 ul li a{
+    display: inline-block;
+    margin: 20px 0px;
+    font-size: 12px;
+    color: #a9a9aa;
+  }
+  .part01 ul li a:hover{
+    color: red;
+    cursor: pointer;
+  }
+  .part01 ul li::after {
+    content: ">";
+    color: #a9a9aa;
+    margin-left: 4px;
+  }
+  .part01 ul li:last-child::after {
+    content: "";
+  }
+  /* part01 end */
+
+  /* part02 start */
+  .part02{
+    position: relative;
+  }
+  .part02_container {
+    display: inline-block;
+    width: 100%;
+    border-radius: 12px;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding-top: 18px;
+    padding-bottom: 40px;
+    box-shadow: 0px 1px 2px 1px #eee;
+    padding-left: 20px;
+  }
+  .part02_container .part02_container_left {
+    width: 700px;
+    box-sizing: border-box;
+    padding-bottom: 20px;
+  }
+  .part02_container .part02_container_left .title {
+    width: 100%;
+    height: 63px;
+    box-sizing: border-box;
+    padding-top: 2px;
+    font-size: 42px;
+    color: #333;
+  }
+  .part02_container .part02_container_left .title h1 {
+    display: inline-block;
+    line-height: 63px;
+  }
+  .part02_container .part02_container_left .icon_01 {
+    display: inline-block;
+    width: 170px;
+    height: 50px;
+    vertical-align: text-bottom;
+    background: url(../images/icon.png) no-repeat center left;
+  }
+  .part02_container .part02_container_left .appraise {
+    width: 100%;
+    height: 50px;
+  }
+  .part02_container .part02_container_left .appraise .icon_02 {
+    display: inline-block;
+    width: 111px;
+    height: 60px;
+    vertical-align: middle;
+    background: url(../images/big-star.png) no-repeat center 12px;
+    background-size: 106px 25px;
+  }
+  .part02_container .part02_container_left .appraise h3 {
+    color: #fecd79;
+    font-size: 24px;
+    display: inline-block;
+    line-height: 50px;
+    margin-left: 12px;
+  }
+  .part02_container .part02_container_left .info {
+    width: 100%;
+    height: 125px;
+    box-sizing: border-box;
+    padding-top: 12px;
+    border-bottom: 1px solid #dbdbdb;
+    padding-bottom: 20px;
+  }
+  .part02_container .part02_container_left .info ul li {
+    margin-bottom: 12px;
+  }
+  .part02_container .part02_container_left .info ul li span:first-child {
+    font-size: 21px;
+    color: #dbdbdb;
+  }
+  .part02_container .part02_container_left .info ul li span:last-child {
+    font-size: 21px;
+    color: #989898;
+  }
+  .part02_container .part02_container_left .service {
+    width: 100%;
+    height: 50px;
+    box-sizing: border-box;
+    padding-top: 12px;
+  }
+  .part02_container .part02_container_left .service span {
+    display: inline-block;
+    width: 100px;
+    height: 30px;
+    margin-left: 12px;
+    font-size: 18px;
+    color: #777777;
+    line-height: 30px;
+  }
+  .part02_container .part02_container_left .service span:first-child {
+    color: #434343;
+    font-weight: bolder;
+  }
+  .part02_container .part02_container_left .service span:nth-child(n + 2) {
+    background: url(../images/icon_3.png) no-repeat center left;
+    box-sizing: border-box;
+    padding-left: 24px;
+  }
+  .part02_container .part02_container_left .consult {
+    background-color: #ff764c;
+    width: 148px;
+    height: 50px;
+    border-radius: 20px;
+    line-height: 50px;
+    color: #fefafa;
+    font-size: 21px;
+    text-align: center;
+    margin-top: 14px;
+  }
+  .part02_container .part02_container_right {
+    width: 460px;
+    padding-right: 40px;
+    box-sizing: border-box;
+  }
+  .part02_container .part02_container_right .top_pic {
+    height: 200px;
+  }
+  .part02_container .part02_container_right .top_pic img {
+    width: 100%;
+    height: 132%;
+  }
+  .part02_container .part02_container_right .bottom_pic {
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 75px;
+  }
+  .part02_container .part02_container_right .bottom_pic img {
+    width: 32%;
+    height: 100%;
+    border-radius: 12px;
+  }
+  /* part02 end */
+
+  /* part03 start */
+  .part03{
+    position: relative;
+  }
+  .part03 > .left{
+    position: absolute;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      top: 183px;
+      left: -54px;
+      background: #d8eef9 url(../images/left.png) no-repeat center center;
+      background-size: 20px 20px;
+  }
+  .part03 > .right{
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      top: 183px;
+      right: -54px;
+      background: #d8eef9 url(../images/right.png) no-repeat center center;
+      background-size: 20px 20px;
+   }
+  .part03_container {
+    width: 100%;
+    border-radius: 12px;
+    background-color: #fff;
+    margin-top: 12px;
+    box-shadow: 0px 1px 2px 1px #eee;
+    box-sizing: border-box;
+    padding: 20px 20px 40px 20px;
+  }
+  .part03_container h3 {
+    font-size: 30px;
+    color: #626262;
+    font-weight: bolder;
+  }
+  .part03_container .items {
+    box-sizing: border-box;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .part03_container .item {
+    width: 360px;
+    text-align: center;
+  }
+  .part03_container .item img {
+    width: 100%;
+    height: 249px;
+  }
+  .part03_container .item .info {
+    text-align: center;
+    font-weight: bold;
+  }
+  .part03_container .item .info h6 {
+    font-size: 14px;
+    color: #000;
+    margin-bottom: 12px;
+    margin-top: 12px;
+  }
+  .part03_container .item .info span {
+    color: #8bd4f8;
+    font-size: 13px;
+  }
+  .part03_container .item .info p {
+    font-size: 13px;
+    line-height: 20px;
+    box-sizing: border-box;
+    padding-top: 12px;
+    color: #989898;
+  }
+  /* part03 end */
+
+  /* 主体内容下部分 start*/
+  .main_bottom {
+    width: 100%;
+    margin-bottom: 50px;
+  }
+  .main_bottom_container {
+    position: relative;
+    width: 100%;
+  }
+
+  /*  主打课程  start*/
+  .part04_container {
+    width: 960px;
+    border-radius: 12px;
+    background-color: #fff;
+    margin-top: 12px;
+    box-shadow: 0px 1px 2px 1px #eee;
+    box-sizing: border-box;
+    padding: 20px 20px 40px 20px;
+  }
+  .part04_container h3 {
+    font-size: 30px;
+    color: #626262;
+    font-weight: bolder;
+  }
+  .part04_container .items {
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .part04_container .items .left_items,
+  .part04_container .items .right_items {
+    width: 458px;
+    height: 300px;
+  }
+  .part04_container .items ul li {
+    width: 440px;
+    height: 140px;
+    /* background-color: yellow; */
+    margin-top: 10px;
+    box-shadow: 0px 1px 2px 1px #eee;
+    overflow: hidden;
+  }
+  .part04_container .items ul li img {
+    height: 100%;
+    width: 210px;
+    float: left;
+  }
+  .part04_container .items ul li .info {
+    width: 225px;
+    height: 100%;
+    float: right;
+    box-sizing: border-box;
+    padding-top: 30px;
+    padding-left: 20px;
+  }
+  .part04_container .items ul li .info h4 {
+    font-size: 15px;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 12px;
+  }
+  .part04_container .items ul li .info span:first-of-type {
+    font-size: 10px;
+    color: #cfcfcf;
+    display: block;
+    margin-bottom: 20px;
+  }
+  .part04_container .items ul li .info .discount {
+    color: #fecaba;
+    font-size: 11px;
+  }
+  .part04_container .items ul li .info .price {
+    color: #cfcfcf;
+    font-size: 10px;
+  }
+  /* 主打课程 end */
+
+  /* 学员评价 start */
+  .part05_container {
+    width: 960px;
+    border-radius: 12px;
+    background-color: #fff;
+    margin-top: 12px;
+    box-shadow: 0px 1px 2px 1px #eee;
+    box-sizing: border-box;
+    padding: 20px 20px 40px 20px;
+  }
+  .part05_container h3 {
+    font-size: 30px;
+    color: #626262;
+    font-weight: bolder;
+  }
+  .part05_container .label {
+    width: 100%;
+    height: 100px;
+    box-sizing: border-box;
+    padding-top: 40px;
+    border-bottom: 1px solid rgb(177, 168, 168);
+    padding-bottom: 20px;
+  }
+  .part05_container .label .all {
+    display: inline-block;
+    height: 30px;
+    width: 80px;
+    background-color: #2ab8f6;
+    color: #fff;
+    font-size: 12px;
+    line-height: 30px;
+    border-radius: 10px;
+    text-align: center;
+  }
+  .part05_container .label .new {
+    display: inline-block;
+    font-size: 12px;
+    height: 30px;
+    width: 80px;
+    color: #000;
+    line-height: 30px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.856);
+    border: 1px solid #f4f5f9;
+  }
+  .part05_container .contents {
+    margin-top: 30px;
+    width: 100%;
+  }
+  .part05_container .contents ul li {
+    border-bottom: 1px solid rgb(177, 168, 168);
+    width: 100%;
+    padding: 20px 0px 20px 0px;
+    box-sizing: border-box;
+  }
+  .part05_container .contents ul li .top {
+    width: 100%;
+    overflow: hidden;
+  }
+  .part05_container .contents ul li .top img {
+    width: 40px;
+    height: 40px;
+    float: left;
+  }
+  .part05_container .contents ul li .top .info {
+    overflow: hidden;
+    width: 868px;
+    height: 60px;
+    float: right;
+  }
+  .part05_container .contents ul li .top .info .left {
+    float: left;
+    font-size: 16px;
+    color: #000;
+    font-weight: bold;
+  }
+  .part05_container .contents ul li .top .info .left .icon {
+    display: block;
+    width: 200px;
+    height: 30px;
+    background: url(../images/big-star.png) no-repeat center left;
+    margin-top: 3px;
+    background-size: 90px 17px;
+    box-sizing: border-box;
+    padding-left: 97px;
+    padding-top: 10px;
+    color: #ffd590;
+    font-size: 14px;
+  }
+  .part05_container .contents ul li .top .info .time {
+    float: right;
+    font-size: 10px;
+    font-weight: bold;
+    color: #b6b6b6;
+  }
+  .part05_container .contents ul li .bottom p {
+    font-size: 10px;
+    color: #8f8f8f;
+    line-height: 20px;
+    width: 813px;
+    margin: 12px auto 12px auto;
+  }
+  .part05_container .contents ul li .bottom .pic {
+    width: 813px;
+    height: 100px;
+    margin: 12px auto 12px auto;
+  }
+  .part05_container .contents ul li .bottom .pic img {
+    width: 150px;
+    height: 100%;
+    margin-right: 20px;
+    border-radius: 12px;
+  }
+  .part05_container .btn{
+    width: 340px;
+    height: 30px;
+    margin: 20px auto; 
+  }
+  .part05_container .btn  ul{
+    display: flex;
+    justify-content: space-between;
+  }
+  .part05_container .btn ul li{
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-bottom: none;
+    border: 1px solid #f4f5f9;
+    padding: 0;
+    text-align: center;
+    color: #333;
+    font-weight: bold;
+  }
+  .part05_container .btn ul li:hover{
+    cursor: pointer;
+  }
+  .part05_active{
+    color: #fff  !important;
+    background-color: #2ab8f6 !important;
+    border: 1px solid #2ab8f6 !important;
+  }
+  .part05_container .btn ul li:nth-child(6){
+    border: none;
+  }
+  /* 学员评价 end */
+
+  /* 侧栏 start*/
+  .part06_container {
+    width: 220px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+  }
+  .part06_container > img {
+    width: 100%;
+    height: 248px;
+  }
+  .part06_container .bottom {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0px 1px 2px 1px #eee;
+    margin-top: 12px;
+    background-color: #fff;
+    box-sizing: border-box;
+    padding: 8px 12px;
+  }
+  .part06_container .bottom .label {
+    display: inline-block;
+    color: #68c7f7;
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+  .part06_container .bottom ul li {
+    width: 100%;
+    margin-bottom: 17px;
+  }
+  .part06_container .bottom ul li img {
+    width: 100%;
+    height: 120px;
+    border-radius: 12px;
+  }
+  .part06_container .bottom ul li h5 {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 8px;
+    margin-bottom: 5px;
+  }
+  .part06_container .bottom ul li span:first-of-type {
+    display: inline-block;
+    width: 100%;
+    height: 29px;
+    background: url(../images/big-star.png) no-repeat center left;
+    background-size: 86px 14px;
+    box-sizing: border-box;
+    padding-left: 92px;
+    line-height: 29px;
+    color: #c3c3c3;
+    font-size: 14px;
+  }
+  .part06_container .bottom ul li span:last-of-type {
+    display: block;
+    color: #c3c3c3;
+    font-size: 12px;
+    margin-top: 12px;
+  }
+  /* 侧栏 end */
+
+  /* 主体内容下部分 end*/
