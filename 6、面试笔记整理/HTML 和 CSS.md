@@ -70,7 +70,7 @@
 * table 布局缺点：
 
   * table 比其他html标签占更多的字节。造成下载时间延迟，占用服务器更多的流量资源（<font color=#08ffc8>代码冗余</font>）
-  * <font color="#2E94B9">table 会阻挡浏览其渲染引擎的渲染顺序，会延迟页面的生成速度，让用户等待时间更久</font>
+  * <font color="#2E94B9">table 会阻挡浏览器渲染引擎的渲染顺序，会延迟页面的生成速度，让用户等待时间更久</font>
   * 灵活性差，一旦设计确定，后期很难通过CSS让它展现新的面貌
   * <font color="red">不利于搜索引擎抓取信息，直接影响到网站的排名</font>
 
@@ -119,7 +119,7 @@
 
 ### 8、谈一下你对网页标准和标准制定机构重要性的理解
 
-​        网页标准和标准制定机构都是为了能**让 web 发展的更‘健康’**，开发者遵循统一的标准，降 低开发难度，开发成本，SEO 也会更好做，也不会因为滥用代码导致各种 BUG、安全问题， 最终提高网站易用性。
+​        网页标准和标准制定机构都是为了能**让 web 发展的更‘健康’**，开发者遵循统一的标准，降低开发难度，开发成本，SEO 也会更好做，也不会因为滥用代码导致各种 BUG、安全问题， 最终提高网站易用性。
 
 
 
@@ -176,9 +176,9 @@
 
 ### 12、什么是微格式
 
-​       微格式（Microformats）是一种让机器可读的语义化 XHTML 词汇的集合，是结构化数据的开 放标准。是为特殊应用而制定的特殊格式。
+​       微格式（Microformats）是一种让机器可读的语义化 XHTML 词汇的集合，是结构化数据的开放标准。是为特殊应用而制定的特殊格式。
 
-​       优点：将智能数据添加到网页上，让网站内容在搜索引擎结果界面可以显示额外的提示。（应 用范例：豆瓣，有兴趣自行 google）
+​       优点：将智能数据添加到网页上，让网站内容在搜索引擎结果界面可以显示额外的提示。（应用范例：豆瓣，有兴趣自行 google）
 
 ​      [详细内容](https://www.jianshu.com/p/7e11c1f32a48)
 
@@ -366,7 +366,7 @@ _background-color:orange; /*ie6*/
 ### 30、CSS 中 link 和@import 的区别是： 
 
 * Link 属于 html 标签，而@import 是 CSS 中提供的
-* 在页面加载的时候，link 会同时被加载，而@import 引用的 CSS 会在页面加载完成后才会加 载引用的 CSS
+* 在页面加载的时候，link 会同时被加载，而@import 引用的 CSS 会在页面加载完成后才会加载引用的 CSS
 
 * @import 只有在 ie5 以上才可以被识别，而 link 是 html 标签，不存在浏览器兼容性问题
 * Link 引入样式的权重大于@import 的引用（@import 是将引用的样式导入到当前的页面中）
@@ -404,7 +404,15 @@ IE盒子模型的范围包括 margin、border、padding、content,和w3c盒子�
 
 [W3C](https://www.w3school.com.cn/xhtml/xhtml_intro.asp)
 
+- XHTML 元素必须被正确地嵌套。
 
+- XHTML 元素必须被关闭。
+
+- 标签名必须用小写字母。
+
+- XHTML 文档必须拥有根元素。
+
+  
 
 ### 33、哪些 css 属性可以继承？
 
@@ -421,7 +429,7 @@ IE盒子模型的范围包括 margin、border、padding、content,和w3c盒子�
 
 ### 35、**position 跟 display、margin collapse、overflow、float 这些特性相互叠加后会怎么样？**
 
-> 当前目录下的面试题第35题
+> 当前目录下的HTML 和 CSS第35题
 
 
 
@@ -456,9 +464,34 @@ IE盒子模型的范围包括 margin、border、padding、content,和w3c盒子�
 
 * 3、超链接 hover 点击后失效 使用正确的书写顺序 link visited hover active
 
+* 4、Ie z-index 问题 给父级添加 position:relative
+
+* 5、Png 透明 使用 js 代码改
+
+* 6、Min-height 最小高度 ！Important 解决’
+
+* 7、select 在 ie6 下遮盖 使用 iframe 嵌套
+
+* 8、为 什 么 没 有 办 法 定 义 1px 左 右 的 宽 度 容 器 （ IE6 默 认 的 行 高 造 成 的 ， 使 用
+
+  over:hidden,zoom:0.08 line-height:1px）
+
+* 9、IE5-8 不支持 opacity，解决办法：
+
+  ```css
+  .opacity {
+   opacity: 0.4
+   filter: alpha(opacity=60); /* for IE5-7 */
+   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)"; /* for IE 
+  8*/
+  }
+  ```
+
+* 10、IE6 不支持 PNG 透明背景，解决办法: IE6 下使用 gif 图片
 
 
-........
+
+#### 43、absolute 的 containing block 计算方式跟正常流有什么不同?
 
 
 
