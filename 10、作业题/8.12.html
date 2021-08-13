@@ -1,0 +1,73 @@
+<!--
+ * @Date: 2021-08-13 09:28:04
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \yue_code\javascript\day15\练习1.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        .active {
+            color: red;
+        }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li class="item">1</li>
+      <li class="item">2</li>
+      <li class="item">3</li>
+      <li class="item">4</li>
+    </ul>
+    <script>
+      /*
+            1.创建一个便捷DOM原型对象 (EasyElement) 他拥有自身的属性selector、el、 length。 拥有统一-方法 setClassName, setStyle
+            2. selector属性为字符串类型css选择器，在原型实例化时作为参数传入
+            3. e|属性为通过selector获取到的节点列表
+            4. length属性为通过selector 获取到的节点列表的长度
+            5. setClassName方法支持给所有selector获取到的节点列表元素设置class属性
+            6. setStyle方法接受一个style object支持给所有selector获取到的节点列表元索设置多个style属性
+       */
+      function EasyElement(selector) {
+        this.selector = selector;
+        this.el = document.querySelectorAll(selector);
+        this.length = this.el.length;
+      }
+      //   添加类名
+      EasyElement.prototype.setClassName = function (className) {
+        //    因为元素节点不是一个，而是一个列表（多个）
+        this.el.forEach((item, index) => {
+          //    用className进行类名添加时，注意，别变成替换，记得把之前有的类名补上
+          item.className = (item.className + " " + className).trim();
+        });
+      };
+      //   添加样式
+      EasyElement.prototype.setStyle = function (styObj) {
+        //   规定传值的类型
+        if (typeof styObj !== "object") {
+          return;
+        }
+        //循环节点列表，给每个节点加上 style 样式
+        this.el.forEach((item, index) => {
+          Object.assign(item.style, styObj);
+        });
+      };
+      //   实例化对象
+      var li = new EasyElement("li");
+      //   查看对象是否符合题意
+      console.log(li);
+      li.setClassName("active");
+      li.setStyle(
+          {
+            color: "yellow",
+            fontSize: "12px"
+          }
+      );
+    </script>
+  </body>
+</html>
