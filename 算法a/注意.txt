@@ -8,7 +8,7 @@
 
 来到 notes
 
-cd 7*
+cd *a
 
 cd 1*
 
