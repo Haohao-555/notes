@@ -695,7 +695,278 @@ document.getElementById('divA').textContent = 'This text is different!';
 
 
 
+<hr>
 
+### 节点的操作方法/创建删除
+
+#### 创建增加删除属性
+
+**`createElement()`** 方法用于创建一个由标签名称 tagName 指定的 HTML 元素并返回。
+
+**语法**：
+
+```javascript
+var element = document.createElement(tagName);
+```
+- **参数**
+  - tagName: 一个指定要创建元素类型的字符串,创建元素时的 nodeName 使用 tagName 的值为初始化，
+
+**例子**：
+
+- 获取文档中所有`<p>`元素的NodeList。
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>||Working with elements||</title>
+</head>
+<body>
+  <div id="div1">这里的文本是动态创建的。</div>
+</body>
+</html>
+
+<script>
+ // 创建一个新的 div 元素
+  var newDiv = document.createElement("div");
+  cosole.log(newDiv)
+</script>
+```
+
+
+
+**`appendChild()`** 将一个节点附加到指定父节点的子节点列表的末尾处。如果将被插入的节点已经存在于当前文档的文档树中，那么 appendChild() 只会将它从原先的位置移动到新的位置（不需要事先移除要移动的节点）。
+
+**语法**：
+
+```javascript
+element.appendChild(aChild)
+```
+- **参数**
+  - aChild: 要追加给父节点（通常为一个元素）的节点。
+
+**注意**：**一个节点不可能同时出现在文档的不同位置**。所以，如果某个节点已经拥有父节点，在被传递给此方法后，它首先会被移除，再被插入到新的位置。
+
+**例子**：
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>||Working with elements||</title>
+</head>
+<body>
+  <div id="div1">这里的文本是动态创建的。</div>
+</body>
+</html>
+
+<script>
+ // 创建一个新的 div 元素
+  var newDiv = document.createElement("div");
+ 
+  newDiv.textContent = '设置一段文本';
+
+   // 将这个新的元素和它的文本添加到 DOM 中
+  var currentDiv = document.getElementById("div1");
+
+  currentDiv.appendChild(newDiv);
+
+</script>
+```
+
+
+
+**`createTextNode()`** 创建一个新的文本节点。这个方法可以用来转义 HTML 字符。
+
+**语法**：
+```javascript
+// text 是一个文本节点。
+var text = document.createTextNode(data);
+```
+- **参数**
+  - data: 是一个字符串，包含了要放入文本节点的内容。
+
+**例子**：  
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>||Working with elements||</title>
+</head>
+<body>
+  <div id="div1">这里的文本是动态创建的。</div>
+</body>
+</html>
+
+<script>
+ // 创建一个新的 div 元素
+  var newDiv = document.createElement("div");
+  // 动态创建文本节点
+  var newContent = document.createTextNode("被创建的文本节点");
+  // 添加文本节点 到这个新的 div 元素
+  newDiv.appendChild(newContent);
+
+   // 将这个新的元素和它的文本添加到 DOM 中
+  var currentDiv = document.getElementById("div1");
+
+  currentDiv.appendChild(newDiv);
+
+</script>
+```
+
+
+**`removeChild()`**方法从DOM中删除一个子节点。返回删除的节点。
+
+**语法**：
+```javascript
+var oldChild = node.removeChild(child);
+```
+- **参数**
+
+  child:  是要移除的那个子节点.
+
+**注意**：**被移除的这个子节点仍然存在于内存中,只是没有添加到当前文档的DOM树中**。因此,你还可以把这个节点重新添加回文档中。但是若要实现次功能徐亚用另外一个变量比如上例中的oldChild来保存这个节点的引用。 如果没有使用变量, 即没有使用 oldChild 来保存对这个节点的引用, 则认为被移除的节点已经是无用的, 在短时间内将会被内存管理回收。
+
+**例子**：
+```html
+<div id="top" align="center">
+ <div id="nested"></div>
+</div>
+
+<script type="text/javascript">
+      var top = document.getElementById("top");
+      var nested = document.getElementById("nested");
+
+      // 第一次调用正确地删除节点
+      var garbage = top.removeChild(nested);
+      // 第二次调用中的方法抛出异常
+      garbage = top.removeChild(nested);
+      
+</script>
+```
+
+> 其他方法: `document.write()`  向页面添加内容（不推荐使用）
+
+
+
+#### 访问或更新属性值
+
+**`getAttributeNode()`** 返回指定元素的指定属性节点
+
+**语法**：
+```javascript
+// attrNode  获得的属性返回值，是Attr 节点， nodeType 为 2
+var attrNode = element.getAttribute(attribute)
+```
+- **参数**
+  - attrName :  是一个包含属性名称的字符串
+
+**例子**：
+```javascript
+// html: <div id="top" />
+var t = document.getElementById("top");
+var idAttr = t.getAttributeNode("id");
+alert(idAttr.value == "top")
+```
+**注意**：
+1. 当在一个被标记为HTML文档的DOM中的HTML元素上调用这个方法时， getAttributeNode会将参数转变为小写形式。
+2. Attr 节点继承自Node，但不被认为是文档树的一部分。Node上定义的常用属性，如 parentNode, previousSibling, 和 nextSibling 对于 Attr节点来说都为null。
+
+
+
+**`hasAttribute()`** 返回一个布尔值，指示该元素是否包含有指定的属性（attribute）。
+
+**语法**：
+```javascript
+// result 为返回的布尔值：true 或 false。
+var result = element.hasAttribute(attName);
+```
+- **参数**
+  - attrName :  是一个包含属性名称的字符串
+
+**例子**：
+```javascript
+// 在为属性设置新值前检测该属性是否存在
+var d = document.getElementById("div1");
+
+if (d.hasAttribute("align")) {
+  d.setAttribute("align", "center");
+}
+```
+
+
+
+**`getAttribute()`**   返回元素上一个指定的属性值。如果指定的属性不存在，则返回  null 或 "" （空字符串）
+
+**注意**：getAttribute 通常用于替换getAttributeNode方法，来获得元素的属性值。性能也更快.  性能对比是 element.id 大于 element.getAttribute('id') 大于 element.getAttributeNode('id').nodeValue。
+
+**语法**：
+```javascript
+// attribute 是一个包含 attributeName 属性值的字符串。
+var attribute = element.getAttribute(attributeName);
+```
+- **参数**
+  - attributeName: 是你想要获取的属性值的属性名称。
+
+**例子**：
+```javascript
+var div1 = document.getElementById("div1");
+var align = div1.getAttribute("align");
+
+alert(align);
+// 显示id="div1元素的align值
+```
+
+
+
+**`setAttribute()`**   设置指定元素上的某个属性值。如果属性已经存在，则更新该值；否则，使用指定的名称和值添加一个新的属性。
+
+**语法**：
+```javascript
+element.setAttribute(name, value);
+```
+- **参数**
+  - name：表示属性名称的字符串。
+  - value：属性的值/新值。任何非字符串的值都会被自动转换为字符串.
+
+**注意**：
+1. 当在 HTML 文档中的 HTML 元素上调用 setAttribute() 方法时，该方法会将其属性名称（attribute name）参数小
+    写化。如果指定的属性已经存在，则其值变为传递的值。如果不存在，则创建指定的属性。
+2. 布尔属性只要出现在元素上就会被认为是 true ，无论它的值是什么;  要设置布尔属性的值（例如禁用），可以指定任何值。 **建议使用空字符串或属性名称**。 重要的是，如果根本不存在该属性，则不管其实际值如何，都将其值视为真实。 该属性的缺失表示其值是false。 
+
+**例子**：
+
+```html
+<button>Hello World</button>
+
+<script>
+var b = document.querySelector("button");
+
+b.setAttribute("name", "helloButton");
+// 通过将Disabled属性的值设置为空字符串（“”），将disable设置为true，这将导致按钮被禁用。
+b.setAttribute("disabled", "");
+</script>
+```
+
+> 由于布尔属性只要出现在元素上就会被认为是 true 或者 setAttribute会将指定的值转换为字符串，因此指定null不一定能达到我们的期望。 导致无法删除属性或将其值设置为null，而是将属性的值设置为字符串“null”。 如果要删除属性需要收益`removeAttribute()`方法。
+
+
+
+
+**`removeAttribute()`** 从指定的元素中删除一个属性。
+
+**语法**：
+```javascript
+element.removeAttribute(attrName);
+```
+- **参数**
+  - attrName：指定要从元素中移除的属性的名称。如果指定的属性不存在，则不生效但不会生成错误。
+
+**例子**：
+```javascript
+// Given: <div id="div1" align="left" width="200px">
+document.getElementById("div1").removeAttribute("align");
+// Now: <div id="div1" width="200px">
+```
 
 
 
