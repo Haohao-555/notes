@@ -1,0 +1,192 @@
+<!--
+ * @Date: 2021-08-16 19:33:15
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \yue_code\javascript\day16\8.16\作业1.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+      p {
+        padding: 0;
+        margin: 0;
+      }
+      button,
+      input,
+      textarea {
+        border: 0;
+        outline: none;
+      }
+      body {
+        margin: 0;
+      }
+      .layout {
+        width: 560px;
+        margin: 0 auto;
+        height: 1000px;
+        background-color: #f0f0f0;
+        padding: 20px;
+      }
+      .header > div textarea {
+        /* width: 100%; */
+        /* 改变盒子大小计算方式 */
+        /* box-sizing: border-box; */
+        width: 530px;
+        height: 60px;
+        resize: none;
+        border: 1px solid #ccc;
+        padding: 10px 15px;
+        font-size: 20px;
+      }
+      .header > div button {
+        width: 140px;
+        height: 40px;
+        background-color: #fff;
+        cursor: pointer;
+        float: right;
+      }
+      .header > div button:hover {
+        background-color: skyblue;
+      }
+      .clearfix::after {
+        content: "";
+        display: block;
+        clear: both;
+      }
+      .list {
+        background-color: #fff;
+        margin: 10px 0 0 0;
+      }
+      .list ul {
+        padding: 15px 20px;
+      }
+      .list ul li {
+        border: 3px solid #ccc;
+        padding: 10px 10px;
+        position: relative;
+        margin: 0 0 10px 0;
+      }
+      .list ul li .txt {
+        font-size: 18px;
+        padding: 0 0 10px 0;
+      }
+      .list ul li .delete {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+      }
+      .list ul li .delete:hover {
+        background-color: #ccc;
+      }
+      .list ul li .currentTime {
+        font-size: 14px;
+        height: 30px;
+        line-height: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <div class="header clearfix">
+        <div>
+          <textarea id="textarea_box" placeholder="请输入此刻的心情"></textarea>
+        </div>
+        <div>
+          <button id="button_box">发表</button>
+        </div>
+      </div>
+      <div class="list">
+        <ul id="ul_box"></ul>
+      </div>
+    </div>
+    <script>
+      /*
+      要求：
+          - 1. 点击发表按钮获取输入域的文本
+          - 2. 把输入域的文本渲染在列标区域
+          - 3. 把当前发表的时间显示在当前这条消息里面
+          - 4. 点击“x”标签，直接删除当前这条消息
+          - 5. 当输入域为空，不允许发表消息变
+      */
+      function getTime() {
+        var date = new Date();
+
+        var y = date.getFullYear();
+        var M = date.getMonth() + 1;
+        var d = date.getDate();
+
+        var h = date.getHours();
+        var m = date.getMinutes();
+
+        M = prefixIntrger(M);
+        d = prefixIntrger(d);
+        h = prefixIntrger(h);
+        m = prefixIntrger(m);
+
+        return y + "-" + M + "-" + d + " " + h + ":" + m;
+      }
+
+      var prefixIntrger = function (n) {
+        n = n + "";
+        n = (0 + n).substr(n.length - 1);
+        return n;
+      };
+
+      var btn = document.querySelector("#button_box");
+      var ul = document.querySelector("#ul_box");
+      btn.addEventListener("click", function () {
+        // 获取输入的内容
+        var content = document.querySelector("#textarea_box").value;
+        if (content) {
+          var t = getTime();
+
+          var button = document.createElement("button");
+          var li = document.createElement("li");
+          var p = document.createElement("p");
+          var currentTime = document.createElement("div");
+
+          // 清空内容
+          document.querySelector("#textarea_box").value = "";
+
+          // 设置类名
+          currentTime.className = "currentTime";
+          p.className = "txt";
+          button.className = "delete";
+
+          // 设置删除监听事件
+          button.addEventListener("click", function (e) {
+            document
+              .querySelector("#ul_box")
+              .removeChild(e.target.parentElement);
+          });
+          
+          // 设置内容
+          button.innerText = "x";
+          currentTime.innerText = t;
+          p.innerText = content;
+
+          li.appendChild(p);
+          li.appendChild(button);
+          li.appendChild(currentTime);
+          ul.appendChild(li);
+          
+        }else {
+            alert("请输入内容")
+        }
+      });
+    </script>
+  </body>
+</html>
