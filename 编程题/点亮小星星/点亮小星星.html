@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-星星</title>
+</head>
+
+<body>
+    <style>
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .rating {
+            overflow: hidden;
+        }
+
+        .rating .star {
+            display: inline-block;
+            width: 43px;
+            height: 43px;
+            background: url(./images/1.png);
+        }
+
+        .rating .star.active {
+            background: url(./images/2.png);
+        }
+    </style>
+    </head>
+
+    <body>
+        <ul id="rating1"></ul>
+        <div id="rating2"></div>
+        <script>
+            // 5星好评
+            var star_count = 5;
+
+            function Star(wrapper) {
+                this.wrapper = wrapper;
+                this.init()
+            }
+
+            Star.prototype.init = function () {
+                // 给当前指向一个别名that,指向Star的实例化对象
+                var that = this;
+                this.wrapper.classList.add("rating")
+                // 获得元素后，在里面创建空心的星星标签
+                // 通过循环创建星星标签
+                for (var j = 0; j < star_count; j++) {
+                    var i = document.createElement("i");
+                    // 添加类型，有空心的星星背景
+                    i.className = "star"
+                    // 添加到对应的元素中
+                    this.wrapper.appendChild(i)
+
+                    // H5更新规范的做法是放入data-* 属性中
+                    // i.setAttribute("index", j)  
+                    i.dataset.index = j
+                    // i.index = j    // 属性绑定
+
+                    // 给所有的星星标签绑定点击事件
+                    i.onclick = function () {
+                        // console.log("别碰我")
+                        // 点亮星星,因为这里的this是指向点击按钮本身，而非构造函数
+                        that.starLight(this)
+                    }
+                }
+            }
+
+            // 点击星星的逻辑处理
+            Star.prototype.starLight = function (ele) {
+                // console.log("被点击元素==>", ele)
+                // 获得索引值，知道是点击的是第几个
+                var index = ele.dataset.index;
+                // console.log("点击的是==>", index);
+                var lis = ele.parentElement.children
+                // console.log("所有的兄弟元素==>", lis)
+                // 通过循环让当前父元素里面子元素进行星星高亮（添加类名实现的）
+                for (var i = 0; i < star_count; i++) {
+                    if (i <= index) {
+                        lis[i].className = "star active"
+                    } else {
+                        lis[i].className = "star"
+                    }
+                }
+
+            }
+
+
+            var rating1 = document.getElementById("rating1")
+            // var rating2 = document.getElementById("rating2")
+
+            new Star(rating1)
+            // new Star(rating2)
+        </script>
+
+    </body>
+
+</html>
