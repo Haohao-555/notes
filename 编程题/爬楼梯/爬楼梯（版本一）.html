@@ -1,0 +1,137 @@
+<!--
+ * @Date: 2021-08-17 14:12:36
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \yue_code\javascript\day17\练习1.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      #biliNav {
+        position: fixed;
+        width: 32px;
+        top: 150px;
+        right: 30px;
+        border: 1px solid #ddd;
+      }
+      #biliNav li {
+        position: relative;
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+        border: 1px solid #ddd;
+        font-size: 12px;
+        color: #666;
+        text-align: center;
+        cursor: pointer;
+      }
+      #biliNav li.last {
+        background: red;
+        color: #fff;
+        display: block;
+      }
+      span {
+        width: 32px;
+        height: 32px;
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .active {
+        background: red;
+        color: #fff;
+        display: block;
+      }
+
+      #main {
+        width: 1000px;
+        margin: 0 auto;
+      }
+      #main .bili {
+        height: 600px;
+        line-height: 600px;
+        width: 100%;
+        font-size: 50px;
+        color: #fff;
+        font-weight: bold;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="biliNav">
+      <ul id="menu">
+        <li>1F<span>直播</span></li>
+        <li>2F<span>动画</span></li>
+        <li>3F<span>番剧</span></li>
+        <li>4F<span>音乐</span></li>
+        <li>5F<span>舞蹈</span></li>
+        <li>6F<span>游戏</span></li>
+        <li>7F<span>科技</span></li>
+        <li>8F<span>生活</span></li>
+        <li>9F<span>鬼畜</span></li>
+        <li>10F<span>时尚</span></li>
+        <li>11F<span>广告</span></li>
+        <li class="last">Top</li>
+      </ul>
+    </div>
+    <!--楼层内容-->
+    <div id="main">
+      <div class="bili" style="background: red">直播</div>
+      <div class="bili" style="background: orange">动画</div>
+      <div class="bili" style="background: yellow">番剧</div>
+      <div class="bili" style="background: green">音乐</div>
+      <div class="bili" style="background: cadetblue">舞蹈</div>
+      <div class="bili" style="background: blue">游戏</div>
+      <div class="bili" style="background: purple">科技</div>
+      <div class="bili" style="background: aqua">生活</div>
+      <div class="bili" style="background: brown">鬼畜</div>
+      <div class="bili" style="background: crimson">时尚</div>
+      <div class="bili" style="background: darkorange">广告</div>
+
+      <div class="bili"></div>
+    </div>
+    <script>
+      var li = document.querySelectorAll("li");
+      var last = document.querySelector(".last");
+      //   保存上一个下标
+      var prev = 0;
+      var num = 0;
+      window.onscroll = function () {
+        var height = document.documentElement.scrollTop;
+        li[num].children[0].classList.remove("active");
+        num = parseInt(height / 600);
+        li[num].children[0].className += " active";
+      };
+
+    //   点击监听
+      li.forEach((item, index) => {
+        item.onclick = function () {
+          var ele = document.documentElement || document.body;
+          //   判断是否为最后一个
+          var flag = item.className == "last";
+          //   滚动滚动条
+          ele.scrollTop = flag ? 0 : index * 600;
+          
+          if (!flag) {
+            //   移除掉上一个下标
+            li[prev].children[0].classList.remove("active");
+            li[index].children[0].className += " active";
+            prev = index;
+          }
+        };
+      });
+    </script>
+  </body>
+</html>

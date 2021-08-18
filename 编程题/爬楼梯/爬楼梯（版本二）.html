@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #biliNav {
+            position: fixed;
+            width: 32px;
+            top: 150px;
+            right: 30px;
+            border: 1px solid #ddd;
+        }
+
+        #biliNav li {
+            position: relative;
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            border: 1px solid #ddd;
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        #biliNav li.last {
+            background: red;
+            color: #fff;
+            display: block;
+        }
+
+        span {
+            width: 32px;
+            height: 32px;
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .active {
+            /* background: red; */
+            color: #fff;
+            display: block;
+        }
+
+        #main {
+            width: 1000px;
+            margin: 0 auto;
+        }
+
+        #main .bili {
+            height: 600px;
+            line-height: 600px;
+            width: 100%;
+            font-size: 50px;
+            color: #fff;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+    <div id="biliNav">
+        <ul id="menu">
+            <li>1F<span>直播</span></li>
+            <li>2F<span>动画</span></li>
+            <li>3F<span>番剧</span></li>
+            <li>4F<span>音乐</span></li>
+            <li>5F<span>舞蹈</span></li>
+            <li>6F<span>游戏</span></li>
+            <li>7F<span>科技</span></li>
+            <li>8F<span>生活</span></li>
+            <li>9F<span>鬼畜</span></li>
+            <li>10F<span>时尚</span></li>
+            <li>11F<span>广告</span></li>
+            <li class="last">Top</li>
+        </ul>
+    </div>
+    <!--楼层内容-->
+    <div id="main">
+        <div class="bili" style="background: red">
+            直播
+        </div>
+        <div class="bili" style="background: orange">
+            动画
+        </div>
+        <div class="bili" style="background: yellow">
+            番剧
+        </div>
+        <div class="bili" style="background: green">
+            音乐
+        </div>
+        <div class="bili" style="background: cadetblue">
+            舞蹈
+        </div>
+        <div class="bili" style="background: blue">
+            游戏
+        </div>
+        <div class="bili" style="background: purple">
+            科技
+        </div>
+        <div class="bili" style="background: aqua">
+            生活
+        </div>
+        <div class="bili" style="background: brown">
+            鬼畜
+        </div>
+        <div class="bili" style="background: crimson">
+            时尚
+        </div>
+        <div class="bili" style="background: darkorange">
+            广告
+        </div>
+
+        <div class="bili"></div>
+    </div>
+</body>
+<script>
+    // 1 给所有的右边的导航标签绑定点击事件，并且让电脑知道点击的是第几楼？
+    var menulis = document.querySelectorAll("#menu > li")
+    // console.log(lis)
+
+    menulis.forEach(function (li, index) {
+        li.onclick = function () {
+            // 获取被点击li元素的索引值（位置）
+            // console.log(index)
+
+            var ele = document.documentElement || document.body;
+
+            // 根据是否为返回顶部
+            if (li.className == "last") {
+                ele.scrollTop = 0
+            } else {
+                ele.scrollTop = index * 600;
+
+                // // 先移除以前的高亮的类名
+                // for (var i = 0; i < menulis.length - 1; i++) {
+                //     // console.log(menulis[i].children[0].className)
+                //     menulis[i].children[0].className = ""
+                // }
+                // // 楼层的菜单样式变化 通过active类名
+                // this.children[0].className = "active"
+            }
+
+            // 三运运算
+            // ele.scrollTop = li.className == "last" ? 0 : index * 600;
+        }
+    })
+
+
+    // 2 进行滚动的时候，对应的导航列表要有样式的变量
+    var bili = document.querySelectorAll("#main >.bili")
+    // console.log(bili.length)
+
+    //  因为菜单多了个top返回顶部元素
+    window.onscroll = function () {
+        // 因为浏览器有默认的内边距和外边距
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        // console.log(scrollTop)
+        // console.log(scrollTop)
+        for (var i = 0; i < bili.length - 1; i++) {
+            // 1楼 0 <= x < 600 
+            // 2楼 600 <= x < 1200 
+            // 2楼 1200 <= x < 1800 
+            //  ....
+            // n楼 600 * (n -1) <= x < 600 * n
+            if (bili[i].offsetTop <= scrollTop && scrollTop < bili[i + 1].offsetTop) {
+                // console.log("现在所在楼层==>", i)
+                var bgColor = bili[i].style.backgroundColor
+                // console.log(bgColor)
+
+                // 先移除以前的样式
+                for (var j = 0; j < menulis.length - 1; j++) {
+                    menulis[j].style.backgroundColor = "white";
+                    menulis[j].style.color = "black"
+                }
+
+                // menulis[i].children[0].className = "active"
+                // 找到对应的menulis，让颜色进行变化
+                menulis[i].style.backgroundColor = bgColor
+                menulis[i].style.color = "white"
+
+            }
+        }
+
+    }
+</script>
+
+</html>
