@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrapper {
+            width: 450px;
+            height: 450px;
+            border: 2px solid red;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .small {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 遮罩层 */
+        .mask {
+            /* 
+                针对宽度（x）
+                遮罩层x / 小图片x = 展示图片的宽度x / 大图片x
+				
+				遮罩层 / 450px = 450px / 800px
+				800px是原始图片的大小（没有进行修改）
+            */
+            width: calc(450 / 800 * 450px);
+            height: calc(450 / 800 * 450px);
+            background: rgba(255, 255, 40, 0.4);
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: move;
+            display: none;
+        }
+
+        .small img {
+            width: 100%;
+        }
+
+        .big {
+            width: 450px;
+            height: 450px;
+            border: 2px solid #ddd;
+            position: absolute;
+            top: 0;
+            left: 470px;
+            /* 只展示一部分，其他都隐藏 */
+            overflow: hidden;
+            display: none;
+        }
+
+        .big img {
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- 小盒子 -->
+        <div class="small">
+            <img src="./images/small.jpg" alt="">
+            <!-- 遮罩层 -->
+            <div class="mask"></div>
+        </div>
+
+        <!-- 大盒子 -->
+        <div class="big">
+            <!-- 大图片 -->
+            <img src="./images/big.jpg" alt="">
+        </div>
+    </div>
+    <script>
+        // 获得所有要操作的元素
+        var wrapper = document.querySelector(".wrapper")
+        var small = document.querySelector(".small")
+        var mask = document.querySelector(".mask")
+        var big = document.querySelector(".big")
+        var bigImg = document.querySelector(".big img")
+       
+
+        // （1）移动进去显示遮罩层和大图片展示区域
+        small.onmouseover = function () {
+            mask.style.display = "block"
+            big.style.display = "block"
+        }
+
+        // (2) 移出，则隐藏遮罩层和大图片展示区域
+        small.onmouseout = function () {
+            mask.style.display = "none"
+            big.style.display = "none"
+        }
+
+        // （3）移动操作
+        small.onmousemove = function (event) {
+            // 事件对象的兼容写法
+            var e = event || window.event;
+
+            // offsetLeft计算跟浏览器左边的距离
+         
+            // 因为遮罩层要在鼠标的中心，所以宽高都要减去mask的一半
+            var x = e.clientX - wrapper.offsetLeft - mask.offsetWidth / 2
+            var y = e.clientY - wrapper.offsetTop - mask.offsetHeight / 2
+            // console.log(x, y)
+
+            var maxX = wrapper.offsetWidth - mask.offsetWidth;
+            var maxY = wrapper.offsetHeight - mask.offsetHeight;
+            
+			// 解决遮罩层冲出屏幕问题
+            x = x < 0 ? 0 : x
+            y = y < 0 ? 0 : y
+            x = x > maxX ? maxX : x
+            y = y > maxY ? maxY : y
+
+            // 让遮罩层跟随鼠标移动而移动
+            mask.style.left = x + "px"
+            mask.style.top = y + "px"
+
+
+            // 计算移动的比例
+            // rightX / leftX = 800 / 400 = 2 ==>rightX = 800 / 400 * leftX
+            var rate = bigImg.offsetWidth / wrapper.offsetWidth;
+            var rightX = rate * x
+            var rightY = rate * y
+
+            // 不是展示盒子移动，而是大图片移动
+            bigImg.style.left = -rightX + "px"
+            bigImg.style.top = -rightY + "px"
+        }
+    </script>
+</body>
+
+</html>
