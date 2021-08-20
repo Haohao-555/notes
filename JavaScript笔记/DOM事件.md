@@ -1,21 +1,28 @@
 # ✍🏻DOM事件
 **介绍**：事件是在编程时系统内发生的动作或者发生的事情，系统会在事件出现时产生或触发某种信号，并且会提供一个自动加载某种动作（列如：运行一段代码）的机制。例如：如果用户在网页上单击一个购买按钮，会显示一个购买确认信息框来响应这个动作。 
 
-具体的说事件是可以被JavaScript侦测到的行为,网页中每一个元素都可以产生某些可以出发JavaScript函数的事件，在网页中, 事件在浏览器窗口中被触发并且通常被绑定到窗口内部的特定部分 — 可能是一个元素、一系列元素、被加载到这个窗口的 HTML 代码或者是整个浏览器窗口。举几个可能发生的不同事件：
-- 用户在某个元素上点击鼠标或悬停光标。
-- 用户在键盘中按下某个按键。
-- 用户调整浏览器的大小或者关闭浏览器窗口。
-- 一个网页停止加载。
-- 提交表单。
-- 发生错误。
+具体的说事件是可以被 JavaScript 侦测到的行为，网页中每一个元素都可以产生某些可以出发 JavaScript 函数的事件，在网页中，事件在浏览器窗口中被触发并且通常被绑定到窗口内部的特定部分 — 可能是一个元素、一系列元素、被加载到这个窗口的 HTML 代码或者是整个浏览器窗口。举几个可能发生的不同事件：
+- 用户在某个元素上点击鼠标或悬停光标
 
-**概念**：每个可用的事件都会有一个**事件处理器**，也就是事件触发时会运行的代码块。当我们定义了一个用来回应事件被激发的代码块的时候，我们说我们**注册了一个事件处理器**。注意事件处理器有时候被叫做**事件监听器**——从我们的用意来看这两个名字是相同的，监听器留意事件是否发生，然后处理器就是对事件发生做出的回应。
+- 用户在键盘中按下某个按键
+
+- 用户调整浏览器的大小或者关闭浏览器窗口
+
+- 一个网页停止加载
+
+- 提交表单。
+
+- 发生错误
+
+  
+
+  **概念**：每个可用的事件都会有一个**事件处理器**，也就是事件触发时会运行的代码块。当我们定义了一个用来回应事件被激发的代码块的时候，我们说我们**注册了一个事件处理器**。注意事件处理器有时候被叫做**事件监听器**——从我们的用意来看这两个名字是相同的，监听器留意事件是否发生，然后处理器就是对事件发生做出的回应。
 
 
 
 ### 🤙🏻事件的绑定方式
 
-**介绍**：JavaScript可以通过多种不同的方法将事件侦听器代码添加到网页，以便在关联的事件被触发时运行它。这种方法我们称之为事件的绑定方式
+**介绍**：JavaScript 可以通过多种不同的方法将事件侦听器代码添加到网页，以便在关联的事件被触发时运行它。这种方法我们称之为事件的绑定方式
 
 #### 💪🏻事件处理器属性
 
@@ -48,7 +55,7 @@
 
 **（请勿使用）**
 
-**介绍**：在Web上注册事件处理程序的最早方法是类似于事件处理器属性的HTML属性(也称为内联事件处理程序)—属性值实际上是当事件发生时要运行的JavaScript代码。
+**介绍**：在Web上注册事件处理程序的最早方法是类似于事件处理器属性的HTML属性(也称为内联事件处理程序)—属性值实际上是当事件发生时要运行的 JavaScript 代码。
 
 **例子**：
 
@@ -63,7 +70,7 @@ function bgChange() {
 </script>
 ```
 
-**注意**：通过上面的例子，你会发现HTML属性等价于许多事件处理器的属性；但是，你不应该使用这些 —— 他们被认为是不好的做法。使用一个行内事件处理属性似乎看起来很简单，但该用法会导致代码难以管理和效率低下。因为混用 HTML 和 JavaScript，使得文档很难解析，在开发中最好的行为是将 JavaScript 代码单独书写。并且该方法也不适用于给多个元素绑定相同事件处理方法
+**注意**：通过上面的例子，你会发现HTML属性等价于许多事件处理器的属性；但是，你不应该使用这些 —— 他们被认为是不好的做法。使用一个行内事件处理属性似乎看起来很简单，但该用法会导致代码难以管理和效率低下。因为混用 HTML 和  JavaScript ，使得文档很难解析，在开发中最好的行为是将 JavaScript 代码单独书写。并且**该方法也不适用于给多个元素绑定相同事件处理方法**
 
 <br/>
 
@@ -93,7 +100,7 @@ function bgChange() {
 
 <br/>
 
-##### **👉🏻注意：addEventListener 与 事件处理器属性的区别👈🏻**
+##### **👉🏻addEventListener 与 事件处理器属性的区别👈🏻**
 
 🤞🏻`addEventListener`可以给同一个事件监听器注册多个处理器
 
@@ -134,7 +141,7 @@ myElement.addEventListener('click', functionB);
 
 ##### .addEventListener()细讲
 
-**概念**：`.addEventListener()` 方法将指定的监听器注册到事件目标上，当该对象触发指定的事件时，指定的回调函数就会被执行。 事件目标可以是一个文档上的元素 Element,Document和Window或者任何其他支持事件的对象 (比如 `XMLHttpRequest`)。
+**概念**：`.addEventListener()` 方法将指定的监听器注册到事件目标上，当该对象触发指定的事件时，指定的回调函数就会被执行。 事件目标可以是一个文档上的元素 Element、Document 和 Window 或者任何其他支持事件的对象 (比如 `XMLHttpRequest`)。
 
 **语法**：
 
@@ -148,17 +155,18 @@ target.addEventListener(type, listener, useCapture);
 - type：一个区分大小写的字符串，表示要侦听的事件类型。例 "click" 点击事件。
 - listener：当指定类型的事件发生时，处理事件目标对象的回调函数。
 - options ：可选属性，一个指定有关 listener 属性的可选参数对象。可用的选项如下：
-  - capture:  Boolean，表示事件是否使用**捕获模式**。（事件的捕获会在后面的课程中学习） 
+  - capture:  Boolean，表示事件是否使用**捕获模式**。
   - once:  Boolean，表示 listener 在添加之后最多只调用一次。如果是 true， listener 会在其被调用之后自动移除。
-  - passive: Boolean，该属性用来改善的滚屏性能，当值设置为true时，表示 listener 永远不会 **阻止浏览器默认事件**即永远不会调用 preventDefault()。如果 listener 仍然调用了这个函数，客户端将会忽略它并抛出一个控制台警告。（阻止浏览器默认事件会在后面的课程中学习）
+  - passive: Boolean，该属性用来改善的滚屏性能，当值设置为true时，表示 listener 永远不会 **阻止浏览器默认事件**即永远不会调用 preventDefault()。如果 listener 仍然调用了这个函数，客户端将会忽略它并抛出一个控制台警告。
 - useCapture： Boolean，可选属性表示事件是否使用**捕获模式**。 默认为 `false` 。 
 
 <br/>
 
 #### 💪🏻取消事件监听
 
-**`removeEventListener()`** 
-**概念**：因为 **`addEventListener`** 可以给同一个事件监听器注册多个处理器，导致我们无法使用覆盖的方式删除已注册的监听事件,所以JavaScript提供了专门用来删除使用 `.addEventListener()` 方法添加的事件。使用事件类型，事件侦听器函数本身，以及可能影响匹配过程的各种可选择的选项的组合来标识要删除的事件侦听器。
+##### **removeEventListener()** 
+
+**概念**：**因为 `addEventListener` 可以给同一个事件监听器注册多个处理器，导致我们无法使用覆盖的方式删除已注册的监听事件**，所以JavaScript提供了专门用来删除使用 `.addEventListener()` 方法添加的事件。使用事件类型，事件侦听器函数本身，以及可能影响匹配过程的各种可选择的选项的组合来标识要删除的事件侦听器。
 **语法**：
 
 ```javascript
@@ -172,7 +180,9 @@ target.removeEventListener(type, listener[, useCapture]);
   - capture:  Boolean，表示事件是否使用**捕获模式**。（只有该属性影响匹配） 
 - useCapture： Boolean，可选属性表示事件是否使用**捕获模式**。 默认为 `false` 。
 
-> 删除指定的事件监听时，需要提供以前调用addEventListener()所提供的监听事件, 这样你或许可以达到移除此监听事件的目的. 并且, 你必须要提供相同的 **type** 、 **listener** 、 **options** 和 **useCapture** 参数给 removeEventListener()。**注意** 唯一需要 removeEventListener() 检测的是 capture/useCapture 标志. 这个标志必须与 removeEventListener() 的对应标志匹配, 但是其他的值不需要
+> 删除指定的事件监听时，需要提供以前调用 addEventListener() 所提供的监听事件, 这样你或许可以达到移除此监听事件的目的.。并且,，你必须要提供相同的 **type** 、 **listener** 、 **options** 和 **useCapture** 参数给 removeEventListener()。
+>
+> **注意** 唯一需要 removeEventListener() 检测的是 capture/useCapture 标志. 这个标志必须与 removeEventListener() 的对应标志匹配,，但是其他的值不需要
 
 **例子**：
 ```javascript
@@ -201,14 +211,22 @@ element2.removeEventListener("click", handleMouseDown, true);                  /
 
 #### 💪🏻资源事件
 
-| 事件名称    | 触发条件                                               |
-| ----------- | ------------------------------------------------------ |
-| load        | 页面元素(包括图像多媒体等)资源及其相关资源已完成加载。 |
-| beforunload | 用户退出页面                                           |
+| 事件名称    | 触发条件                                                     |
+| ----------- | ------------------------------------------------------------ |
+| load        | 页面元素(包括图像多媒体等)资源及其相关资源已完成加载后，在触发该事件。 |
+| beforunload | 用户退出页面（用于当用户退出页面时，将资源释放）             |
 
 **例子**：
 ```html
-
+<head>
+    <script>
+        var btn = document.querySelector("button") // 获取不到
+        window.onload = function () {
+            var btn = document.querySelector("button") // 可以获取
+        }
+    </script>
+</head>
+ <button>测试事件load</button>
 ```
 
 <br/>
@@ -218,15 +236,13 @@ element2.removeEventListener("click", handleMouseDown, true);                  /
 | 事件名称 | 触发条件                         |
 | -------- | -------------------------------- |
 | resize   | 窗口或者框架被重新调整大小时触发 |
-| ⚡scroll  | 档视图或元素已被滚动。           |
+| ⚡scroll  | 文档视图或元素已被滚动。         |
 
-**例子**：
-```javascript
-
-```
 > 注意：一个元素的 scrollTop 属性是这个元素的内容顶部（滚动出去的）到它的视口可见内容（的顶部）的距离的度量。当一个元素的内容没有产生垂直方向的滚动条，那么它的 scrollTop 值为0。
 >
 > 该属性可读写即可以通过设置该属性让元素偏移。
+>
+> <img src="https://i.loli.net/2021/08/20/urMjkSWfQs6ImO7.png" style="zoom: 80%;" />
 
 <br/>
 
@@ -245,12 +261,6 @@ element2.removeEventListener("click", handleMouseDown, true);                  /
 | ⚡mouseleave  | 位于元素内部的鼠标光标移动到元素范围之外触发,这个事件不冒泡 |
 | ⚡contextmenu | 鼠标右键菜单展开时                                          |
 
-**例子**：
-
-```
-
-```
-
 <br/>
 
 #### 💪🏻键盘事件
@@ -259,13 +269,10 @@ element2.removeEventListener("click", handleMouseDown, true);                  /
 | --------- | ------------------------------------------------------------ |
 | ⚡keydown  | 某个键盘按键被按下时触发.(不区分大小写)                      |
 | ⚡keyup    | 某个键盘按键被松开时触发                                     |
-| ⚡keypress | 除 Shift、Fn、CapsLock 外的任意键被按住。而且按住不放(长按),会连续触发。 |
+| ⚡keypress | 除 Shift、Fn、CapsLock 外的任意键被按住。**而且按住不放(长按),会连续触发**。 |
 
-**例子**：
-
-```
-
-```
+> 键盘事件 鼠标事件触发时会自动传入一个 Event 事件对象 在下面的 Event 事件对象会涉及
+>
 
 <br/>
 
@@ -284,13 +291,24 @@ element2.removeEventListener("click", handleMouseDown, true);                  /
 > focus() 方法用于为 checkbox 赋予焦点。
 > blur() 方法用于从链接上移开焦点。
 
-**例子**：
+**input 与 change 区别**
 
+```html
+<input type="text" name="username">
+<script>
+    input.oninput = function () {
+        console.log("input输入中==>", input.value)
+    }
+
+    input.onchange = function () {
+        console.log("onchange事件==>", input.value)
+    }
+</script>
 ```
 
-```
-
-
+> 只要用户在不断输入内容时，input 事件会不断触发。而 change 不会，直到用户结束输入后，才会触发
+>
+> 且 input 事件获取的值是上一次的内容，不能实现实时更新。
 
 <hr/>
 
@@ -351,9 +369,7 @@ element2.removeEventListener("click", handleMouseDown, true);                  /
 >
 > 鼠标事件对象属性：button、clientX、clientY、screenX、screenY、pageX、PageY 、offsetX、offsetY    
 
-```html
 
-```
 
 <br>
 
@@ -425,7 +441,7 @@ element2.removeEventListener("click", handleMouseDown, true);                  /
 
 **👉🏻注意👈🏻**
 
-* 在事件没有进行冒泡阻止时，会继续冒泡到定层 document > body
+* 在事件没有进行冒泡阻止时，会继续冒泡到顶层 document > body
 * 不是所有的事件都能冒泡,以下事件不能冒泡:
   * blur、focus、load、unload
   * Media由媒介（比如视频、图像和音频）触发的事件
