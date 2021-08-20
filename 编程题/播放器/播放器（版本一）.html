@@ -1,0 +1,77 @@
+<!--
+ * @Date: 2021-08-19 19:59:54
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \yue_code\javascript\day19\8.19\作业2.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #box {
+        width: 500px;
+        height: 70px;
+        position: fixed;
+        left: -400px;
+        background: rgb(44, 228, 197);
+        transition: left 1s;
+      }
+      #box #play {
+        background: orange;
+        width: 70px;
+        position: absolute;
+        right: 30px;
+        text-align: center;
+        line-height: 70px;
+        color: white;
+        font-size: 20px;
+        font-weight: bolder;
+      }
+      #box #btn {
+        position: absolute;
+        right: 0px;
+        width: 30px;
+        font-size: 20px;
+        line-height: 70px;
+        text-align: center;
+        color: white;
+        background: rgb(89, 30, 226);
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      <div id="play">播放</div>
+      <div id="btn">&lt;</div>
+    </div>
+    <script>
+      var btn = document.getElementById("btn");
+      var play = document.getElementById("play");
+      var box = document.getElementById("box");
+      var flag = true;
+      btn.onclick = function () {
+        if (flag) {
+          play.style.display = "none";
+          box.style.left = "-470px";
+          
+          setTimeout(function () {
+            box.style.left = "0px";
+          }, 1000);  
+        } else {
+          box.style.left = "-470px";
+
+          setTimeout(function () {
+            box.style.left = "-400px";
+            play.style.display = "block";
+          }, 1000);
+        }
+        flag = !flag
+      };
+    </script>
+  </body>
+</html>

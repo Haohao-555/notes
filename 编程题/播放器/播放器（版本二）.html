@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width:700px;
+            height:70px;
+            position: fixed;
+            left:-600px;
+            background:rgb(44, 228, 197);
+            bottom:100px;
+        }
+        .box .play{
+            background:orange;
+            width:70px;
+            position: absolute;
+            right:30px;
+            text-align: center;
+            line-height: 70px;
+        }
+        .box .hidePlay{
+            display: none;
+        }
+        .box .btn{
+            position: absolute;
+            right:0px;
+            width:30px;
+            font-size:20px;
+            line-height: 70px;
+            text-align: center;
+            color:white;
+            background: rgb(89, 30, 226);
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="play">播放</div>
+        <div class="btn">&lt;</div>
+    </div>
+    <script>
+        function getStyle(eleObject,attrName){//elebject元素对象  attrName css属性名称 获取的属性有单位.
+            if(eleObject.currentStyle){//如果有currentStyle属性 证明是IE浏览器
+                return eleObject.currentStyle[attrName];
+            }
+            //在谷歌 火狐 safari里面获取当前生效的css值.
+            return window.getComputedStyle(eleObject).getPropertyValue(attrName);
+        }
+        //编写动画函数 el执行动画的元素对象,
+        //targetObj 执行动画的是变化的属性 和属性的值 {left:-670} 
+        //callback 回调函数 ，当动画执行完成以后的回调函数
+        function animateMove(el,targetObj,callback){
+            el.intervalID=setInterval(function(){
+                for(var attrName in targetObj){//循环属性对象.
+                    var attrValue=parseInt(getStyle(el,attrName));//获取属性当前的值
+                    var endPostion=targetObj[attrName];//移动运行最终目标值
+                    var speed=(endPostion-attrValue)/6;//缓动速度(目标值-当前值/6)
+                        speed=speed>0?Math.ceil(speed):Math.floor(speed);//如果速度值是正数向上取整 如果是负数向下取整
+                        if(speed!=0){//继续运行
+                            el.style[attrName]=(attrValue+speed)+"px";//设置位移位置
+                        }else{//停止
+                            clearInterval(el.intervalID);
+                            //动画执行完成以后 的回调函数
+                            if(callback)  callback();
+                        }
+                }
+            },200);
+        }
+        (function(){
+            var btn=document.querySelector(".btn");
+            var box=document.querySelector(".box");
+            var play=document.querySelector(".play");
+                btn.onclick=function(){
+                    //当box距离左边为0的时候 就先移动距离左边-670的位置 然后在运行到距左边-600的位置
+                    if(box.offsetLeft==0){
+                        animateMove(box,{left:-670},function(){
+                            play.className="play";
+                             //第一个动画执行完成后，继续后一个动画
+                            animateMove(box,{left:-600})
+                        })
+                    }else{
+                        //先移动距离左边-670的位置 然后在运行到距左边0的位置
+                        animateMove(box,{left:-670},function(){
+                            play.className="hidePlay";
+                            animateMove(box,{left:0})
+                        });
+                    }
+                   
+                }
+        })();
+        
+    </script>
+</body>
+</html>
