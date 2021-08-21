@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/reset.css" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/baidu.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="login">
+        <img src="./images/baidu.png" alt="" />
+      </div>
+      <div class="search">
+        <input type="text" />
+        <button>百度一下</button>
+      </div>
+      <ul class="content"></ul>
+    </div>
+    <script>
+      // 请求回来的数据
+      var data = [
+        "正则表达式如何匹配特定字符",
+        "正则表达阿里矢量图",
+        "点击事件为什么没生效",
+        "abcdrfg",
+        "replace函数怎么用不了",
+        "110119",
+      ];
+
+      var search = document.getElementsByClassName("search")[0];
+      var text = document.getElementsByTagName("input")[0];
+      var ul = document.getElementsByClassName("content")[0];
+      var btn = document.getElementsByTagName("button")[0];
+
+      // 防抖函数
+      function debounce(fun, wait) {
+        var timerId;
+        return function (event) {
+          var e = event || window.event;
+          var context = this;
+          fun = fun.bind(context, e);
+
+          clearInterval(timerId);
+          timerId = window.setTimeout(fun, wait);
+        };
+      }
+
+      // 内容处理
+      function formatcontent(search) {
+        
+        // 拷贝一份数据（避免在原数据上进行操作）
+        var copy_data = Array.from(data);
+
+        // 确保关键字不重复
+        var keyArr = Array.from(new Set(search.split(""))); 
+    
+        for (let i = 0; i < keyArr.length; i++) {
+          copy_data = copy_data.map((item) => {
+            return item.replaceAll(keyArr[i], "<em>" + keyArr[i] + "</em>");
+          });
+        }
+
+        // 过滤掉没有匹配到的内容
+        copy_data = copy_data.filter((_) => {
+          return _.indexOf("em") == -1 ? false : true;
+        });
+        return copy_data;
+      }
+
+      // 渲染数据
+      function rendData(res) {
+        // 激活样式
+        ul.classList.add("content_active");
+        search.classList.add("input_respone");
+
+        res.forEach((_) => {
+          var li = document.createElement("li");
+          li.innerHTML = _;
+          ul.appendChild(li);
+          li.addEventListener("click", function (e) {
+           var value = e.target.nodeName == "EM" ? e.target.parentElement.innerText : e.target.innerText
+           text.value = value;
+          });
+        });
+      }
+
+      // 请求数据
+      function requireData(content) {
+        //格式化数据
+        return formatcontent(content);
+      }
+
+      // 获取输入框内容
+      function getInputContent(e) {
+        var res;
+        // 获取内容
+        var content = this.value.trim();
+        if (content) {
+          //请求数据
+          var res = requireData(content);
+
+          // 清空原有内容
+          ul.innerHTML = "";
+
+          if (res.length != 0) rendData(res);
+        } else {
+          search.classList.remove("input_respone");
+          ul.classList.remove("content_active");
+        }
+      }
+
+      //监听内容变化
+      text.addEventListener("input", debounce(getInputContent, 500));
+
+      // 获取焦点
+      text.addEventListener("focus", function () {
+        search.classList.add("input_active");
+
+        // 获取原本内容
+        var content = this.value.trim();
+        if (content) {
+          //请求数据
+          var res = requireData(content);
+          // 清空原有内容
+          ul.innerHTML = "";
+          if (res.length != 0) rendData(res);
+        }
+      });
+
+      // 失去焦点
+      text.addEventListener("blur", function () {
+        setTimeout(function () {
+          search.classList.remove("input_active");
+          search.classList.remove("input_respone");
+          ul.classList.remove("content_active");
+        }, 500);
+      });
+
+      
+    </script>
+  </body>
+</html>
