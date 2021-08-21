@@ -1,0 +1,77 @@
+* {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+.swiper {
+  position: relative;
+  width: 600px;
+  height: 400px;
+  margin: 40px auto;
+  border-radius: 12px;
+  overflow: hidden;
+  z-index: 9;
+}
+.swiper > .swiper_container {
+  width: 100%;
+  height: 100%;
+  z-index: -999;
+}
+.swiper > .swiper_container > li {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -999;
+  transition: opacity 1s;
+}
+.swiper > .swiper_container > li > a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.swiper > .swiper_container > li > a > img {
+  width: 100%;
+  height: 100%;
+}
+.swiper > i {
+  width: 40px;
+  height: 40px;
+  display: block;
+  position: absolute;
+  z-index: 10;
+  top: 180px;
+}
+.swiper > .swiper-button-left {
+  right: 12px;
+}
+.swiper > .swiper-button-right {
+  left: 12px;
+}
+.swiper > .nav {
+  font-size: 0px;
+  width: 120px;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin: 0px auto;
+  top: -16px;
+  z-index: 10;
+}
+.swiper > .nav > span {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.hidden-img {
+  opacity: 0 !important;
+}
+.active-nav-li {
+  background-color: orange !important;
+}
+.normal-img {
+  opacity: 1 !important;
+}

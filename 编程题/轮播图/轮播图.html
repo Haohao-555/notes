@@ -1,0 +1,60 @@
+<!--
+ * @Date: 2021-08-20 17:18:52
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \yue_code\javascript\day20\8.20\轮播图.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/icon.css" />
+    <link rel="stylesheet" href="./css/swiper.css">
+    <title>轮播图</title> 
+  </head>
+  <body>
+    <div class="swiper">
+      <ul class="swiper_container">
+        <li class="normal-img">
+          <a href="javascript:;">
+            <img src="./images/1.png" alt="" />
+          </a>
+        </li>
+        <li class="hidden-img">
+          <a href="javascript:;">
+            <img src="./images/2.jpg" alt="" />
+          </a>
+        </li>
+        <li class="hidden-img">
+          <a href="javascript:;">
+            <img src="./images/3.jpg" alt="" />
+          </a>
+        </li>
+        <li class="hidden-img">
+          <a href="javascript:;">
+            <img src="./images/4.jpg" alt="" />
+          </a>
+        </li>
+        <li class="hidden-img">
+          <a href="javascript:;">
+            <img src="./images/5.jpg" alt="" />
+          </a>
+        </li>
+      </ul>
+
+      <i class="iconfont icon-left swiper-button-left"></i>
+      <i class="iconfont icon-right swiper-button-right"></i>
+
+      <div class="nav">
+        <span data-index="0" class="active-nav-li"></span>
+        <span data-index="1"></span>
+        <span data-index="2"></span>
+        <span data-index="3"></span>
+        <span data-index="4"></span>
+      </div>
+    </div>
+    <script src="./js/swiper.js"></script>
+  </body>
+</html>
