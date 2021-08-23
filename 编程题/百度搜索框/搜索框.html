@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/reset.css" />
     <title>Document</title>
-    <link rel="stylesheet" href="./css/baidu.css">
+    <link rel="stylesheet" href="./css/baidu.css" />
   </head>
   <body>
     <div class="container">
@@ -20,8 +20,18 @@
       <ul class="content"></ul>
     </div>
     <script>
-      // 请求回来的数据
       var data = [
+        "宝宝金",
+        "二哈大G",
+        "蛋宝",
+        "金渐层",
+        "金爱罗夫妇",
+        "阿拉丁狗蛋",
+        "阿拉",
+        "阿拉大大",
+        "二哈",
+        "柯基",
+        "柯基犬",
         "正则表达式如何匹配特定字符",
         "正则表达阿里矢量图",
         "点击事件为什么没生效",
@@ -29,7 +39,6 @@
         "replace函数怎么用不了",
         "110119",
       ];
-
       var search = document.getElementsByClassName("search")[0];
       var text = document.getElementsByTagName("input")[0];
       var ul = document.getElementsByClassName("content")[0];
@@ -50,13 +59,16 @@
 
       // 内容处理
       function formatcontent(search) {
-        
         // 拷贝一份数据（避免在原数据上进行操作）
         var copy_data = Array.from(data);
 
         // 确保关键字不重复
-        var keyArr = Array.from(new Set(search.split(""))); 
-    
+        var keyArr = Array.from(new Set(search.split("")));
+
+        // 过滤掉 <em> </em> 
+        var char = ["<", ">", "/", "e", "m"]
+        
+        // 不足：会匹配到 em
         for (let i = 0; i < keyArr.length; i++) {
           copy_data = copy_data.map((item) => {
             return item.replaceAll(keyArr[i], "<em>" + keyArr[i] + "</em>");
@@ -75,14 +87,17 @@
         // 激活样式
         ul.classList.add("content_active");
         search.classList.add("input_respone");
-
+       
         res.forEach((_) => {
           var li = document.createElement("li");
           li.innerHTML = _;
           ul.appendChild(li);
           li.addEventListener("click", function (e) {
-           var value = e.target.nodeName == "EM" ? e.target.parentElement.innerText : e.target.innerText
-           text.value = value;
+            var value =
+              e.target.nodeName == "EM"
+                ? e.target.parentElement.innerText
+                : e.target.innerText;
+            text.value = value;
           });
         });
       }
@@ -95,7 +110,6 @@
 
       // 获取输入框内容
       function getInputContent(e) {
-        var res;
         // 获取内容
         var content = this.value.trim();
         if (content) {
@@ -138,8 +152,6 @@
           ul.classList.remove("content_active");
         }, 500);
       });
-
-      
     </script>
   </body>
 </html>
