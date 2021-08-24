@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.2-轮播图-中级版本</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .box {
+            max-width: 980px;
+            border: 5px solid red;
+            margin: 20px auto;
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+
+        }
+
+        .box .banner {
+            position: absolute;
+            /* height: 500px; */
+            display: flex;
+
+        }
+
+        .box .banner li {
+            position: relative;
+        }
+
+        .box .banner li img {
+            display: block;
+        }
+
+
+        .box .banner li span {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -50px;
+            margin-top: -50px;
+            display: block;
+            width: 100px;
+            height: 100px;
+            background: white;
+            font-size: 40px;
+            border-radius: 50%;
+            line-height: 100px;
+            text-align: center;
+        }
+
+        /* .box .banner li img {} */
+        /* 小圆点排版 */
+        .cont {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            z-index: 2;
+            transform: translateX(-50%);
+        }
+
+        .cont span {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: white;
+            display: inline-block;
+            line-height: 30px;
+            font-size: 14px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .cont span.bgColor {
+            color: white;
+            background: skyblue;
+        }
+
+        /* 向左向右 */
+        .left,
+        .right {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background-color: rgba(128, 128, 128, 0.5);
+            font-size: 35px;
+            line-height: 60px;
+            text-align: center;
+            z-index: 2;
+            top: 50%;
+            margin-top: -25px;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+        }
+
+        .left {
+            left: 10px
+        }
+
+        .right {
+            right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="left">&lt;</div>
+        <div class="right">&gt;</div>
+
+        <ul class="banner">
+            <li><span>1</span><img src="./images/s1.jpg" alt="无图"></li>
+            <li><span>2</span><img src="./images/s2.jpg" alt="无图"></li>
+            <li><span>3</span><img src="./images/s3.jpg" alt="无图"></li>
+            <li><span>4</span><img src="./images/s4.jpg" alt="无图"></li>
+            <li><span>5</span><img src="./images/s5.jpg" alt="无图"></li>
+            <li><span>1</span><img src="./images/s1.jpg" alt="无图"></li>
+        </ul>
+
+        <!-- 小圆点 -->
+        <div class="cont">
+            <span class="bgColor">1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+
+        </div>
+    </div>
+</body>
+<script>
+    /*
+        注意：浏览器运行的网页是一个单线程，如果有多个定时器，当当前任务有后台（有多个定时器作用），不能保证定时器是有序进行
+    */
+    // 定义一个计时器变量
+    var timerId;
+    // 定义一个记录播放的是哪一张的图片的变量
+    var index = 0;
+
+    // 定义一个假如动画未结束则无法开启新的轮播的变量
+    var isStart = true;
+
+    var banner = document.querySelector(".banner")
+    var lis = document.querySelectorAll(".banner li")
+    var box = document.querySelector(".box")
+    console.log(lis, box)
+
+
+    // 把图片显示和小圆点高亮封装成函数
+    function light(i) {
+        var distance = i * 980;
+        // (1) 页面移动； （2）小圆点高亮
+        for (var j = 0; j < spans.length; j++) {
+            spans[j].className = ""
+        }
+
+        // 如果是最后一张，则第一小圆点高亮
+        if (i == lis.length - 1) {
+            console.log("最后一张==》", index)
+            spans[0].className = "bgColor"
+        } else {
+            spans[i].className = "bgColor"
+        }
+
+        animateMove(banner, { left: -distance }, function () {
+            // 如果到达最后一张，动画结束，马上切换第一张
+            if (i == lis.length - 1) {
+                banner.style.left = 0
+            }
+            if (isStart) {
+                // 当前动画结束才能开启下一次动画
+                show()
+            }
+        })
+    }
+
+    function getStyle(eleObj, attrName) {
+        if (eleObj.currentStyle) {
+            //如果该对象存在currentStyle属性，则使用它(IE浏览器)、
+            return eleObj.currentStyle[attrName];
+            //对象.currentStyle[属性名]
+        }
+        //其他情况使用高版本浏览器所具有的getComputedStyle()方法
+        return window.getComputedStyle(eleObj).getPropertyValue(attrName)
+    }
+
+
+    //编写动画函数 el执行动画的元素对象,
+    //targetObj 执行动画的是变化的属性 和属性的值 {left:-670} 
+    //callback 回调函数 ，当动画执行完成以后的回调函数
+
+    function animateMove(el, targetObj, callback) {
+        // 如果要进行新的动画移动，先除旧的
+        clearInterval(el.intervalID)
+        el.intervalID = setInterval(function () {
+            for (var attrName in targetObj) {//循环属性对象.
+                var attrValue = parseInt(getStyle(el, attrName));//获取属性当前的值
+                var endPostion = targetObj[attrName];//移动运行最终目标值
+                var speed = (endPostion - attrValue) / 6;//缓动速度(目标值-当前值/6)
+                speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);//如果速度值是正数向上取整 如果是负数向下取整
+                if (speed != 0) {//继续运行
+                    el.style[attrName] = (attrValue + speed) + "px";//设置位移位置
+                } else {//停止
+                    clearInterval(el.intervalID);
+                    //动画执行完成以后 的回调函数
+                    if (callback) callback();
+                }
+            }
+        }, 30);
+    }
+
+
+
+
+    // 1.0 定时器开启
+    
+    function show() {
+        clearInterval(timerId)
+        // 通过循环让标签全部z-index = 0（不显示）
+        index++;
+        // 假如是最后一张，则重现显示为第一张
+        if (index >= lis.length) {
+            index = 0
+        }
+        light(index)
+    }
+
+    timerId = setInterval(show, 2000)
+
+
+    // // 2.0 鼠标悬停和离开
+    box.onmouseover = function () {
+        isStart = false;
+        // 清除定时器
+        clearInterval(timerId)
+    }
+
+    box.onmouseout = function () {
+        isStart = true
+        // 开启定时器
+        timerId = setInterval(show, 2000)
+    }
+
+    // 3.0 点击小圆点可以切换对应的图片
+    var spans = document.querySelectorAll(".cont span")
+    // console.log(spans)
+    for (var i = 0; i < spans.length; i++) {
+        // 属性绑定,记录是第几个小圆点
+        spans[i].num = i;
+        spans[i].onclick = function () {
+            index = this.num
+            // 调用高亮
+            light(index)
+        }
+    }
+
+
+    // // 4.0 点击向左向右
+    var btnLeft = document.querySelector(".left")
+    var btnRight = document.querySelector(".right")
+
+    btnLeft.onclick = function () {
+        // 要使用定时器，先移除以前的定时器
+        clearInterval(timerId)
+
+        // 写成一句话
+        index = index <= 0 ? lis.length - 1 : --index
+        console.log("index索引值==>", index)
+
+        light(index)
+    }
+
+    btnRight.onclick = function () {
+        // 要使用定时器，先移除以前的定时器
+        clearInterval(timerId)
+
+        index = index >= lis.length - 1 ? 0 : ++index
+        console.log("index索引值==>", index)
+
+        light(index)
+    }
+
+    // 定时器可以叠加在一块执行的，容易出问题，所以执行前，先清除以前的定时器
+
+</script>
+
+</html>
