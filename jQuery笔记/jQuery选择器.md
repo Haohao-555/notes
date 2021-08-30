@@ -98,3 +98,63 @@
 </html>
 ```
 
+
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../jquery-3.6.0.min.js"></script>
+    <style>
+        h3, p {
+            padding: 0;
+            margin: 0;
+        }
+        button , input {
+            font-size: 20px;
+        }
+        input[type='checkbox'] {
+            width: 30px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box-1">div</div>
+    <span class="txt-2">span</span>
+    <h3 id="demo">h3</h3>
+    <button>button</button>
+    <input type="text" value="input">
+    <ul>
+        <li>1</li>
+        <li>2</li>
+    </ul>
+    <input type="checkbox" checked>
+    <input type="checkbox">
+    <script>
+        $(function() {
+            // 页面上的标签
+            // DOM: 文档对象模型（DOM 是控制页面元素的一套标准）
+            // dom对象：页面上的标签（元素）
+            
+            // 选择器（获取页面标签的一种方式）
+            // 调用 $函数或者 jQuery函数，传递的是选择器的标记
+            // 返回 jquery 对象
+            var o1 = $(".box-1") 
+            console.log(o1); // o1 是 jQuery 对象
+            console.log(typeof o1);
+            console.log($("#demo"))
+            console.log($("button"));
+            console.log($("input[type='text']"))
+            console.log($("ul > li:nth-child(1)"))
+            console.log($("input[type='checkbox']:checked"))
+        })
+    </script>
+</body>
+</html>
+```
+
