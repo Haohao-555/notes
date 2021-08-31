@@ -1,0 +1,67 @@
+<!--
+ * @Date: 2021-08-31 21:09:39
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \控制盒子移动\键盘按键控制盒子(获取定位值).html
+-->
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>jQuery 阶段</title>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+
+        /* 定位属性（绝对，固定） */
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+
+    <script src="../jquery/3.6.0/jquery-3.6.0.js"></script>
+    <script>
+      // 步长
+      var speed = 100;
+      $(document).keydown(function (event) {
+        // 获取红色标签的当前位置
+        var point = $(".box").position();
+        var curX = point.left;
+        var curY = point.top;
+
+        var keyCode = event.keyCode;
+        // 判断用户按下了哪个按键
+        if (keyCode == 40) {
+          // 向下
+          curY += speed;
+        }
+        if (keyCode == 38) {
+          // 向上
+          curY -= speed;
+        }
+        if (keyCode == 39) {
+          // 向右
+          curX += speed;
+        }
+        if (keyCode == 37) {
+          // 向左
+          curX -= speed;
+        }
+       
+        $(".box").css({
+          left: curX,
+          top: curY,
+        });
+      });
+
+    </script>
+  </body>
+</html>
