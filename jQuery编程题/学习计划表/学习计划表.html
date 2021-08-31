@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>jQuery 阶段</title>
+    <style>
+      .wrapper {
+        font-size: 20px;
+      }
+      .wrapper table {
+        border-collapse: collapse;
+      }
+      .wrapper table,
+      .wrapper table caption,
+      .wrapper table th,
+      .wrapper table td {
+        border: 1px solid #ccc;
+      }
+      .wrapper table th,
+      .wrapper table td {
+        width: 120px;
+        height: 50px;
+        text-align: center;
+      }
+      .wrapper table tr:hover {
+        background-color: #f0f0f0;
+      }
+
+      .wrapper table td button {
+        border: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        background-color: transparent;
+      }
+      .wrapper table td button:hover {
+        color: #f00;
+      }
+
+      .btn-empty {
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        width: 120px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 20px;
+        font-size: 16px;
+        color: #666;
+      }
+      .btn-empty:active {
+        background-color: #f00;
+        color: #fff;
+      }
+      body {
+        /* 禁止选中页面文本 */
+        user-select: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <table cellpadding="0" cellspacing="0">
+        <!-- 表格标题 -->
+        <caption>
+          <h3>学习计划</h3>
+        </caption>
+        <!-- 表格头部 -->
+        <thead>
+          <tr>
+            <th>序号</th>
+            <th>课程</th>
+            <th>时间</th>
+            <th>状态</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <!-- 表格主体 -->
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>html</td>
+            <td>3天</td>
+            <td><span>1</span></td>
+            <td><button>删除</button></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>css</td>
+            <td>5天</td>
+            <td><span>1</span></td>
+            <td><button>删除</button></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>js</td>
+            <td>22天</td>
+            <td><span>1</span></td>
+            <td><button>删除</button></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>jquery</td>
+            <td>4天</td>
+            <td><span>0</span></td>
+            <td><button>删除</button></td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>ajax</td>
+            <td>3天</td>
+            <td><span>0</span></td>
+            <td><button>删除</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="btn-empty">清空计划</div>
+    </div>
+
+    <script src="../jquery-3.6.0.min.js"></script>
+    <script>
+      $(function () {
+        /*
+               需求：
+                    点击"删除"按钮,判断当前计划选项的状态,
+                    如果是1,就可以删除当前的计划,
+                    如果是0,就不可以删除当前的计划
+                    如果"清空计划"那么就可以清空表格(tbody部分)
+            
+            */
+
+        // 获取按钮标签的jquery对象
+        var $elements = $(".wrapper table button");
+        // 记录按钮的数量
+        var len = $elements.length;
+       
+        // 循环jquery对象 给每个按钮标签绑定事件
+        for (var i = 0; i < len; i++) {
+          // 事件绑定(转dom对象)
+          $elements[i].onclick = function () {
+            var v1 = $(this).parent().parent().find("span").text();
+            // 判断v1是否等于1
+            if (v1 === "1") {
+              // 删除指定的计划
+              $(this).parent().parent().remove();
+            }
+          };
+        }
+
+        // 点击 "清空计划" 按钮
+        $(".btn-empty")[0].onclick = function () {
+          // 选择表格主体 删除内容
+          $(".wrapper table tbody").empty();
+        };
+      });
+    </script>
+  </body>
+</html>
+
+<!-- 手感（提高编码速度） -->
+<!-- 1. 金山打字通 -->
+<!-- 2. 每天的源码（敲） -->
