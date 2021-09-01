@@ -234,7 +234,7 @@ $(document).ready(function(){
 
 
 
-#### Jquery 对象和 dom 对象
+#### JQuery 对象和 DOM 对象
 
 ```html
 <div></div>
@@ -368,6 +368,8 @@ $(function() {
 
 #### JQuery 事件
 
+* 方法一：$(selector).事件类型(function(){})
+
 ```html
 <button class="btn-1">点击按钮1</button>
 <button class="btn-2">点击按钮2</button>
@@ -379,6 +381,104 @@ $(function() {
        $(this).css('backgroundColor', 'yellow')
    })
    // 其他事件监听也是类似 （jquery对象.监听事件的类型）
+</script>
+```
+
+* 方法二：$(selector).bind(事件类型，function(){})
+
+```html
+<button class='btn'>按钮</button>
+<script>
+    // 一个监听器可以监听多种事件类型
+   $('.btn').bind('click mouseenter', function(event) {
+       var count = 0;
+       // 获取事件的类型  
+       var type = event.handleObj.origType;
+       if(type === "click") {
+           count++
+           if(count == 5) {
+               // 删除点击监听器
+               $('.btn').unbind("click");
+               // 删除所有事件类型的监听器
+               // $(".btn").unbind(); 
+           }
+       }
+       
+   })    
+</script>
+```
+
+* 方法三：事件委托 bind()
+
+```html
+<ul>
+    <li data-type="a">张三</li>
+    <li data-type="b" class="item-2">李四</li>
+    <li data-type="c">赵云</li>
+    <li data-type="e">孙六</li>
+</ul>
+<script>
+    // 区分父容器中的子元素
+   $('ul').delegate("li[data-type='b']", 'click', function(e) {
+       console.log(e.target)
+   })
+   $('ul').delegate(".item-2", 'click', function(e) {
+       console.log(e.target)
+   })
+   $('ul').delegate("li", 'click', function(e) {
+       if(e.target.dataset.type == 'b') {
+           console.log("lisi")
+       }
+   })
+    
+   // 绑定多个事件
+    $('ul').delegate(".item-2","click mouseenter",function(event) {
+        if(event.handleObj.origType == "click") {
+            console.log("click")
+        }else if(event.handleObj.origType == "mouseenter") {
+            console.log("mouseenter")
+        }
+    })
+    
+    // 解除点击事件
+    $('ul').undelegate("click");
+    // 解除所有事件
+    $('ul').undelegate();
+</script>
+```
+
+* 方法四：事件委托 on() （jQuery 推荐）
+
+```html
+<div class="container">
+    <button>按钮1</button>
+    <button>按钮2</button>
+    <button>按钮3</button>
+    <button>按钮4</button>
+</div>
+<script>
+   // 绑定事件
+   $('button').on("click", function() {
+        console.log(e);
+   })
+    
+   // 事件委托
+   $('.container').on("click", "button", function(e) {
+       console.log($(this))
+   })
+    
+   // 绑定多个事件
+   $('.container').on('click mouseenter', "button", function(e) {
+       if(e.handleObj.origType == "click"){
+           console.log('click')
+       }
+   })
+    
+   // 取消点击事件绑定
+   $('.container').off("click")
+   
+   // 取消所有事件绑定
+   $('.container').off();
 </script>
 ```
 
