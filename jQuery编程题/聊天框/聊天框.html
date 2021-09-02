@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10-练习-聊天框</title>
+    <style>
+        .main {
+            width: 600px;
+            background: rgb(13, 197, 243);
+            margin: 10px auto;
+            padding: 10px;
+        }
+
+        .msg {
+            background: #fff;
+            height: 400px;
+            overflow: auto;
+        }
+
+        textarea {
+            width: 100%;
+            border: none;
+            outline: none;
+            margin-top: 5px;
+            min-height: 60px;
+            resize: none;
+        }
+
+        textarea:focus {
+            outline: 1px solid #000;
+        }
+
+        .msg>div {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .self {
+            background: rgb(43, 213, 119);
+            margin: 10px 20px;
+            padding: 10px;
+            border-radius: 6px;
+            color: #fff;
+            position: relative;
+        }
+
+        .self:after {
+            content: "12341234123";
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+
+            border: 10px solid transparent;
+            border-left-color: rgb(43, 213, 119);
+            /*  */
+            font-size: 0;
+            line-height: 0;
+        }
+
+        div::-webkit-scrollbar {
+            width: 5px;
+            height: 10px;
+        }
+
+        div::-webkit-scrollbar-track {
+            background: orange;
+            border-radius: 5px;
+        }
+
+        div::-webkit-scrollbar-thumb {
+            background: red;
+            border-radius: 5px;
+        }
+
+        /* div::-webkit-scrollbar-corner {
+            background: skyblue;
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <h1>聊天框</h1>
+        <!-- 聊天信息 -->
+        <div class="msg">
+            <!-- <div>
+                <div class="self">在吗？听说你生病，那就多喝热水吧！</div>
+            </div> -->
+
+        </div>
+        <!-- 输入框 -->
+        <textarea></textarea><br>
+        <button>发送(ctrl+enter)</button>
+
+    </div>
+
+    <script src="../jquery-3.6.0.min.js"></script>
+
+    <script>
+        /*
+            1. 创建一个上图所示的聊天框
+            2. 实现点击发送或按下快捷键`ctrl+enter`将输入框中的文本内容以聊天气泡的形式添加到页面上
+            3. 在发送消息时，如果表单内容为空则不响应发送事件
+        */
+        $(function () {
+            // 获得输入框的内容，拼接标签和标签内容，发送在页面中（按下按钮或者键盘发送）
+            $("button").click(sendMsg)
+
+            function sendMsg() {
+                // console.log("发送信息")
+                // 获得文本信息
+                var val = $("textarea").val()
+                // 文本信息不能为空
+                if (val == "" || val.length == 0) return;
+                // 创建标签和内容
+                var selfDiv = $("<div />").addClass("self").text(val);
+                var outDiv = $("<div />").append(selfDiv)
+
+                // 添加到页面中
+                $(".msg").append(outDiv)
+                // 发送信息后，清空文本
+                $("textarea").val("")
+
+            }
+
+
+            // 按Ctrl+ enter 才能发送
+            $("textarea").keydown(keyMsg)
+
+            function keyMsg(e) {
+                console.log(e)
+                // 同时按下ctrl + enter
+                if (e.ctrlKey && e.keyCode == 13) {
+                    // if (e.keyCode == 17 && e.keyCode == 13) {   
+                    console.log("同时按下ctrl + enter")
+                    sendMsg()
+                }
+            }
+
+        })
+
+    </script>
+</body>
+
+</html>
