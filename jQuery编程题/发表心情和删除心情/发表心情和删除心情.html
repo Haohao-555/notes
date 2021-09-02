@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery 阶段</title>
+    <style>
+        .wrapper {
+            font-size: 20px;
+        }
+
+        .form {
+            width: 500px;
+            font-size: 0;
+        }
+
+        .form input {
+            box-sizing: border-box;
+            height: 40px;
+            vertical-align: middle;
+            width: 400px;
+        }
+
+        .form button {
+            width: 80px;
+            height: 40px;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+
+        .list {
+            width: 500px;
+        }
+
+        .list .item {
+            width: 500px;
+            height: 50px;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px 0 0;
+        }
+
+        .list .item button {
+            background-color: transparent;
+            border: 1px solid transparent;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .list .item button:hover {
+            color: #f00;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="form">
+            <input type="text" placeholder="请输入您的心情">
+            <button>提交</button>
+        </div>
+        <div class="list">
+            <!-- 
+                <div class="item">
+                    <span>xxx</span>
+                    <span>09-01 14:20:30</span>
+                    <button>删除</button>
+                </div> 
+            -->
+        </div>
+
+    </div>
+
+    <script src="../jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+            // 使用事件委托
+            $(".form button").click(function () {
+                // 获取输入的值
+                var v1 = $(".form input").val();
+                // 判断输入框是否有值
+                if(v1.length == 0) return ;
+                // 如果有值，就执行后续的逻辑
+                template(v1);
+            })
+            // 编写渲染字符串的函数
+            function template(msg) {
+                var str = ''
+                str += '<div class="item">'
+                str += '    <span>' + msg + '</span>'
+                str += '    <span>'+getCurrentTime()+'</span>'
+                str += '    <button>删除</button>'
+                str += '</div> '
+                $(".list").append(str);
+            }
+            // 编写获取当前时间的函数
+            function getCurrentTime() {
+                var dt = new Date();
+                var mm = dt.getMonth() + 1;
+                var dd = dt.getDate();
+                var h = dt.getHours();
+                var m = dt.getMinutes();
+                var s = dt.getSeconds();
+
+                mm = mm < 10 ? "0" + mm : mm;
+                dd = dd < 10 ? "0" + dd : dd;
+                h = h < 10 ? "0" + h : h;
+                m = m < 10 ? "0" + m : m;
+                s = s < 10 ? "0" + s : s;
+
+                return mm+"-"+dd+" "+h+":"+m+":"+s;
+            }
+            // 事件委托
+            $(".list").delegate("button","click",function(){
+                $(this).parent().remove();
+            })
+
+        })
+    </script>
+</body>
+
+</html>
