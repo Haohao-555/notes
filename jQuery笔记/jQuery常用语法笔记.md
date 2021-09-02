@@ -408,7 +408,7 @@ $(function() {
 </script>
 ```
 
-* 方法三：事件委托 bind()
+* 方法三：事件委托 delegate()
 
 ```html
 <ul>
@@ -575,6 +575,8 @@ $(function() {
 
 #### 动画
 
+* 动画开始
+
 ```html
 <button class="btn-animate">执行动画</button>
 <div class="box"></div>
@@ -588,6 +590,67 @@ $(function() {
     }, 1000, function() {
         $('.box').css("background", "blue")
     })
+</script>
+```
+
+* 动画结束
+
+```javascript
+$("#start").click(function() {
+    $('.box').animate({height:50}, 3000)
+             .animate({width: 300}, 3000)
+             .animate({marginLeft: 150}, 3000)
+})
+$("#pause").click(function() {
+    // 一个参数
+    $('.box').stop(); // 立即停止当前动画，继续执行后续动画
+    $('.box').stop(true); // 立即停止当前的动画，不执行后续的动画
+    $('.box').stop(false); // 立即停止当前动画，继续执行后续动画
+    
+    // 两个参数
+    $('.box').stop(true, false); // 立即停止当前的动画，不执行后续的动画
+    $(".box").stop(true,true); // 立即完成当前的动画，停止执行后续的动画
+    $(".box").stop(false,true); // 立即完成当前的动画，会执行后续的动画
+    $(".box").stop(false,false);  //立即停止当前的动画，会执行后续的动画
+})
+```
+
+
+
+#### 获取元素下标
+
+* 并列关系
+
+```html
+<div>
+    <button>按钮</button>
+    <button>按钮</button>
+    <button>按钮</button>
+    <button>按钮</button>
+    <button>按钮</button>
+    <button>按钮</button>
+</div> 
+<script>
+  $('div').on('click', "button", function() {
+      console.log($(this).index);
+  })
+</script>
+```
+
+* 嵌套关系
+
+```html
+<div><button>按钮</button></div>
+<div><button>按钮</button></div>
+<div><button>按钮</button></div>
+<div><button>按钮</button></div>
+<div><button>按钮</button></div>
+<div><button>按钮</button></div>
+<script>
+   $('div button').click(function() {
+       var v1 = $('div button').index($(this));
+       console.log(v1);
+   })
 </script>
 ```
 
