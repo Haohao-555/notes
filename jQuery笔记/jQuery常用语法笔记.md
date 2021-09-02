@@ -482,3 +482,112 @@ $(function() {
 </script>
 ```
 
+
+
+#### 显示和隐藏元素 
+
+* 方式一：简单
+
+```html
+<button class='btn-show'>显示</button>
+<button class='btn-hide'>隐藏</button>
+<div class='box'></div>
+<script>
+    // 元素隐藏
+    $(".box").hide();
+    
+    // 元素显示
+    $(".box").show();
+    
+    // 显示隐藏切换
+    $(".box").toggle();
+    
+    // 方式一：执行动画,通过改变元素的宽度和高度等显示和隐藏元素
+    $(".btn-show").click(function() {
+        $(".box").show(1000);
+        // $(".box").hide(1000);
+    })
+    
+    // 方式二：fast / slow
+    $(".btn-show").click(function(){
+        $(".box").show("fast"); // 显示
+     // $(".box").hide("slow"); // 隐藏  
+    }) 
+    
+    // 方式三：动画结束后，可以执行回调函数
+    $(".btn-show").click(function() {
+        $(".box").show(1000, function() {
+            console.log("show")
+        })
+    })
+</script>
+```
+
+* 方式二：下拉显示和收起隐藏
+
+```html
+<button class='btn-show'>下拉显示</button>
+<button class='btnl-hide'>收起隐藏</button>
+<div class='box'>hello world</div>
+<script>
+    // 方式一
+    $('.box').slideUp(); // 隐藏元素
+    $('.box').slideDown(); // 显示元素
+    $('.box').slideToggle(); // 切换
+    
+    // 方式二
+    $('.box').slideDown(1000);
+    
+    // 方式三
+    $('.box').slideDown(1000, function() {
+        console.log("显示元素")
+    })
+</script>
+```
+
+* 方式三：淡入显示和淡出隐藏
+
+```html
+<button class="btn-show">淡入显示</button>
+<button class="btn-hide">淡出隐藏</button>
+<div class="box">hello world</div>
+<script>
+   // 方式一
+   $('.box').fadeOut(); // 隐藏元素
+   $('.box').fadeIn(); // 显示元素
+   $('.box').fadeToggle(); // 切换
+   
+   // 方式二
+   $('.btn-show').click(function() {
+       $('.box').fadeIn(500)
+   })
+    
+   // 方式三
+   $('.btn-show').click(function() {
+       $('.box').fadeIn(500, function() {
+           console.log("淡入")
+       })
+   })
+</script>
+```
+
+
+
+#### 动画
+
+```html
+<button class="btn-animate">执行动画</button>
+<div class="box"></div>
+<script>
+    /*
+      参数： 1、样式对象 2、毫秒值/英文词汇 3、回调函数
+    */
+    $(".btn-animate").animate({
+        width: "100px";
+        borderRadius: "50px"
+    }, 1000, function() {
+        $('.box').css("background", "blue")
+    })
+</script>
+```
+
