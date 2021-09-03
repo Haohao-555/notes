@@ -615,6 +615,42 @@ $("#pause").click(function() {
 })
 ```
 
+* 动画队列
+
+```html
+<button class="btn-start">开始</button>
+<button class="btn-next">继续执行(下一个动画)</button>
+<button class="btn-pause">停止</button>
+<div>
+    <div class="red"></div>
+    <div class="green"></div>
+</div>
+<script>
+  $(function() {
+     // 定义动画队列
+     var arr = [
+       function() {$(.red).animate({marginLeft: 100}, 1000)},
+       function() {$(.green).animate({marginLeft: 100}, 1000)},  
+     ]
+     // 绑定事件
+     $(".btn-start").click(function() {
+         $("body").queue("fx", arr)
+     })
+     $(".btn-next").click(function() {
+         // 执行下一个动画
+         $("body").dequeue("fx")
+     })
+     $(".btn-pause").click(function() {
+         // 清除动画队列
+         $("body").clearQueue("fx");
+     })
+  }) 
+  // 如果以上方法不符合您的业务逻辑，那就直接根据数组索引值执行动画
+  // var f1 = arr[0]
+  // f1()
+</script>
+```
+
 
 
 #### 获取元素下标
@@ -653,4 +689,245 @@ $("#pause").click(function() {
    })
 </script>
 ```
+
+
+
+#### 遍历jQuery对象数组
+
+* 方法一： 调用者 jQuery 对象
+
+```html
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+</ul>
+<script>
+    // 定义颜色数组
+    var arrColor = [
+        "red",
+        "green",
+        "purple",
+        "yellow",
+        "pink"
+    ]
+    $('ul li').each(function(index, item) {
+        // item 是 dom 对象
+        // 讲 item 转成 jquery 对象
+        $(item).css("background", arrColor[index]);
+    })
+</script>
+```
+
+* 方法二：调用者 $
+
+```javascript
+$.each(arrColor, function(index, item) {
+    // index 代表索引值
+    // item 代表数组的每一项的每一项数据
+    $("ul li").eq(index).css("background", item);
+})
+```
+
+
+
+#### 拓展方法
+
+* 方式一： 调用者 jquery 对象
+
+```html
+<div class="box"></div>
+<script>
+   // 写法一  $.fn fn是原型对象
+   $.fn.sayHello = function() {
+       console.log("hello world");
+   }
+   $.fn.changeWidth = function() {
+       console.log(this); // 此时 this 是 jquery 对象
+       console.log($(this));
+       this.css("width","500px"); // 正确
+       $(this).animate({width:500}, 2000); // 正确
+   }
+   $(".box").sayHello(); // hello world
+   $(".box").changeWidth(); 
+    
+   //写法二 
+    $.fn.extend({
+        foo: function() {
+            console.log("foo");
+        },
+        myRandom(num) {
+            renturn Math.floor(Math.random()*num);
+        }
+    })
+    $(".box").foo(); // foo
+    $(".box").myRandom(100);
+</script>
+```
+
+* 方式二：调用者 $
+
+```javascript
+// 方法一
+$.sayHello = function() {
+    console.log("hello world");
+}
+$.changeColor = function() {
+    $(".box").css("background", "red")
+}
+$.sayHello();
+$.changeColor();
+
+//写法二
+$.extend({
+    foo: function() {
+        console.log("foo");
+    },
+    myRandom(num) {
+        return Math.floor(Math.random() * num);
+    }
+})
+$.foo(); // foo
+$.myRandom(100);
+```
+
+
+
+#### 补充： jquery 中的 offset 与原生 offsetLeft 及 offsetTop的区别
+
+> 注意： jquery 中的 offset 和原生 offset 获取的边距都是**相对浏览器可视化的部分**
+>
+> jquery 中：
+>
+> ​         offset 不受 定位的影响
+>
+> 原生 DOM 中：
+>
+> ​         父容器是否设置了 position 属性值，会影响到其 offsetLeft
+
+```html
+<style>
+    body {
+        margin: 0;
+    }
+    .header {
+        height: 100px;
+        border-bottom: 3px solid #000;  
+    }
+    .nav {
+        width: 1000px;
+         /* 经过计算水平居中距离左边距离为 268px 即 margin: 0 268px*/
+        margin: 0 auto; 
+        height: 100px;
+        background-color: deepskyblue;
+        /* 添加position */
+        /* position: relative; */
+    }
+    .nav .box {
+        width: 100px;
+        height: 80px;
+        background-color: red;
+    }
+</style>
+<div class="header">
+    <!-- 父元素 -->
+    <div class="nav">
+        <!-- 子元素 -->
+        <div class="box"></div>
+    </div>
+</div>
+<script>
+    // 通过 jquery 来获取 .box 元素距离左边的距离
+    var point = $(".box").offset(); // {top: 0,left: 268}
+    console.log(point); 
+    // 接下来 如果缩小浏览器的宽度小于 1000（.nav的宽度）
+    console.log(point); // {top:0, left: 0}  正常
+    // 父元素（.nav）去掉定位 position 也没有影响到
+    
+    // 原生情况下
+    var box = document.querySelector(".box");
+    // 父容器添加了 position 情况下
+    console.log({
+        top: box.offsetTop,
+        left: box.offsetLeft
+    }); // {top: 0, left: 0}
+    // 父容器没有添加了 position 情况下
+     console.log({
+        top: box.offsetTop,
+        left: box.offsetLeft
+    }); // {top: 0,left: 268}
+</script>
+```
+
+> 总结：
+>
+> （1）在原生js 中 使用 offsetLeft 时需要考虑到父容器是否添加了定位属性
+>
+> （2）而在 jq 中不需要考虑这个问题， offsetLeft 是直接获取该元素距离可视化浏览器左边的距离
+>
+> （3）在 jq 中 即使子元素设置 top left 也不会影响到获取元素距离可视化浏览器的左和上的距离
+
+
+
+jquery 对象中的position 方法
+
+> 用法： $('.box').position();   获取元素的位置
+>
+> 少用：由于jquery 的版本更新迭代，有些比较旧的版本没有该方法
+>
+> offest 和 position 选择
+>
+> ​     如果该元素添加了 top 和 left 属性 则使用 position
+>
+> ​     反之， 使用 offset 获取即可
+
+具体区别这里不细谈，可以通过下面例子来看看区别
+
+```html
+<style>
+body {
+        margin: 0;
+    }
+    .header {
+        height: 100px;
+        border-bottom: 3px solid #000;  
+    }
+    .nav {
+        width: 1000px;
+        margin: 0 auto;
+        height: 100px;
+        background-color: deepskyblue;
+        /* 添加position */
+        position: relative;
+    }
+    .nav .box {
+        width: 100px;
+        height: 80px;
+        background-color: red;
+        /* 添加定位*/
+        position: absolute;
+        /* 考虑这里 */
+        left: 30px;
+    }
+</style>
+<div class="header">
+    <!-- 父元素 -->
+    <div class="nav">
+        <!-- 子元素 -->
+        <div class="box"></div>
+    </div>
+</div>
+<script>
+    var point = $(".box").offset();
+    console.log(point);// {top: 0, left: 298}  268 + 30
+    
+   
+    var pos = $(".box").position();
+    console.log(pos) // {top: 0, left: 30} 
+</script>
+```
+
+
 
