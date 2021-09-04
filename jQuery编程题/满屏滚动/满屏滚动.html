@@ -1,0 +1,61 @@
+<!--
+ * @Date: 2021-09-04 20:07:53
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \notes\jQuery编程题\满屏滚动\满屏滚动.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/jquery.fullpage.css" />
+  </head>
+  <body>
+    <div id="fullpage">
+      <!-- 容器标签 -->
+      <div class="layout">
+        <section class="section"><h3>第一屏</h3></section>
+        <section class="section"><h3>第二屏</h3></section>
+        <section class="section"><h3>第三屏</h3></section>
+        <section class="section"><h3>第四屏</h3></section>
+        <section class="section"><h3>第五屏</h3></section>
+      </div>
+      <!-- 导航点标签 -->
+      <div class="point">
+        <span class="active"></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <script src="../jquery-3.6.0.min.js"></script>
+    <script src="./js/jquery.fullpage.js"></script>
+    <script>
+      $(function () {
+        var option = {
+          //每一屏的背景颜色
+          sectionColor: [
+            "deepskyblue",
+            "pink",
+            "yellowgreen",
+            "lightyellow",
+            "purple",
+          ],
+          // 回调函数
+          aferLoad: function (index) {
+            $(".section").eq(index).addClass("active").siblings().removeClass("active");
+          },
+        };
+        // 调用插件
+        $("#fullpage").fullPage(option);
+
+        // 第一次进入页面时
+        $(".section").first().addClass("active");
+      });
+    </script>
+  </body>
+</html>
