@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+}
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+#waterfall {
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+#waterfall .container {
+    width: 1200px;
+    margin: 0 auto;
+}
+#waterfall .container ul {
+    width: 100%;
+    position: relative;
+}
+#waterfall .container ul li {
+    width: 230px;
+    background-color: #fff;
+    border: 1px solid #ccc; 
+    box-shadow: 0 2px 10px deepskyblue inset;
+    position: absolute;
+    left: 0;
+    top: 50px;
+}
+/* 辅助颜色 */
+#waterfall .container ul li:nth-child(n){
+    /* background-color: green; */
+}
+#waterfall .container ul li:nth-child(5) ~ li {
+    /* background-color: #fff; */
+}

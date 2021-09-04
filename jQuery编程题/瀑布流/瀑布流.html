@@ -1,0 +1,51 @@
+<!--
+ * @Date: 2021-09-04 14:55:22
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \jQuery编程题\瀑布流\瀑布流.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>瀑布流</title>
+    <link rel="stylesheet" href="./css/waterfall.css">
+</head>
+<body>
+    <div id="waterfall">
+        <div class="container">
+            <ul>
+                <li style="height: 360px;">1</li>
+                <li style="height: 250px;">2</li>
+                <li style="height: 400px;">3</li>
+                <li style="height: 320px;">4</li>
+                <li style="height: 420px;">5</li>
+                <li style="height: 280px;">6</li>
+                <li style="height: 220px;">7</li>
+                <li style="height: 290px;">8</li>
+                <li style="height: 340px;">9</li>
+                <li style="height: 410px;">10</li>
+                <li style="height: 230px;">11</li>
+                <li style="height: 360px;">12</li>
+                <li style="height: 310px;">13</li>
+                <li style="height: 350px;">14</li>
+                <li style="height: 450px;">15</li>
+                <li style="height: 360px;">12</li>
+                <li style="height: 310px;">13</li>
+                <li style="height: 350px;">14</li>
+                <li style="height: 450px;">15</li>
+            </ul>
+        </div>
+    </div>
+    <script src="../jquery-3.6.0.min.js"></script>
+    <script src="./js/jquery.waterfall.js"></script>
+    <script>
+        $(function() {
+            // 调用 waterFall 方法
+            $("#waterfall").waterFall();
+        })
+    </script>
+</body>
+</html>

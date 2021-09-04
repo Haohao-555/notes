@@ -585,7 +585,7 @@ $(function() {
       参数： 1、样式对象 2、毫秒值/英文词汇 3、回调函数
     */
     $(".btn-animate").animate({
-        width: "100px";
+        width: "100px",
         borderRadius: "50px"
     }, 1000, function() {
         $('.box').css("background", "blue")
