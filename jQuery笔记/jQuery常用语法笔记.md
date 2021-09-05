@@ -244,7 +244,7 @@ $(document).ready(function(){
     
    // 转成 dom 对象
    var div1 = $dom[0];
-   var div2 = $dom.get(1); 
+   var div2 = $dom.get(0); 
     
    // 转成 jQuery 对象
    var ele = document.querySelector("div");
@@ -614,6 +614,12 @@ $("#pause").click(function() {
     $(".box").stop(false,false);  //立即停止当前的动画，会执行后续的动画
 })
 ```
+
+> 总结：参数不写默认为 false
+>
+>  后续动画 取绝于 第一个参数为 false则执行，true 则结束
+>
+>  当前动画 取绝于 第二个参数为false则停止，true 则完成 
 
 * 动画队列
 
