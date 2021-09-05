@@ -795,6 +795,44 @@ $.myRandom(100);
 
 
 
+#### jQuery 中的 input 和 change 的区别
+
+```html
+<input type="range" id="range"></input>
+<script>
+    // 触发一次
+    $("#range").change(function() {
+        console.log("change值", $(this).val());
+    })
+    // 触发多次
+    $("#range").input(function() {
+        console.log("input值", $(this).val());
+    })
+</script> 
+```
+
+
+
+#### 更改 $ 别名
+
+```html
+<button>点击一下</button>
+<script>
+    $(function() {
+        // 更改 jQuery别名 $
+        // 调用者： jQuery 或 $
+        // 作用： 改变 jq的函数别名
+        var _ = $.noConflict();
+        
+        _("button").click(function() {
+            _(this).css("background", "red");
+        })
+    })
+</script>
+```
+
+
+
 #### 补充： jquery 中的 offset 与原生 offsetLeft 及 offsetTop的区别
 
 > 注意： jquery 中的 offset 和原生 offset 获取的边距都是**相对浏览器可视化的部分**
