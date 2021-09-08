@@ -1,0 +1,107 @@
+<!--
+ * @Date: 2021-09-08 14:55:28
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \notes\jQuery编程题\刷一刷鸡汤\点击刷新.html
+-->
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>jQuery 阶段</title>
+    <style>
+      .header {
+        width: 600px;
+        height: 80px;
+        line-height: 80px;
+      }
+      .header button {
+        padding: 10px 20px;
+        vertical-align: middle;
+        cursor: pointer;
+      }
+      .header .icon {
+        display: inline-block;
+        vertical-align: middle;
+        width: 50px;
+        height: 50px;
+        /* border: 1px solid #ccc;  */
+        background-image: url(./assets/loading-3.gif);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 40px 40px;
+        display: none;
+      }
+      .header .loading {
+        display: inline-block;
+      }
+      .message p {
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <button>换一句话</button> <span class="icon"></span>
+    </div>
+    <div class="message">
+      <p>一段文本...</p>
+    </div>
+
+    <script src="../jquery-3.6.0.min.js"></script>
+    <script>
+      $(function () {
+        // 需求：
+        // 渲染接口的内容
+        // 点击按钮，切换接口的内容
+        
+        // 延迟
+        var d = null;
+        // 请求数据及渲染数据
+        var render = function () {
+          // 执行 ajax 请求数据
+          $.ajax({
+            url: "http://nudianli.com:8082/soul",
+            type: "get",
+            beforeSend: function () {
+              // 加载提示
+              $(".icon").addClass("loading");
+            },
+            success: function (res) {
+              if (res && res.code == 200) {
+                 d = setTimeout(function () {
+                  var content = res.data.content;
+                  $(".message p").text(content);
+                  // 隐藏加载的提示
+                  $(".icon").removeClass("loading");
+                  // 释放变量
+                  d = null;
+                },300);
+              }
+            },
+            error: function () {
+              console.log("检查您的代码");
+            },
+            complete: function () {
+              console.log("请求完成");
+            },
+          });
+        };
+       
+        var addEvent = function() {
+             $(".header button").on("click", function() {
+                 // 防抖处理
+                 if(d)clearTimeout(d)
+                 // 请求数据渲染数据
+                 render();
+             })
+        }
+        // 初始化
+        render();
+        addEvent();
+      });
+    </script>
+  </body>
+</html>

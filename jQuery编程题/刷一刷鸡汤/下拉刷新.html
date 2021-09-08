@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>jQuery 阶段</title>
+    <style>
+      .header {
+        width: 600px;
+        height: 80px;
+        line-height: 80px;
+      }
+      .header button {
+        padding: 10px 20px;
+        vertical-align: middle;
+        cursor: pointer;
+      }
+      .header .icon {
+        display: inline-block;
+        vertical-align: middle;
+        width: 50px;
+        height: 50px;
+        /* border: 1px solid #ccc;  */
+        background-image: url(./assets/loading-3.gif);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 40px 40px;
+        display: none;
+      }
+      .header .loading {
+        display: inline-block;
+      }
+      .message p {
+        font-size: 20px;
+      }
+    </style>
+    <style>
+      body {
+        margin: 0;
+      }
+      .ball {
+        width: 90px;
+        height: 90px;
+        border: 1px solid red;
+        background-color: darkred;
+        box-sizing: border-box;
+        border-radius: 50%;
+        cursor: pointer;
+        position: absolute;
+        top: 0px;
+        left: 50%;
+        margin-left: -45px;
+      }
+      .ball .line {
+        width: 2px;
+        height: 200px;
+        background-color: #000;
+        position: absolute;
+        left: 50%;
+        margin-left: -1px;
+        top: -200px;
+      }
+      .header {
+        width: 100%;
+        text-align: center;
+        margin-top: 220px;
+      }
+      .message {
+        width: 100%;
+        text-align: center;
+      }
+
+      body {
+        user-select: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 制作下拉小球 -->
+    <div class="ball">
+      <div class="line"></div>
+    </div>
+
+    <!-- 正在加载... -->
+    <div class="header">
+      <span class="icon"></span>
+    </div>
+    <!-- 渲染文本 -->
+    <div class="message">
+      <p></p>
+    </div>
+
+    <script src="../jquery-3.6.0.min.js"></script>
+    <script>
+      $(function () {
+        // 需求：
+        // 渲染接口的内容
+        // 点击按钮，切换接口的内容
+
+        // 延迟
+        var d = null;
+        // 请求数据及渲染数据
+        var render = function () {
+          // 执行 ajax 请求数据
+          $.ajax({
+            url: "http://nudianli.com:8082/soul",
+            type: "get",
+            beforeSend: function () {
+              // 加载提示
+              $(".icon").addClass("loading");
+            },
+            success: function (res) {
+              if (res && res.code == 200) {
+                d = setTimeout(function () {
+                  var content = res.data.content;
+                  $(".message p").text(content);
+                  // 隐藏加载的提示
+                  $(".icon").removeClass("loading");
+                  // 释放变量
+                  d = null;
+                }, 300);
+              }
+            },
+            error: function () {
+              console.log("检查您的代码");
+            },
+            complete: function () {
+              console.log("请求完成");
+            },
+          });
+        };
+
+        // 初始化
+        render();
+
+        // 处理下拉刷新数据
+        var myscroll = function () {
+          // 记录相关数据
+          var moveY = 0;
+          var isMouseDown = false;
+
+          // 鼠标按下
+          $(".ball").on("mousedown", function () {
+            isMouseDown = true;
+          });
+
+          // 鼠标移动
+          $(document).on("mousemove", function () {
+            if (isMouseDown) {
+              // 计算 .ball 的top 属性值
+              // event.pageY 鼠标的位置
+              // $(".ball").height() 盒子的高度
+              moveY = event.pageY - $(".ball").height() / 2;
+
+              // 判断 moveY 是否超出范围
+              if (moveY < 0) {
+                moveY = 0;
+              }
+              if (moveY > 150) {
+                moveY = 150;
+              }
+              // 设置 .ball 的 top 属性值
+              $(".ball").css("top", moveY);
+
+              // 设置小球的背景色
+              if(moveY >= 80) {
+                  $(".ball").css("backgroundColor", "yellowgreen")
+              }else {
+                  $(".ball").css("backgroundColor", "darkred")
+              }
+            }
+          });
+
+          // 鼠标松开
+          $(document).on("mouseup", function () {
+            isMouseDown = false;
+            if (moveY >= 80) {
+              // 请求数据
+              render();
+            }
+            // 设置 .ball 动画形式回到顶部
+            $(".ball").animate(
+              {
+                top: 0,
+                backgroundColor: "darkred"
+              },
+              300
+            );
+            // 重置
+            moveY = 0;
+          });
+        };
+        myscroll();
+      });
+    </script>
+  </body>
+</html>
