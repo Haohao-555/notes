@@ -1,0 +1,64 @@
+<!--
+ * @Date: 2021-09-08 15:39:24
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \notes\jQuery编程题\封装原生ajax请求\原生ajax上.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 接口地址
+      var _host = "http://nudianli.com:8082?c=1&d=2";
+      var url = _host + "/list";
+      var type = "get";
+     
+      // 设置 异步
+      var async = true;
+
+      // 兼容IE5-6
+      if (window.XMLHttpRequest) {
+        // 创建实例对象 XMLHttpRequest
+        xhr = new XMLHttpRequest(); // 主流
+      } else {
+        xhr = new ActiveXObject("Microsoft.XMLHTTP"); // 低版本IE5/6
+      }
+      // 监听请求和响应数据的状态（异步）
+      xhr.onreadystatechange = function () {
+        // 请求状态码 readyState 响应状态码 status
+        if (xhr.readyState === 4) {
+          // 响应的状态码
+          if (xhr.status === 200) {
+            // 响应报文
+            var str = xhr.responseText;
+            // 把字符串转成 json 对象
+            var res = JSON.parse(str);
+            console.log("请求成功", res);
+
+            console.log("success");
+          } else {
+            // 请求失败
+            console.log("error");
+          }
+          // 请求完成
+          console.log("complete");
+        }
+        // 请求之前
+        if (xhr.readyState <= 1) {
+          console.log("beforeSend");
+        }
+      };
+      // 发起请求（与服务端建立联系）
+      xhr.open(type, url, async);
+
+      // 发送请求
+      xhr.send(null);
+    </script>
+  </body>
+</html>
