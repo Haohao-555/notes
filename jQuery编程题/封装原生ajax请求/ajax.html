@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="./ajax.js"></script>
+    <script>
+      $.ajax({
+        url: "http://nudianli.com:8082/add",
+        type: "get",
+        data: {
+          num1: 2,
+          num2: 10,
+        },
+        // async: true,
+        // dataType: "json",
+        beforeSend: function () {
+          console.log("之前");
+        },
+        success: function (res) {
+          console.log(res);
+        },
+        error: function (err) {
+          console.log(err);
+        },
+        complete: function () {
+          console.log("完成");
+        },
+      });
+    </script>
+  </body>
+</html>
