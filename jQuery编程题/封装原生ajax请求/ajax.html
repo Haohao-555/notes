@@ -9,6 +9,7 @@
   <body>
     <script src="./ajax.js"></script>
     <script>
+      // 调用
       $.ajax({
         url: "http://nudianli.com:8082/add",
         type: "get",
@@ -31,6 +32,47 @@
           console.log("完成");
         },
       });
+
+      // 调用 get 方法
+      _get(
+        "data/2.txt",
+        function (res) {
+          console.log(res); // hello world
+        },
+        function (err) {
+          console.log(err);
+        }
+      );
+
+      _get(
+        "data/3.json",
+        function (res) {
+          console.log(res); // '{"message":"你好，世界"}'
+          var obj = JSON.parse(res);
+          console.log(obj); // {"message":"你好，世界"}
+        },
+        function (err) {
+          console.log(err);
+        }
+      );
+
+      // 调用post方法
+      _post(
+        "http://nudianli.com:8082/login",
+        {
+          uname: "admin",
+          upass: "123456",
+        },
+        function (res) {
+          console.log(res); //字符串 '{"message":"登录成功"}'
+          var obj = JSON.parse(res);
+          console.log(obj); //{"message":"登录成功"}
+          //  document.getElementById("demo3").innerHTML = obj.message;
+        },
+        function (err) {
+          console.log(err); // 1.拼写问题 2.服务端异常
+        }
+      );
     </script>
   </body>
 </html>

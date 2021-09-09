@@ -1,3 +1,4 @@
+// 封装 ajax 函数 
 function ajax(option) {
     // 记录接口地址
     var url = option.url;
@@ -18,7 +19,7 @@ function ajax(option) {
         }
         str = str.slice(0, str.length - 1);
     }
-   
+
     // 判断执行 XMLHttpRequest 逻辑
     if (dataType != "jsonp") {
         var xhr;
@@ -32,38 +33,38 @@ function ajax(option) {
         xhr.onreadystatechange = function () {
             // console.log("监听请求和响应")
             // 根据请求状态码调用相关的回调函数
-            if(xhr.readyState <= 1) {
+            if (xhr.readyState <= 1) {
                 // 判断是否存在当前的回调函数 beforeSend
-                if(option.beforeSend) option.beforeSend();
+                if (option.beforeSend) option.beforeSend();
             }
 
             // 判断请求是否完成
-            if(xhr.readyState == 4) {
+            if (xhr.readyState == 4) {
                 // 响应是否成功
                 if (xhr.status == 200) {
                     // 处理响应报文
                     var _type = xhr.getResponseHeader("content-type")
                     // 接受处理结果
                     var res;
-                    if(_type.indexOf("json") > -1) {
+                    if (_type.indexOf("json") > -1) {
                         // 把字符串转成对象格式
                         res = JSON.parse(xhr.responseText);
-                    }else if(_type.indexOf("xml") > -1) {
+                    } else if (_type.indexOf("xml") > -1) {
                         // xml 是一种存储数据的标记语言
-                       res = xhr.responseXML;
-                    }else {
+                        res = xhr.responseXML;
+                    } else {
                         // 普通文档内容
                         res = xhr.responseText;
                     }
                     // 调用 success 回调函数
-                    if(option.success) option.success(res);
-                }else {
+                    if (option.success) option.success(res);
+                } else {
                     // 调用 error 回调函数
-                    if(option.error)option.error("请求失败")
+                    if (option.error) option.error("请求失败")
                 }
 
                 // 当状态码等于 4 的时候
-                if(option.complete)option.complete();
+                if (option.complete) option.complete();
             }
         }
 
@@ -74,7 +75,7 @@ function ajax(option) {
                 xhr.open(type, url, async)
             } else {
                 // get 方式提交参数，参数是拼接再url的后面（地址栏）
-                xhr.open(type, url + "?"+str, async)
+                xhr.open(type, url + "?" + str, async)
             }
             // 发送请求主体
             xhr.send();
@@ -92,5 +93,58 @@ function ajax(option) {
 
     // 判断执行 json 逻辑
 }
+
+// 封装 get 函数
+function _get(url, success, error, data) {
+    var str = "";
+    if(typeof data === "object") {
+        for(var key in data) {
+            str += key + "=" + data[key] + "&"
+        }
+        str += str.slice(0, str.length-1);
+    }
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                if (success) success(xhr.responseText);
+            } else {
+                if (error) error("请求失败");
+            }
+        }
+    };
+    xhr.open("get", url+"?"+str, true);
+    xhr.send();
+}
+
+// 封装 post 函数
+function _post(url, data, success, error) {
+    var str = "";
+    if (data) {
+        for (var key in data) {
+            str += key + "=" + data[key] + "&";
+        }
+        str = str.slice(0, str.length - 1);
+    }
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                if (success) success(xhr.responseText);
+            } else {
+                if (error) error("请求失败");
+            }
+        }
+    };
+    xhr.open("post", url, true);
+    xhr.setRequestHeader(
+        "content-type",
+        "application/x-www-form-urlencoded"
+    );
+    xhr.send(str);
+}
+
 var $ = {};
 $.ajax = ajax;
+$.get = _get;
+$.post = _post;
