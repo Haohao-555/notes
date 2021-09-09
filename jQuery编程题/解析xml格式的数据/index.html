@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+
+      ul li {
+        width: 250px;
+        border: 1px solid #ccc;
+      }
+
+      ul li img {
+        width: 250px;
+        vertical-align: middle;
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="list-box">
+      <!-- <li>
+        <img src="" alt="" />
+        <p>文字</p>
+      </li> -->
+    </ul>
+    <script src="../jquery-3.6.0.min.js"></script>
+    <script>
+      var listBox = document.querySelector(".list-box");
+      var render = function () {
+        $.ajax({
+          url: "./data/mydata.xml",
+          type: "get",
+          success: function (dom) {
+            // xml 文档类型
+            console.log(dom);
+            // 获取 item 标签
+            var items = dom.querySelectorAll("item");
+            var str = "";
+            // 循环 items 数组
+            for (var i = 0; i < items.length; i++) {
+              // 获取标签的路径和标签的文本
+              var src = items[i].querySelector("image").innerHTML;
+              var txt = items[i].querySelector("text").innerHTML;
+              str += "<li>";
+              str += '    <img src="' + src + '" alt="">';
+              str += "    <p>" + txt + "</p>";
+              str += "</li>";
+            }
+             // 渲染数据
+             listBox.innerHTML = str;
+          },
+        });
+      };
+      render()
+    </script>
+  </body>
+</html>

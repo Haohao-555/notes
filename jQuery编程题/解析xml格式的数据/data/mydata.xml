@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <item>
+		<image>http://nudianli.com:9090/imgs/11.jpg</image>
+		<text>图片1</text>
+		<aaa>xxxx01</aaa>
+  </item>
+   <item>
+		<image>http://nudianli.com:9090/imgs/22.jpg</image>
+		<text>图片2</text>
+    <aaa>xxxx02</aaa>
+  </item>
+   <item>
+		<image>http://nudianli.com:9090/imgs/33.jpg</image>
+		<text>图片3</text>
+     <aaa>xxxx03</aaa>
+  </item>
+</root>
