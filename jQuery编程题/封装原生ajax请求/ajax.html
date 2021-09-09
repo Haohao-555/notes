@@ -5,36 +5,64 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      input {
+        font-size: 20px;
+      }
+    </style>
   </head>
   <body>
+    <input type="text" placeholder="搜索" />
+    <ul>
+      <!-- <li></li> -->
+    </ul>
+
     <script src="./ajax.js"></script>
     <script>
-      // 调用
-      $.ajax({
-        url: "http://nudianli.com:8082/add",
-        type: "get",
-        data: {
-          num1: 2,
-          num2: 10,
-        },
-        // async: true,
-        // dataType: "json",
-        beforeSend: function () {
-          console.log("之前");
-        },
-        success: function (res) {
-          console.log(res);
-        },
-        error: function (err) {
-          console.log(err);
-        },
-        complete: function () {
-          console.log("完成");
-        },
-      });
+      var inp = document.querySelector("input[type='text']");
+      var ul = document.querySelector("ul");
+
+      // 编写函数渲染数据
+      var template = function (arr) {
+        var html = "";
+        for (var i = 0; i < arr.length; i++) {
+          html += "<li>" + arr[i][0] + "</li>";
+        }
+        ul.innerHTML = html;
+      };
+
+      // 调用ajax （XMLHttpRequest）
+
+      inp.oninput = function () {
+        var v1 = inp.value;
+        // 调用ajax (jsonp)
+        $.ajax({
+          url: "https://suggest.taobao.com/sug",
+          dataType: "jsonp",
+          jsonpCallback: "jsonp295",
+          data: {
+            area: "c2c",
+            bucketid: "17",
+            callback: "jsonp295",
+            code: "utf-8",
+            k: "1",
+            q: v1,
+            _ksTS: "1631092227707_294",
+          },
+          success: function (res) {
+            // console.log(res);
+            if (res) {
+              // 获取返回的数据的数组
+              var result = res.result;
+              // 渲染数据
+              template(result);
+            }
+          },
+        });
+      };
 
       // 调用 get 方法
-      _get(
+      $.get(
         "data/2.txt",
         function (res) {
           console.log(res); // hello world
@@ -44,7 +72,7 @@
         }
       );
 
-      _get(
+      $.get(
         "data/3.json",
         function (res) {
           console.log(res); // '{"message":"你好，世界"}'
@@ -57,7 +85,7 @@
       );
 
       // 调用post方法
-      _post(
+      $.post(
         "http://nudianli.com:8082/login",
         {
           uname: "admin",

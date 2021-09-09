@@ -11,6 +11,7 @@ function ajax(option) {
     // 记录响应的数据格式 / 表示跨域的标记
     var dataType = option.dataType;
 
+
     // 处理 data 对象（把对象转成指定格式的字符串）
     var str = "";
     if (typeof data == "object") {
@@ -88,20 +89,46 @@ function ajax(option) {
             // 发送请求主体
             xhr.send(str);
         }
+    } else { // 判断执行 json 逻辑
+        // 定义回调函数的名称
+        var jsonpName = option.jsonpCallback;
+        // 判断是否存在jsonp属性
+        if (option.jsonp) {
+            str += "&" + option.jsonp + "=" + jsonpName;
+        }
+
+        if (typeof data == "object") {
+            for (var key in data) {
+                str += key + "=" + data[key] + "&";
+            }
+            str = str.slice(0, str.length - 1);
+        }
+
+        // 创建script标签
+        var script = document.createElement("script");
+        /// 利用src 属性读取数据文档
+        script.src = url + "?" + str;
+        // 获取head标签
+        var head = document.querySelector("head");
+        // 把src标签添加到head标签中
+        head.appendChild(script);
+        // 定义函数(处理数据的函数)
+        window[jsonpName] = function (res) {
+            // console.log(res);
+            // 调用回调函数 获取script标签当中的内容
+            if (option.success) option.success(res);
+        };
     }
-
-
-    // 判断执行 json 逻辑
 }
 
 // 封装 get 函数
 function _get(url, success, error, data) {
     var str = "";
-    if(typeof data === "object") {
-        for(var key in data) {
+    if (typeof data === "object") {
+        for (var key in data) {
             str += key + "=" + data[key] + "&"
         }
-        str += str.slice(0, str.length-1);
+        str += str.slice(0, str.length - 1);
     }
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
@@ -113,7 +140,7 @@ function _get(url, success, error, data) {
             }
         }
     };
-    xhr.open("get", url+"?"+str, true);
+    xhr.open("get", url + "?" + str, true);
     xhr.send();
 }
 
