@@ -1,0 +1,341 @@
+body, p, h3, ul, ol {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+.f-left {
+  float: left;
+}
+
+.f-right {
+  float: right;
+}
+
+.clearfix::after, .clearfix::before {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.container {
+  width: 1100px;
+  margin: 0 auto;
+}
+
+.jy-wrapper {
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #000;
+}
+
+.jy-wrapper .jy-header {
+  height: 40px;
+  line-height: 40px;
+  padding: 20px 15px;
+  background-color: lightyellow;
+}
+
+.jy-wrapper .jy-header .logo .icon {
+  width: 40px;
+  height: 40px;
+  background-image: url(../images/logo.png);
+  background-size: 40px 40px;
+  float: left;
+}
+
+.jy-wrapper .jy-header .logo .text {
+  font-family: junying;
+  font-size: 20px;
+  margin-left: 10px;
+  float: left;
+}
+
+.jy-wrapper .jy-header .search input {
+  width: 220px;
+  height: 30px;
+  border: 1px solid skyblue;
+  outline: none;
+  padding: 0 15px;
+  box-sizing: border-box;
+  float: left;
+}
+
+.jy-wrapper .jy-header .search input:focus {
+  border: 1px solid #f50;
+}
+
+.jy-wrapper .jy-header .search button {
+  float: left;
+  height: 30px;
+  border: 1px solid transparent;
+  background-color: deepskyblue;
+  outline: none;
+  color: white;
+  cursor: pointer;
+}
+
+.jy-wrapper .jy-nav {
+  width: 100%;
+  height: 100px;
+  background-color: #f0f0f0;
+}
+
+.jy-wrapper .jy-nav ul {
+  height: 40px;
+}
+
+.jy-wrapper .jy-nav ul li {
+  float: left;
+  margin: 30px 20px;
+  width: 120px;
+  position: relative;
+}
+
+.jy-wrapper .jy-nav ul li .title {
+  font-size: 14px;
+  text-align: center;
+  height: 40px;
+  padding: 0 10px;
+  line-height: 40px;
+  background-color: deepskyblue;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.jy-wrapper .jy-nav ul li .content {
+  width: 120px;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  z-index: 10000;
+  display: none;
+}
+
+.jy-wrapper .jy-nav ul li .content a {
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  background-color: #333;
+  padding: 0 10px;
+  color: white;
+}
+
+.jy-wrapper .jy-nav ul li .content a:hover {
+  background-color: #000;
+}
+
+.jy-wrapper .jy-main {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.jy-wrapper .jy-main .jy-main-left {
+  width: 260px;
+  float: left;
+}
+
+.jy-wrapper .jy-main .jy-main-left .tab-nav {
+  height: 50px;
+}
+
+.jy-wrapper .jy-main .jy-main-left .tab-nav .item {
+  font-weight: bold;
+  width: 128px;
+  height: 50px;
+  line-height: 50px;
+  float: left;
+  text-align: center;
+  background-color: lightyellow;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+}
+
+.jy-wrapper .jy-main .jy-main-left .tab-nav .active {
+  border-bottom: 3px solid red;
+}
+
+.jy-wrapper .jy-main .jy-main-left .tab-con ul {
+  display: none;
+}
+
+.jy-wrapper .jy-main .jy-main-left .tab-con ul li {
+  height: 40px;
+  line-height: 40px;
+  padding: 0 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-bottom: 1px dashed #333;
+}
+
+.jy-wrapper .jy-main .jy-main-left .tab-con ul.active {
+  display: block;
+}
+
+.jy-wrapper .jy-main .jy-main-middle {
+  float: left;
+  margin: 0 20px;
+}
+
+.jy-wrapper .jy-main .jy-main-middle .wrapper {
+  width: 660px;
+  height: 320px;
+  background-color: #ccc;
+  position: relative;
+}
+
+.jy-wrapper .jy-main .jy-main-middle .wrapper .banner {
+  position: relative;
+  width: 660px;
+  height: 320px;
+  overflow: hidden
+}
+
+.jy-wrapper .jy-main .jy-main-middle .wrapper .banner ul {
+  position: absolute;
+  width: 4620px;
+  left: 0px;
+}
+.jy-wrapper .jy-main .jy-main-middle .wrapper .banner > .icon {
+  position: absolute;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  font-size: 25px;
+  top: 145px;
+  z-index: 100;
+  background-color: #fff;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.jy-wrapper .jy-main .jy-main-middle .wrapper .banner > .left {
+  left: 10px;
+}
+.jy-wrapper .jy-main .jy-main-middle .wrapper .banner > .right {
+  right: 10px;
+}
+
+.jy-wrapper .jy-main .jy-main-middle .wrapper .banner ul li {
+  width: 660px;
+  float: left;
+}
+
+.jy-wrapper .jy-main .jy-main-middle .wrapper .banner ul li a {
+  display: block;
+}
+
+.jy-wrapper .jy-main .jy-main-middle .wrapper .banner ul li a img {
+  width: 660px;
+  height: 320px;
+  vertical-align: middle;
+}
+
+.jy-wrapper .jy-main .jy-main-middle .wrapper .point {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 660px;
+}
+
+.jy-wrapper .jy-main .jy-main-middle .wrapper .point ol {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.jy-wrapper .jy-main .jy-main-middle .wrapper .point ol li {
+  height: 2px;
+  width: 50px;
+  background-color: #f0f0f0;
+  float: left;
+  margin: 0 5px;
+}
+
+.jy-wrapper .jy-main .jy-main-middle .wrapper .point ol li.active {
+  background-color: #ff0000;
+}
+
+.jy-wrapper .jy-main .jy-main-middle .layout {
+  height: 184px;
+  padding: 50px 20px;
+  box-sizing: border-box;
+  background-color: #ccc;
+  background-image: url(../images/bg.jpg);
+}
+
+.jy-wrapper .jy-main .jy-main-middle .layout .timebox {
+  height: 100%;
+  background-color: #fff;
+  text-align: center;
+  line-height: 84px;
+  font-size: 20px;
+}
+
+.jy-wrapper .jy-main .jy-main-right {
+  width: 140px;
+  height: 504px;
+  background-color: lightyellow;
+  float: left;
+}
+
+.jy-wrapper .jy-main .jy-main-right .box {
+  width: 120px;
+  height: 120px;
+  margin: 0px auto 10px;
+  background-color: deepskyblue;
+  text-align: center;
+  line-height: 120px;
+  font-size: 50px;
+  font-family: junying;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.jy-wrapper .jy-main .jy-main-right .box :hover {
+  color: white;
+}
+
+.jy-wrapper .jy-main .jy-main-right .box li {
+  position: absolute;
+  background-color: #fff;
+}
+
+.jy-wrapper .jy-main .jy-main-right .box .top, .jy-wrapper .jy-main .jy-main-right .box .bottom {
+  width: 120px;
+  height: 5px;
+  left: 0;
+}
+
+.jy-wrapper .jy-main .jy-main-right .box .left, .jy-wrapper .jy-main .jy-main-right .box .right {
+  width: 5px;
+  height: 120px;
+  top: 0;
+}
+
+.jy-wrapper .jy-main .jy-main-right .box .top {
+  top: 5px;
+}
+
+.jy-wrapper .jy-main .jy-main-right .box .bottom {
+  bottom: 5px;
+}
+
+.jy-wrapper .jy-main .jy-main-right .box .left {
+  left: 5px;
+}
+
+.jy-wrapper .jy-main .jy-main-right .box .right {
+  right: 5px;
+}
