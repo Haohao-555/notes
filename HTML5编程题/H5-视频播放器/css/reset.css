@@ -1,0 +1,21 @@
+body {
+    margin: 0;
+    user-select: none;
+}
+button {
+    border: 1px solid transparent;
+}
+a ,
+a:hover {
+    color: #000;
+    text-decoration: none;
+}
+ul,ol {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+video {
+    vertical-align: middle;
+}

@@ -1,0 +1,124 @@
+.wrapper {
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 970px;
+    margin: 0 auto;
+}
+
+.video-box-content {
+    padding: 0 20px;
+    text-align: center;
+    height: 600px;
+    line-height: 600px;
+    background-color: #000;
+    overflow: hidden;
+}
+.video-box-content video {
+    width: 100%;
+}
+
+.video-box-bottom {
+    width: 970px;
+    height: 100px;
+    background-color: #333;
+    color: #f0f0f0;
+    position: relative;
+}
+.video-box-bottom  .progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 970px;
+    height: 6px;
+    background-color: #ccc;
+}
+.video-box-bottom  .progress  li {
+    /* width: 100px; */
+    width: 0;
+    height: 6px;
+    background-color: #f00;
+}
+.video-box-bottom .flexbox {
+    width: 970px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+.flexbox > div {
+    height: 30px;
+    line-height: 30px;
+    margin: 0 20px 0 0;
+}
+.flexbox .btns {
+    flex-basis: 100px;
+    flex-shrink: 0;
+}
+.flexbox .btns button {
+    vertical-align: middle;
+    height: 30px;
+    padding: 0;
+    margin: 0;
+    float: left;
+    width:50%;
+    cursor: pointer;
+}
+.flexbox .btns button.active {
+    background-color: #f50;
+    color: #fff;
+}
+.flexbox .time {
+    flex-basis: 300px;
+    flex-shrink: 0;
+}
+.flexbox .speed {
+    flex-basis: 80px;
+    flex-shrink: 0;
+    text-align: center;
+}
+.flexbox .speed > div {
+    cursor: pointer;
+}
+.flexbox .speed > ul {
+    display: none;
+}
+.flexbox .speed > ul li {
+    width: 80px;
+    height: 30px;
+    cursor: pointer;
+    color: #f50;
+}
+.flexbox .speed > ul li:hover {
+    background-color: #ccc;
+}
+.flexbox .range {
+    padding-left: 40px;
+    flex-basis: 300px;
+    height: 30px;
+    flex-shrink: 0;
+}
+.flexbox .range  ul {
+    width: 300px;
+    height: 4px;
+    background-color: #fff;
+    margin: 13px 0;
+    position: relative;
+}
+.flexbox .range ul li {
+    width: 100px;
+    height: 4px;
+    background-color: deepskyblue;
+}
+.flexbox .range ul  li .bar {
+    position: absolute;
+    top: -8px;
+    left: 100px;
+    width: 12px;    
+    height: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    cursor: pointer;
+}
