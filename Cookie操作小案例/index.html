@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      ul,
+      h2 {
+        padding: 0;
+        margin: 0;
+      }
+      ul {
+        list-style: none;
+      }
+      .music-box {
+        width: 500px;
+        height: 900px;
+        margin: 0 auto;
+      }
+      .content {
+        width: 100%;
+        min-height: 80px;
+        background-color: #f0f0f0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        box-sizing: border-box;
+        border-bottom: 1px dashed #000;
+      }
+      .content h2 {
+        font-size: 20px;
+      }
+      .content button {
+        height: 36px;
+        cursor: pointer;
+        padding: 0 15px;
+        border: 1px solid #ccc;
+        background-color: #ccc;
+        border-radius: 5px;
+      }
+      .content button.active {
+        background-color: #f00;
+        color: #fff;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="music-box">
+      <ul class="music-box-list">
+        <!-- <li>
+                    <div class="content">
+                        <h2>歌曲名称</h2>
+                        <button data-num="1" class="active">取消收藏</button>
+                    </div>
+                </li>
+                <li>
+                    <div class="content">
+                        <h2>歌曲名称</h2>
+                        <button  data-num="0">未收藏</button>
+                    </div>
+                </li> -->
+      </ul>
+    </div>
+    <script>
+      // **要求**：
+      // 1. 每一首歌都有一个 “收藏/取消收藏” 按钮
+      // 2. 当歌曲已被收藏时按钮显式“取消收藏”，否则显式“收藏”
+      // 3. 创建一个收藏列表，将所有已收藏的歌曲展示在列表中
+      // 4. 将收藏的歌曲信息存储在cookie中持久保存，保证每次打开页面已收藏的歌曲都会正确展示在收藏列表中
+
+      // JSON 对象
+      // JSON.parse(jsonstr);    // 转对象
+      // JSON.stringify(jsonobj) // 转字符串
+      // 备注： cookie可以存字符串，不能直接存数组
+
+      var songs = [
+        { id: 1, name: "会不会（吉他版）" },
+        { id: 2, name: "是但求其爱" },
+        { id: 3, name: "我很好（吉他版）" },
+        { id: 4, name: "海底" },
+        { id: 5, name: "执迷不悟" },
+        { id: 6, name: "他只是经过" },
+        { id: 7, name: "经济舱 (Live)" },
+        { id: 8, name: "是想你的声音啊" },
+        { id: 9, name: "苦尽甘来" },
+        { id: 10, name: "天外来物" },
+      ];
+      // 编码：
+      // 1.0 获取页面相关的元素
+      var el = document.querySelector(".music-box-list");
+
+      // 2.0 编写函数 渲染数据
+      var template = function (array) {
+        var str = "";
+        for (var i = 0; i < array.length; i++) {
+          str += "<li>";
+          str += '    <div class="content">';
+          str += "        <h2>" + array[i].name + "</h2>";
+          str +=
+            '        <button data-index="' +
+            i +
+            '" data-num="' +
+            (array[i].aaa == "1" ? "1" : "0") +
+            '" class="' +
+            (array[i].aaa == "1" ? "active" : "") +
+            '">' +
+            (array[i].aaa == "1" ? "取消收藏" : "未收藏") +
+            "</button>";
+          str += "    </div>";
+          str += "</li>";
+        }
+        el.innerHTML = str;
+      };
+
+      // 渲染数据
+      template(songs);
+
+      // 3.0 事件操作
+      el.onclick = function (event) {
+        var currentEl = event.target;
+        var tagName = currentEl.tagName.toLocaleLowerCase();
+        // 判断
+        if (tagName == "button") {
+          // 获取索引值
+          var index = currentEl.dataset.index;
+          // 获取数字 num
+          var num = currentEl.dataset.num;
+          if (num == "1") {
+            // 1 表示已经背景高亮
+            currentEl.className = "";
+            currentEl.innerText = "未收藏";
+            // 设置num属性
+            currentEl.setAttribute("data-num", "0");
+            // 设置索引值对应的数据
+            songs[index].aaa = "0";
+          } else {
+            // 0 表示背景还没高亮
+            currentEl.className = "active";
+            currentEl.innerText = "取消收藏";
+            // 设置num属性
+            currentEl.setAttribute("data-num", "1");
+            // 设置索引值对应的数据
+            songs[index].aaa = "1";
+          }
+          // 把引用数据类型转基本数据类型
+          var _songs_str_ = JSON.stringify(songs);
+          // 设置 cookie
+          document.cookie = "_songs_str_=" + _songs_str_;
+        }
+      };
+
+      // 4.0 检查当前的页面是否存在缓存的数据
+      var _str = document.cookie;
+      var _str_data_;
+      // 表示是否存在cookie以及指定的 cookie
+      if (_str.length != 0 && _str.indexOf("_songs_str_") > -1) {
+        // 判断是否设置了多个cookie
+        if (_str.indexOf("; ") > -1) {
+          // 对字符串进行切割
+          var arr = _str.split("; ");
+          for (var i = 0; i < arr.length; i++) {
+            // 找到指定的数据
+            if (arr[i].indexOf("_songs_str_") > -1) {
+              // 赋值
+              _str_data_ = arr[i];
+              // 跳出循环
+              break;
+            }
+          }
+        } else {
+          // 仅仅有一个cookie
+          _str_data_ = document.cookie;
+        }
+        // 记录json格式的字符串
+        var v1 = _str_data_.split("=")[1];
+        // 转json对象
+        var res = JSON.parse(v1);
+        // 渲染被改动过的数据
+        template(res);
+      } else {
+        // 初始化渲染数据
+        template(songs);
+      }
+    </script>
+  </body>
+</html>
