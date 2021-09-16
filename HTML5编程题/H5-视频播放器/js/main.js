@@ -34,15 +34,18 @@ function Player() {
     this.durTime = this.spans[1];
 
     // 倍速
-    this.btnSpeed = document.querySelector(".speed > div");
-    this.boxSpeed = document.querySelector(".speed > ul");
-    this.itemsSpeed = document.querySelectorAll(".speed > ul li");
+    this.btnSpeedElement = document.querySelector(".speed-box");
+    this.btnSpeed = document.querySelector(".speed-box-title");
+    this.boxSpeed = document.querySelector(".speed-box-list");
+    this.itemsSpeed = document.querySelectorAll(".speed-box-list li");
 
     // 音量
     this.range = document.querySelector(".range")
     this.boxRange = document.querySelector(".range ul");
     this.liRange = document.querySelector(".range ul li");
     this.barRange = document.querySelector(".range ul li .bar");
+    this.textRange = document.querySelector(".range .text");
+    this.iconRange = document.querySelector(".range .icon-box .bi");
 
     // 获取 ul 的子元素
     this.line = this.progress.children[0];
@@ -61,6 +64,8 @@ Player.prototype.init = function () {
     this.addMouseEvent();
     // 设置视频的快慢
     this.setSpeed();
+    // 设置视频的音量
+    this.setVolume();// 0-100
 }
 
 // 添加方法 添加点击事件 控制视频的播放和暂停
@@ -194,12 +199,84 @@ Player.prototype.setSpeed = function () {
     }
     for (var i = 0; i < this.itemsSpeed.length; i++) {
         this.itemsSpeed[i].onclick = function () {
+            console.log(2)
             var v3 = this.dataset.speed;
             // 设置视频的速度
             _this.video.playbackRate = v3;
             // 隐藏列表
             _this.boxSpeed.style["display"] = "none"
+            // 设置速度提示
+            _this.btnSpeed.innerText = "倍速x" + v3;
         }
     }
+    // 鼠标移出列表区域
+    this.btnSpeedElement.onmouseleave = function () {
+        _this.boxSpeed.style["display"] = "none";
+    }
 }
+
+// 添加方法 设置视频的音量 
+Player.prototype.setVolume = function () {
+    var _this = this;
+    // 记录视频控件盒子距离浏览器的位置
+    var x1 = this.progressParent.offsetLeft;
+    // 记录.range标签在控件盒子的位置
+    var x2 = this.range.offsetLeft;
+    // 判断鼠标是否按下
+    var flag = false;
+    // .bar 位置  left 100
+    var x = 100
+    // .bar 标签（滑块标签） 可以滑动的距离 288  40是图标的宽度
+    var distanceX = this.range.offsetWidth - this.barRange.offsetWidth - 40;
+
+
+
+    // 鼠标按下
+    this.barRange.onmousedown = function () {
+        // 表示鼠标按下.bar标签
+        flag = true;
+    }
+
+    // 鼠标移动
+    document.addEventListener("mousemove", function (event) {
+        if (flag) {
+            // 滑块标签当前的位置  40是图标的宽度
+            x = event.pageX - x1 - x2 - 40;
+            // 判断是否超出滑动范围
+            if (x < 0) {
+                x = 0;
+                _this.iconRange.className = "bi bi-volume-mute-fill";
+            } else {
+                _this.iconRange.className = "bi bi-volume-up-fill";
+            }
+            if (x > distanceX) x = distanceX;
+
+            // 设置li标签的宽度
+            _this.liRange.style["width"] = x + "px";
+
+            // 设置.bar标签的位置
+            _this.barRange.style["left"] = x + "px";
+
+            // 计算音量的值
+            var v4 = x / distanceX;
+
+            // 设置音量的提示
+            _this.textRange.innerText = Math.round(v4 * 100);
+
+            // 设置视频的音量
+            _this.video.volume = v4;
+        }
+    })
+
+    // 鼠标抬起
+    document.addEventListener("mouseup", function () {
+        // 表示鼠标在页面抬起
+        flag = false;
+    })
+    
+    // 初始化音量
+    this.textRange.innerText = Math.round((x / distanceX) * 100);
+    this.video.volume = x / distanceX;
+}
+
 new Player().init();

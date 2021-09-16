@@ -1,65 +1,72 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>视频播放器</title>
-    <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="./css/index.css">
-    <link rel="shortcut icon" href="favicon.ico">
-</head>
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./icon-bootstrap/css/bootstrap-icons.css">
+    <link rel="shortcut icon" href="favicon.ico" />
+  </head>
 
-<body>
+  <body>
     <div class="wrapper">
-        <div class="video-box">
-            <!-- 视频播放区域 -->
-            <div class="video-box-content">
-                <video src="./resource/demo.mp4" preload="metadata"></video>
-            </div>
-            <!-- 视频控件区域 -->
-            <div class="video-box-bottom">
-                <!-- 进度条 -->
-                <ul class="progress">
-                    <li></li>
-                </ul>
-                <!-- 弹性盒子 -->
-                <div class="flexbox">
-                    <!-- 按钮 -->
-                    <div class="btns">
-                        <button>播放</button>
-                        <button  class="active">暂停</button>
-                    </div>
-                    <!-- 时间 -->
-                    <div class="time">
-                        <span>00:00:00</span> /
-                        <span>00:00:00</span>
-                    </div>
-                    <!-- 倍速 -->
-                    <div class="speed">
-                        <div>倍速</div>
-                        <ul>
-                            <li data-speed="0.5">慢</li>
-                            <li data-speed="1.0">正常</li>
-                            <li data-speed="1.5">快</li>
-                            <li data-speed="2.0">更快</li>     
-                        </ul>
-                    </div>
-                    <!-- 音量 -->
-                    <div class="range">
-                        <ul>
-                            <li>
-                                <div class="bar"></div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+      <div class="video-box">
+        <!-- 视频播放区域 -->
+        <div class="video-box-content">
+          <video src="./resource/demo.mp4" preload="metadata"></video>
         </div>
+        <!-- 视频控件区域 -->
+        <div class="video-box-bottom">
+          <!-- 进度条 -->
+          <ul class="progress">
+            <li></li>
+          </ul>
+          <!-- 弹性盒子 -->
+          <div class="flexbox">
+            <!-- 按钮 -->
+            <div class="btns">
+              <button>播放</button>
+              <button class="active">暂停</button>
+            </div>
+            <!-- 时间 -->
+            <div class="time">
+              <span>00:00:00</span> /
+              <span>00:00:00</span>
+            </div>
+            <!-- 倍速 -->
+            <div class="speed">
+              <section class="speed-box">
+                <ul class="speed-box-list">
+                  <li data-speed="0.5">慢</li>
+                  <li data-speed="1.0">正常</li>
+                  <li data-speed="1.5">快</li>
+                  <li data-speed="2.0">更快</li>
+                </ul>
+                <div class="speed-box-title">倍速</div>
+              </section>
+            </div>
+            <!-- 音量 -->
+            <div class="range">
+                <div class="icon-box">
+                    <i class="bi bi-volume-up-fill"></i>
+                    <!-- <i class="bi bi-volume-mute-fill"></i> -->
+                </div>
+                <ul>
+                    <li>
+                        <div class="bar"></div>
+                    </li>
+                </ul>
+                <span class="text">10</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- 引入JS文件 -->
     <script src="./js/main.js"></script>
-</body>
+  </body>
 </html>
