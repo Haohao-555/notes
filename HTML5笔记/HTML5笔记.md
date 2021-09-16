@@ -297,3 +297,80 @@
 </script>
 ```
 
+
+
+### Cookie存储
+
+> 具体看 Cookie 操作小案例
+
+
+
+### 本地储存
+
+```javascript
+// 数据
+var _user_id_ = "Example202109151724";
+
+// 存数据
+localStorage.setItem("userId",_user_id_);
+localStorage.setItem("userName","admin");
+localStorage.setItem("userPassWord","1231231");
+
+// 取数据
+var _id = localStorage.getItem("userId");
+console.log(_id);
+
+// 删数据
+localStorage.removeItem("userId");
+
+// 清空所有数据
+localStorage.clear();
+```
+
+> 总结：
+>
+> ​      localStorage 对象提供的储存数据的方法
+>
+> ​      特点：
+>
+> ​        1. 数据永久保存在本地客户端(浏览器)，除非手动删除
+>
+> ​        2. 如果需要设置有效时间，可以利用时间戳 (结束时间-开始时间) >= 2小时
+>
+> ​        3. 在同一个服务器环境下，同一个浏览器不同的窗口都可以共享储存的数据（共享数据）
+>
+> ​        4. 没有大小的限制
+
+
+
+### 会话存储
+
+```javascript
+// 数据
+var _user_id_ = "Demo202109151724";
+
+// 存数据
+sessionStorage.setItem("userId",_user_id_);
+sessionStorage.setItem("userName","admin");
+sessionStorage.setItem("userPassWord","1231231");
+
+// 取数据
+var _id = sessionStorage.getItem("userId");
+console.log(_id);
+
+// 删数据
+sessionStorage.removeItem("userId");
+
+// 清空所有数据
+sessionStorage.clear();
+```
+
+>  总结：
+>
+> ​      sessionStorage 对象提供的储存数据的方法
+>
+> ​      特点：
+>
+> ​        数据不是永久保存的
+>
+> ​        储存的数据需在同一个服务器环境下，并且是同一个浏览器窗口才能共享
