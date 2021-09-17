@@ -413,14 +413,126 @@ var el = document.querySelector(".demo-2");
 ### 过渡
 
 ```html
-
+<style>
+.box {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+   
+    /* 属性名称 all 代表所有的属性 */
+    transition-property: width;
+    
+    /* 过渡持续的时间 */
+    transition-duration: 10s;
+    
+    /* 延迟执行过渡 */
+    transition-delay: 5s;
+    
+    /* 过渡运动的状态（快慢） */
+    transition-timing-function:  cubic-bezier(.09,1.27,.9,-0.56);
+    
+    /* 
+    linear       匀速
+    ease-in      加快
+    ease-out     减慢
+    ease-in-out  先快后慢
+    */
+    transition-timing-function:  linear | ease-in | ease-out | ease-in-out;
+    
+ 
+     /* 过渡属性 上面等价于 */
+     transition: width 10s 5s cubic-bezier(.09,1.27,.9,-0.56);
+}
+.box-1:hover  {
+    width: 900px;
+}    
+</style>
+<div class="box box-2"></div>
 ```
 
-### 
+> 贝塞尔曲线 https://cubic-bezier.com/#.2,1.14,.84,-0.11
+>
 
-### 转换
+
+
+### 旋转
 
 ```html
+<style>
+.wrap {
+    width: 310px;
+    height: 438px; 
+    border: 1px solid #ccc; 
+    /* 属性值越小，效果越强烈 透视距离*/
+    perspective: 800px;
+}
+.wrap .box {
+    width: 310px;
+    height: 438px;
+    background-image: url(./imgs/pk1.png);
+    border: 1px solid #f00;
+    /* 过渡 */
+    transition: transform 2s;
+}
+    
+.wrap:hover .box-1{
+    /* 围绕X轴旋转60度 */
+    transform: rotateX(60deg);
+}
+    
+.wrap:hover .box-2{
+    /* 围绕Y轴旋转60度 */
+    transform: rotateY(60deg);
+}  
 
+.wrap:hover .box-3{
+    /* 围绕Z轴旋转60度 */
+    transform: rotateZ(60deg);
+} 
+
+.wrap:hover .box-4 {
+    /* 围绕x和y和z所形成对角线旋转60度 */
+    transform: rotate3d(1,1,0,60deg)
+}    
+/*
+    3D
+    避免 3D旋转造成 父容器中的其他元素产生不必要的影响。可以使用父相子绝对
+*/    
+.wrap {
+    position: relative;
+}    
+.wrap .message {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 310px;
+    height: 438px;
+    line-height: 438px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    color: #0051ff;
+}    
+</style>
+<div class="wrap">
+    <div class="box box-1">X</div>
+</div> 
+
+<div class="wrap">
+    <div class="box box-2">Y</div>
+</div> 
+
+<div class="wrap">
+    <div class="box box-3">Z</div>
+</div> 
+
+<!--3D-->
+<div class="wrap">
+   <div class="message">hello world !</div>
+   <div class="box box-4"></div>
+</div>
 ```
+
+
 
