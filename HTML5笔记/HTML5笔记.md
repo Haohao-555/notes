@@ -1,3 +1,5 @@
+## 其他
+
 ### 进度条和度量标签
 
 * 进度条
@@ -374,3 +376,318 @@ sessionStorage.clear();
 > ​        数据不是永久保存的
 >
 > ​        储存的数据需在同一个服务器环境下，并且是同一个浏览器窗口才能共享
+
+
+
+### 拖放
+
+```html
+<style>
+     img ,  div  {
+        width: 150px;
+        height: 150px;
+    }
+    div {
+        background-color: blue;
+    }
+</style>
+
+<!-- 默认允许拖拽 -->
+<img src="./assets/i-douyin.png" alt="">
+
+<!-- 设置 draggable="true 属性 ; false不能拖拽-->
+<div draggable="true"></div>
+
+<script>
+    var count = 0;
+     /*
+        1. 鼠标按下并拖拽触发事件
+        注意：只有在元素范围内拖拽才会触发，远离则不会触发
+     */ 
+    div.ondragstart = function(){
+        console.log("ondragstart");
+    }
+    
+    // 2. 鼠标拖拽并在目标元素上悬停连续触发事件
+    div.ondragover = function(){
+        count ++;
+        console.log("ondragover",count);
+    }
+    
+    // 3. 鼠标拖拽结束并松开鼠标触发事件
+    div.ondragend = function(e){
+        console.log("ondragend");
+        console.log(e)
+    }
+    
+    // 4. 鼠标拖拽并移入目标元素触发事件
+    img.ondragenter = function(){
+        console.log("ondragenter");
+    }
+    
+    // 5. 鼠标拖拽并离开目标元素触发事件
+    img.ondragleave = function(){
+        console.log("ondragleave");
+    }
+    
+    // 6. 鼠标拖拽移入目标元素(开始和结束)并且结合ondragover事件触发 （与前面相比较多了个鼠标抬起时才触发）
+    img.ondrop = function(){
+        console.log("drop example");
+    }
+    // 鼠标拖拽且在目标元素悬停
+    img.ondragover = function(event){
+        // 调用阻止页面默认行为（行为：选中文本，页面跳转...）
+        event.preventDefault();
+    }
+</script>
+```
+
+> 具体使用可以看 HTML5 编程题 （拖拽元素）
+>
+
+与鼠标事件实现元素拖拽相比较
+
+```html
+<!--
+    鼠标事件
+         onmousedown onmousemove onmouseup
+-->       
+<div class="demo" draggable="true"></div>
+<script>
+     var demo = document.querySelector(".demo");
+    // 定义函数  获取鼠标的在页面的位置
+    function getPoint(obj){
+        return {
+            x: obj.pageX - demo.offsetWidth / 2,
+            y: obj.pageY - demo.offsetHeight / 2
+        }
+    }
+   
+    // 拖拽元素
+    var demo = document.querySelector(".demo");
+    demo.ondragend = function(event){
+        var o1 = getPoint(event);
+        var x = o1.x;
+        var y = o1.y;
+
+        // 设置红色盒子的位置
+        demo.style["left"] = x +"px";
+        demo.style["top"] = y +"px";
+    }
+</script>
+```
+
+
+
+### 自定义鼠标右击菜单
+
+```html
+<style>
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 200px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        border: 1px solid #ccc; 
+        display: none;
+    }
+    ul li {
+        padding-left: 20px;
+        height: 40px;
+        line-height: 40px;
+        border-bottom: 1px solid #ccc;
+    }
+    ul li:last-child {
+        border-bottom: 0px solid transparent;
+    }
+    ul li:hover {
+        background-color: #f0f0f0;
+    }
+</style>
+<ul class="menu">
+    <li>菜单1</li>
+    <li>菜单2</li>
+    <li>菜单3</li>
+</ul>
+<script>
+    // 阻止默认右键行为
+    document.oncontextmenu = function(event) {
+        event.preventDefault();
+        return false;
+    }
+    
+    // 自定义鼠标右击菜单
+    document.addEventListener("mousedown", function(event) {
+        var buttonCode = event.button || event.buttons;
+        if(buttonCode >= 2) {
+            $(".menu").show();
+            $(".menu").css({
+                left: event.pageX,
+                top: event.pageY
+            })
+        }
+    })
+</script>
+```
+
+
+
+### 触摸（移动端）
+
+```html
+<div class="box"></div>
+<script>
+   var el = document.querySelector(".box");
+   var isStart = false; 
+    
+    // 手指按下  （.box标签）
+    el.ontouchstart = function(){
+        console.log("touchstart");
+        isStart = true;
+    } 
+    
+    // 手指滑动  （document对象）
+    document.ontouchmove = function(event){
+        if(isStart){
+            // 手指滑动的对象（坐标） 
+            // 手指在页面的坐标位置X
+            // console.log(event.touches);
+            var x = event.touches[0].pageX ;
+            // 手指在页面的坐标位置Y
+            var y = event.touches[0].pageY;
+
+            // 减去盒子尺寸的一半
+            x = x - el.offsetWidth / 2;
+            y = y - el.offsetHeight / 2;
+
+            // 设置.box标签的位置
+            el.style["left"] = x + "px";
+            el.style["top"] = y + "px";
+        }
+    }
+    
+    // 手指松开  （document对象）
+    document.ontouchend = function(){
+        isStart = false;
+        console.log("touchend");
+    }
+</script>
+```
+
+
+
+### 全屏和退出全屏
+
+```html
+<img src="./imgs/animal.jpg" alt="" class="pic">
+<div>
+    <button class="btn">进入全屏</button>
+</div>
+<script>
+    var pic = document.querySelector(".pic");
+    var btn = document.querySelector(".btn");
+    // 事件绑定
+    btn.onclick = function(){
+        // 图片全屏展示
+        pic.requestFullscreen();
+    }
+    pic.onclick = function(){
+        // 退出全屏
+        document.exitFullscreen();
+    }
+</script>
+```
+
+
+
+### 网络状态的监听
+
+```javascript
+// 网络连接时触发事件
+window.addEventListener("online", function(event) {
+    .....
+})
+
+// 网络断开时触发事件
+window.addEventListener("offline", function(event) {
+    .....
+})
+```
+
+
+
+### 原生地理定位
+
+```javascript
+navigator.geolocation.getCurrentPosition(
+  function(position) {
+      console.log(position);
+      var y = position.coords.latitude; // 纬度
+      var x = position.coords.longitude;// 经度
+  },
+  function(error){
+                console.log("获取用户位置信息失败");
+  }
+)
+```
+
+> 有些浏览器是不支持的， IE 浏览器可能可以支持
+>
+> 正常需要获取地理位置时可以通过第三方API来获取
+
+
+
+### requestAnimationFrame方法（并不是H5新增的）
+
+制作页面动画方法
+
+```html
+<style>
+    .box {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+    }
+    button {
+        padding: 10px 20px;
+    }
+</style>
+<div class="box"></div>
+<button>开始动画</button>
+<button>停止动画</button>
+<script>
+    // 获取盒子标签
+    var box = document.querySelector(".box");
+    var btns = document.querySelectorAll("button");
+    
+    var t = null;
+    
+    var step = function() {
+        // 获取盒子的当前宽度
+        var curWidth = box.offsetWidth;
+        // 步长
+        var speed = 5;
+        // 判断是否到达目标位置
+        if(curWidth == 500) return;
+        // 设置盒子宽度
+        box.style["width"] = curWidth + speed + "px";
+    }
+    
+    btn[0].onclick = function() {
+         // 一直执行 step 函数
+        t = requestAnimationFrame(step);
+    }
+    
+    btn[1].onclick = function() {
+        cancelAnimationFrame(t);
+    }
+</script>
+```
+
+> requestAnimationFrame 好处是不用设置定时器，不断去调用step 函数
+
+
+
