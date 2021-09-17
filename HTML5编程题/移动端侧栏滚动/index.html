@@ -1,0 +1,133 @@
+<!--
+ * @Date: 2021-09-17 18:35:11
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \移动端侧栏滚动\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>侧栏滚动</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header"></header>
+      <section class="section">
+        <aside class="aside">
+          <ul>
+            <li>商品名称1</li>
+            <li>商品名称2</li>
+            <li>商品名称3</li>
+            <li>商品名称4</li>
+            <li>商品名称5</li>
+            <li>商品名称6</li>
+            <li>商品名称7</li>
+            <li>商品名称8</li>
+            <li>商品名称9</li>
+            <li>商品名称10</li>
+            <li>商品名称11</li>
+            <li>商品名称12</li>
+            <li>商品名称13</li>
+            <li>商品名称14</li>
+            <li>商品名称15</li>
+            <li>商品名称16</li>
+            <li>商品名称17</li>
+            <li>商品名称18</li>
+            <li>商品名称19</li>
+            <li>商品名称20</li>
+            <li>商品名称21</li>
+            <li>商品名称22</li>
+            <li>商品名称23</li>
+            <li>商品名称24</li>
+            <li>商品名称25</li>
+            <li>商品名称26</li>
+            <li>商品名称27</li>
+            <li>商品名称28</li>
+            <li>商品名称29</li>
+            <li>商品名称30</li>
+          </ul>
+        </aside>
+        <article class="article">
+          <div>hello world</div>
+        </article>
+      </section>
+      <footer class="footer"></footer>
+    </div>
+    <script src="./jquery-3.6.0.min.js"></script>
+    <!-- <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script> -->
+    <script>
+      // 获取手机高度
+      var phoneHeight = $(".aside").height();
+      //  获取侧栏高度
+      var sidebarHeight = $(".aside ul").height();
+
+      //  计算侧栏超出手机屏幕的高度
+      var bottomValueY = phoneHeight - sidebarHeight;
+
+      // 初始侧栏距离顶部的距离
+      var topValueY = 0;
+
+      // 缓冲区
+      var space = 120;
+
+      // 手指是否按下侧栏
+      var isTouchStart = false;
+
+      // 手指按下的位置（Y）
+      var startY = 0;
+
+      // 滑动的距离
+      var distanceY = 0;
+
+      // 当前位置
+      var curY = 0;
+      // 手指按下侧栏
+      $(".aside").on("touchstart", function (event) {
+        // 获取手指按下的信息
+        startY = event.touches[0].pageY;
+        isTouchStart = true;
+      });
+      // 手指滑动
+      $(document).on("touchmove", function (event) {
+        if (isTouchStart) {
+          // 停止上一次动画
+          $(".aside ul").stop();
+          // 计算手指滑动到那的位置
+          moveY = event.touches[0].pageY;
+          // 计算手指滑动了多少像素
+          distanceY = moveY - startY + curY;
+          //   console.log(distanceY)
+          // 判断 (重点)
+          if (
+            distanceY <= topValueY + space &&
+            distanceY >= bottomValueY - space
+          ) {
+            // 在该范围内可以触发移动
+            $(".aside ul").css({ top: distanceY });
+          }
+        }
+      });
+      // 手指抬起
+      $(document).on("touchend", function (event) {
+        // 判断侧栏菜单是否大于 topValueY
+        if (distanceY > topValueY) {
+          distanceY = topValueY;
+          // 回弹
+          $(".aside ul").animate({ top: distanceY }, 300);
+        } else if (distanceY < bottomValueY) {
+          distanceY = bottomValueY;
+           // 回弹
+          $(".aside ul").animate({top: distanceY},300);
+        } else {
+          curY = distanceY;
+        }
+        // 记录手指松开页面的信息
+        isTouchStart = false;
+      });
+    </script>
+  </body>
+</html>
