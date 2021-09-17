@@ -1,0 +1,252 @@
+<!--
+ * @Date: 2021-09-17 09:32:38
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \元素拖拽\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>元素拖拽</title>
+    <style>
+      ul,
+      ol {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+      .first-menu {
+        width: 200px;
+        padding: 10px 0px 10px 10px;
+        background-color: #cccccc;
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      .first-menu > li {
+        padding-left: 20px;
+        height: 40px;
+        border-bottom: 1px solid #fff;
+        position: relative;
+      }
+      .first-menu > li:hover {
+        background-color: #f0f0f0;
+      }
+      .first-menu > li div {
+        height: 40px;
+        line-height: 40px;
+      }
+
+      .first-menu > li ol {
+        width: 150px;
+        background-color: #e0a283;
+        position: absolute;
+        right: -150px;
+        top: 0;
+        display: none;
+      }
+      .first-menu > li ol li {
+        padding-left: 10px;
+        height: 40px;
+        border-bottom: 1px solid #000;
+      }
+      .first-menu > li ol li:hover {
+        background-color: #f09328;
+      }
+
+      .empty-box {
+        width: 120px;
+        height: 180px;
+        background-color: #ccc;
+        position: fixed;
+        right: 80px;
+        bottom: 100px;
+        user-select: none;
+      }
+      .empty-box p {
+        width: 120px;
+        text-align: center;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="first-menu" id="menu">
+      <li class="item">
+        <div>菜单1</div>
+        <ol class="second-menu">
+          <li>子菜单1</li>
+          <li>子菜单2</li>
+          <li>子菜单3</li>
+        </ol>
+      </li>
+
+      <li class="item">
+        <div>菜单2 创建元素</div>
+        <ol class="second-menu">
+          <li data-tagName="div">div类型</li>
+          <li data-tagName="span">span类型</li>
+          <li data-tagName="p">p类型</li>
+          <li data-tagName="i">i类型</li>
+        </ol>
+      </li>
+
+      <li class="item">
+        <div>菜单3</div>
+        <ol class="second-menu">
+          <li>子菜单1</li>
+          <li>子菜单2</li>
+          <li>子菜单3</li>
+        </ol>
+      </li>
+    </ul>
+
+    <div class="empty-box">
+      <p>回收站</p>
+    </div>
+
+    <script src="./jquery-3.6.0.min.js"></script>
+    <script>
+      // 记录拖拽的元素
+      var currentEl;
+
+      // 禁止默认鼠标右击菜单
+      document.oncontextmenu = function (event) {
+        event.preventDefault();
+        return false;
+      };
+
+      // 自定义鼠标右击菜单
+      document.addEventListener("mousedown", function (event) {
+        // 获取鼠标点击的类型（左键 右键）
+        var buttonCode = event.button;
+        if (buttonCode >= 2) {
+          // 显示一级菜单
+          $(".first-menu").show();
+          // 显示位置
+          $(".first-menu").css({
+            left: event.pageX,
+            top: event.pageY,
+          });
+        }
+        // 左键 隐藏菜单
+        // 方法一
+        var obj = {
+          w: 210, // 一级菜单的宽度
+          h: 143, // 一级菜单的高度
+          x: $(".first-menu")[0].offsetLeft,
+          y: $(".first-menu")[0].offsetTop,
+        };
+        var flag = isPoinInMenu(obj, event.pageX, event.pageY);
+        if (!flag) {
+          // 隐藏菜单
+          hideMenu();
+        }
+
+        // 方法二
+        // var _tagName = event.target.tagName.toLocaleLowerCase();
+        // // 判断点击是否为HTML页面
+        // if(_tagName == "html"){
+        //     // 隐藏菜单
+        //     hideMenu();
+        // }
+        
+      });
+
+      // 显示二级菜单
+      $(".first-menu").on("mouseenter", ".item", function (event) {
+        // 显示子元素
+        $(this).find(".second-menu").show();
+        // 隐藏其他二级标签
+        $(this).siblings().find(".second-menu").hide();
+      });
+
+      // 鼠标点击子菜单
+      $(".second-menu").on("click", "li", function () {
+        // 获取标签类型
+        var _tagName = $(this).attr("data-tagName");
+        if (_tagName) {
+          // 创建元素
+          createTag(_tagName);
+          // 隐藏菜单
+          hideMenu();
+        }
+      });
+
+      // 创建元素 并添加拖拽事件
+      function createTag(_tagName) {
+        // 默认div类型
+        var tagName = tagName || "div";
+        // 创建元素
+        var el = document.createElement(tagName);
+        //  设置元素的外观
+        el.style["border"] = "1px solid #ccc";
+        el.style["background"] = "#666";
+        // 判断标签类型
+        if (tagName == "div" || tagName == "p") {
+          el.style["width"] = "100px";
+          el.style["height"] = "40px";
+        }
+
+        // 设置标签属性（使其可以拖拽）
+        el.setAttribute("draggable", true);
+
+        // 开始拖拽
+        el.ondragstart = function (event) {
+          currentEl = this;
+        };
+
+        // 结束拖拽
+        el.ondragend = function (event) {
+          $(this).css({
+            position: "absolute",
+            left: event.pageX - el.offsetWidth / 2,
+            top: event.pageY - el.offsetHeight / 2,
+          });
+        };
+
+        // 将标签添加到页面中
+        document.body.appendChild(el);
+      }
+
+      // 隐藏元素
+      function hideMenu() {
+        var d = setTimeout(function () {
+          $(".first-menu").hide();
+          d = null;
+        });
+      }
+
+      // 回收
+      $(".empty-box")[0].ondrop = function () {
+        if (currentEl) {
+          // 删除元素
+          currentEl.remove();
+        }
+      };
+      $(".empty-box")[0].ondragover = function (event) {
+        event.preventDefault();
+      };
+
+      // 判断鼠标点击的区域
+      function isPoinInMenu(obj, x0, y0) {
+        if (
+          x0 >= obj.x &&
+          x0 <= obj.w + obj.x &&
+          y0 >= obj.y &&
+          y0 <= obj.y + obj.h
+        ) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    </script>
+  </body>
+</html>
