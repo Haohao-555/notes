@@ -691,3 +691,31 @@ ul li {
 >
 > animation: 动画名称，动画持续的时间，动画状态（快慢），延迟执行动画，执行动画的次数，动画方向， 动画结束的位置;
 
+<hr>
+
+### 监听过渡结束
+
+```html
+<style>
+.box {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    /* transition: transform 1s; */
+    transition: all 1s;
+}
+.box:hover {
+    transform: scale(1.5);
+}
+</style>
+<div class="box"></div>
+<script>
+// 监听过渡结束
+document.querySelector(".box").addEventListener("transitionend",function(){
+    console.log("test");
+    // 设置标签的背景色
+    this.style["backgroundColor"] = "blue";
+})
+</script>
+```
+
