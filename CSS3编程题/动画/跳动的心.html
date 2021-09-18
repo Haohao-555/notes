@@ -1,0 +1,76 @@
+<!--
+ * @Date: 2021-09-18 15:20:40
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \新建文件夹\跳动的心.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>跳动的心</title>
+</head>
+<body>
+    <style>
+        body {
+            margin: 0;
+            background-color: #000;
+        }
+        .heart {
+            width: 150px;
+            height: 150px;
+            background-color: red;
+            box-shadow: 0 0 100px #fff;
+            position: fixed;
+            left: 50%;
+            margin-left: -75px;
+            top: 50%;
+            margin-top: -75px;
+            transform: rotate(45deg);
+            /* 使用动画 */
+            animation: scaleAnimation 1s linear infinite;
+        }
+        /* 定义动画 */
+        @keyframes scaleAnimation{
+            0% {
+                transform: rotate(45deg) scale(.8);
+            }
+            25% {
+                transform: rotate(45deg) scale(1);
+            }
+            50% {
+                transform: rotate(45deg) scale(1.2);
+            }
+            75% {
+                transform: rotate(45deg) scale(1);
+            }
+            100% {
+                transform: rotate(45deg) scale(0.8);
+            }
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            display: block;
+            width: 150px;
+            height: 150px;
+            background-color: red;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 50%;
+        }
+        .heart::before {
+            top: -75px;
+        }
+        .heart::after {
+            left: -75px;
+        }
+    </style>
+  
+</body>
+<div class="heart"></div>
+</html>
