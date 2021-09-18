@@ -294,6 +294,8 @@ var el = document.querySelector(".demo-2");
 <div class="box box-3"></div>
 ```
 
+![](https://i.loli.net/2021/09/18/Xa48b5sYtKWxqeN.png)
+
 
 
 彩带效果
@@ -344,6 +346,8 @@ var el = document.querySelector(".demo-2");
         var t = setInterval(autoPlay,30);
 </script>
 ```
+
+![](https://i.loli.net/2021/09/18/WyRl63SQai7eBD4.png)
 
 
 
@@ -407,6 +411,8 @@ var el = document.querySelector(".demo-2");
     );
 }
 ```
+
+![](https://i.loli.net/2021/09/18/5SxRNa3GYsZJrjD.png)
 
 
 
@@ -534,5 +540,19 @@ var el = document.querySelector(".demo-2");
 </div>
 ```
 
+> 具体可以看CSS3编程题
+>
 
+
+
+修改旋转的角度
+
+```css
+ul li {
+     /* 设置旋转中心 (left top right bottom center)*/
+     transform-origin: left bottom;
+}
+```
+
+> 具体可以看CSS3编程题
 
