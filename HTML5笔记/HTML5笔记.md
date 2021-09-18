@@ -674,11 +674,14 @@ navigator.geolocation.getCurrentPosition(
         if(curWidth == 500) return;
         // 设置盒子宽度
         box.style["width"] = curWidth + speed + "px";
+        // 一直执行 step 函数
+        t = requestAnimationFrame(step);
     }
     
     btn[0].onclick = function() {
          // 一直执行 step 函数
-        t = requestAnimationFrame(step);
+        step()
+        // t = requestAnimationFrame(step);
     }
     
     btn[1].onclick = function() {
@@ -690,4 +693,6 @@ navigator.geolocation.getCurrentPosition(
 > requestAnimationFrame 好处是不用设置定时器，不断去调用step 函数
 
 
+
+![](https://i.loli.net/2021/09/18/LpNyFk2qwfodK1a.png)
 
