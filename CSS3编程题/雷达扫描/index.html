@@ -1,0 +1,78 @@
+<!--
+ * @Date: 2021-09-18 10:07:38
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \undefinede:\仓库\notes\CSS3编程题\雷达扫描\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>雷达扫描</title>
+    <style>
+      .circle {
+        position: relative;
+        width: 400px;
+        height: 400px;
+        background-color: #f0f0f0;
+        margin: 100px auto;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+      .circle .box {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        border-right: 4px solid deepskyblue;
+        background-color: pink;
+        /* 设置旋转中心点 */
+        transform-origin: right bottom;
+        /* transform: rotateZ(30deg); */
+      }
+      .circle .box::after {
+        content: "";
+        display: block;
+        height: 40px;
+        width: 40px;
+        background-color: deepskyblue;
+        position: absolute;
+        top: 0px;
+        right: -22px;
+        border-radius: 50%;
+      }
+      .circle .icon {
+        display: block;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        font-size: 40px;
+        color: red;
+        background-color: transparent;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -18px;
+        margin-top: -24px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="circle">
+      <div class="box"></div>
+      <div class="icon">×</div>
+    </div>
+    <script>
+      var box = document.querySelector(".box");
+      var angle = 0;
+      var autoPlay = function () {
+        angle += 5;
+        angle = angle >= 360 ? 0 : angle;
+        box.style["transform"] = "rotate(" + angle + "deg)";
+      };
+      var t = setInterval(autoPlay,30);
+    </script>
+  </body>
+</html>
