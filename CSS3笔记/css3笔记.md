@@ -1,4 +1,4 @@
-### 背景
+### 背景 background
 
 > 在 css3 之前就已存在
 >
@@ -6,7 +6,9 @@
 
 
 
-background-size 图片的大小
+#### background-size 
+
+> 设置图片的大小
 
 ```css
 .box {
@@ -23,7 +25,9 @@ background-size 图片的大小
 
 
 
-background-origin  设置背景图片的原点位置（起点） 从哪个区域开始显示
+#### background-origin  
+
+> 设置背景图片的原点位置（起点） 从哪个区域开始显示
 
 ```html
 <style>
@@ -54,7 +58,9 @@ background-origin  设置背景图片的原点位置（起点） 从哪个区域
 
  
 
-background-clip 裁剪背景图片，从哪个区域开始裁剪
+#### background-clip 
+
+> 裁剪背景图片，从哪个区域开始裁剪
 
 ```html
 <style>
@@ -83,7 +89,9 @@ background-clip 裁剪背景图片，从哪个区域开始裁剪
 
 
 
-background-attachment 背景定位
+#### background-attachment 
+
+> 背景定位
 
 小例子
 
@@ -117,7 +125,7 @@ background-attachment 背景定位
         background-size: cover;
         font-size: 100px;
         color: red;
-        /* 固定背景图 */
+        /* 固定背景图 常用 fixed */
         background-attachment: fixed;
 
     }
@@ -178,11 +186,13 @@ background-attachment 背景定位
  <div class="box box-1">hello world</div>
 ```
 
+<hr>
 
+### 阴影 shadow
 
-### 阴影
+#### box-shadow
 
-盒子阴影
+> 盒子阴影
 
 ```html
 <style>
@@ -201,7 +211,10 @@ background-attachment 背景定位
 
 
 
-文字阴影
+#### text-shadow
+
+> 文字阴影
+>
 
 ```html
 <style>
@@ -259,11 +272,13 @@ var el = document.querySelector(".demo-2");
 </script>
 ```
 
+<hr>
 
+### 渐变色 gradient
 
-### 颜色
+#### linear-gradient
 
-线性渐变
+> 线性渐变
 
 ```html
 <!--
@@ -351,7 +366,9 @@ var el = document.querySelector(".demo-2");
 
 
 
-### 径向渐变
+#### radial-gradient
+
+> 径向渐变
 
 ```css
 /*
@@ -414,9 +431,9 @@ var el = document.querySelector(".demo-2");
 
 ![](https://i.loli.net/2021/09/18/5SxRNa3GYsZJrjD.png)
 
+<hr>
 
-
-### 过渡
+### 过渡 transition
 
 ```html
 <style>
@@ -459,9 +476,11 @@ var el = document.querySelector(".demo-2");
 > 贝塞尔曲线 https://cubic-bezier.com/#.2,1.14,.84,-0.11
 >
 
+<hr>
 
+### 旋转 rotate
 
-### 旋转
+<img src="https://i.loli.net/2021/09/18/H5auMV8cvSkZI24.png" style="zoom:50%;" />
 
 ```html
 <style>
@@ -497,7 +516,7 @@ var el = document.querySelector(".demo-2");
 } 
 
 .wrap:hover .box-4 {
-    /* 围绕x和y和z所形成对角线旋转60度 */
+    /* 围绕x和y和z所形成对角线旋转60度 前三个参数可以是任意数值*/
     transform: rotate3d(1,1,0,60deg)
 }    
 /*
@@ -540,12 +559,12 @@ var el = document.querySelector(".demo-2");
 </div>
 ```
 
-> 具体可以看CSS3编程题
+> 具体可以看CSS3编程题  **翻牌**
 >
 
 
 
-修改旋转的角度
+修改旋转的参考点
 
 ```css
 ul li {
@@ -554,5 +573,121 @@ ul li {
 }
 ```
 
-> 具体可以看CSS3编程题
+> 具体可以看CSS3编程题 **雷达扫描**
+
+
+
+### 位移 translate
+
+```css
+.box {
+    /* X轴移动 */
+    transform: translateX(100px);
+    
+    /* Y轴移动 */
+    transform: translateY(100px);
+    
+    /* Z轴移动 */
+    transform: translateZ(100px);
+    
+    /* 结合 */
+     transform: translate3d(100px, 100px, 100px);
+}
+```
+
+> 多个属性同时使用时需要写在一行
+>
+> 正确
+>
+>  transform: translate3d(100px, 100px, 100px)  rotate3d(1,1,0,60deg)
+>
+> 错误
+>
+> transform: translate3d(100px, 100px, 100px) 
+>
+> transform: rotate3d(1,1,0,60deg)
+>
+> 后者会覆盖前者
+
+<hr>
+
+### 缩放 scale
+
+```css
+.box-1 {
+  /* X Y Z正常 */
+  transform: scale(1);
+  /* 大于1 放大 小于1 缩小*/
+   
+  /* X 轴放大 */
+  transform: scaleX(1.5)
+  
+  /* Y 轴缩小 */
+  transform: scaleY(0.5)
+}
+```
+
+> scale translate rotate 案例具体看CSS3编程题 **立体正方形**
+
+<hr>
+
+###  变形 skew
+
+```css
+.box-1 {
+    /* 变形：角度倾斜 */
+    transform: skew(30deg);
+}
+.box-2 {
+    transform: skewX(30deg);
+}
+.box-3 {
+    transform: skewY(30deg);
+}
+```
+
+<hr>
+
+### 动画 animation
+
+> 用了动画就不要用过渡，用了过渡就不要使用动画 二取一
+
+```javascript
+// 定义动画
+@keyframes move {
+    from {
+        margin-left: 0;
+    }
+    to {
+        margin-left: 500px;
+    }
+}
+```
+
+
+
+> @keyframes 支持主流浏览器
+>
+> @-o- keyframes 支持欧拉浏览器
+>
+> @-moz- keyframes 支持火狐浏览器
+>
+> @-webkit- keyframes 支持谷歌浏览器
+
+
+
+| 属性                      | 用处                 | 备注                                                         |
+| ------------------------- | -------------------- | ------------------------------------------------------------ |
+| animation-name ✔          | 动画名称             | 必填 <br/>move                                               |
+| animation-duration ✔      | 动画持续的时间       | 必填                                                         |
+| animation-timing-function | 动画状态（快慢）     | 可选 <br/>linear （匀速） <br/>贝塞尔曲线                    |
+| animation-delay           | 延迟执行动画         | 可选                                                         |
+| animation-iteration-count | 执行动画的次数       | 可选  <br/>infinite（无限次）                                |
+| animation-direction       | 动画方向             | 可选 <br/>alternate-reverse（反方向）<br/>alternate（正常）  |
+| animation-fill-mode       | 动画结束时停留的位置 | 可选 <br/>backwards（默认）回到原位置<br>forwards（动画结束的位置） |
+| animation-play-state      | 停止执行动画         | paused（停止）<br/>running（运动）                           |
+
+> animation 参数
+>
+> animation: 动画名称，动画持续的时间，动画状态（快慢），延迟执行动画，执行动画的次数，动画方向， 动画结束的位置;
 
