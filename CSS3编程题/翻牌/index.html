@@ -1,0 +1,57 @@
+<!--
+ * @Date: 2021-09-17 22:28:13
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \翻牌\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>翻牌</title>
+    <style>
+      .wrap {
+        position: relative;
+        width: 310px;
+        height: 438px;
+        border: 1px solid #ccc;
+        /* 设置透视距离 */
+        perspective: 800px;
+      }
+      .wrap .box {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 310px;
+        height: 438px;
+        /* 过渡 */
+        transition: transform 2s;
+      }
+      .wrap .red-k {
+        /* 使 红桃K 的层级高过 黑桃K */
+        z-index: 2;
+        border: 1px solid #f00;
+        background-image: url(./imgs/pk1.png);
+        /* 设置元素背面隐藏 */
+        backface-visibility: hidden;
+      }
+      .wrap .black-k {
+        background-image: url(./imgs/pk2.png);
+        border: 1px solid #000;
+      }
+      .wrap:hover .box {
+        transform: rotateY(180deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <!-- 红桃 K -->
+      <div class="box red-k"></div>
+      <!-- 黑桃 K -->
+      <div class="box black-k"></div>
+    </div>
+  </body>
+</html>
