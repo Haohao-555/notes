@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>html5css3 阶段</title>
+    <style>
+        ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            margin: 260px auto;
+            width: 300px;
+            height: 300px;
+            /* background-color: #ccc; */
+            position: relative;
+
+            /* 设置角度倾斜 */
+            transform: rotateX(346deg) rotateY(17deg) rotateZ(0deg);
+            /* transform: rotate3d(1,1,0,30deg); */
+            /* 设置3d容器 */
+            transform-style: preserve-3d;
+        }
+        ul li {
+            width: 300px;
+            height: 300px;
+            text-align: center;
+            line-height: 300px;
+            font-size: 50px;
+            font-weight: bold;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border: 1px solid #000;
+        }
+        ul li:nth-of-type(1) {
+            background-color: rgba(255, 0, 0,.9);
+            transform: rotateX(90deg) translateZ(150px);
+        }
+        ul li:nth-of-type(2) {
+            background-color: rgba(0, 191, 255,.9);
+            transform: rotateX(90deg) translateZ(-150px);
+        }
+        ul li:nth-of-type(3) {
+            background-color: rgba(144, 238, 144, .9);
+            transform: rotateY(90deg) translateZ(150px);
+        }
+        ul li:nth-of-type(4) {
+            background-color: rgba(255, 20, 147,.9);
+            transform: rotateY(90deg) translateZ(-150px);
+        }
+        ul li:nth-of-type(5) {
+            background-color: rgba(233, 150, 122,.9);
+            transform: rotateZ(90deg) translateZ(150px);
+        }
+        ul li:nth-of-type(6) {
+            background-color: rgba(128, 0, 128,.9);
+            transform: rotateZ(90deg) translateZ(-150px);
+        }
+        ul li span {
+            display: block;
+            width: 300px;
+            height: 300px;
+            text-align: center;
+            line-height: 300px;
+        }
+        ul li:nth-of-type(5) span ,
+        ul li:nth-of-type(6) span {
+            transform: rotateZ(-90deg);
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        立方体：六张面
+     -->
+     <ul>
+         <li><span>1</span></li>
+         <li><span>2</span></li>
+
+         <li><span>3</span></li>
+         <li><span>4</span></li>
+
+         <li><span>5</span></li>
+         <li><span>6</span></li>
+     </ul>
+
+     <script>
+        //  需求：
+            // 控制容器标签的尺寸 ， 旋转角度
+            // 控制每一个面的尺寸
+            // 控制每个span标签的尺寸
+
+        // 编码：
+        // 获取相关的元素
+        var ul = document.querySelector("ul");
+        var elements= document.querySelectorAll("ul li");
+        var spans = document.querySelectorAll("ul li span");
+
+        // 定义尺寸 
+        var w = 200;
+        var h = 200;
+
+        // 六个面的尺寸
+        var width = 200;
+        var height = 200;
+
+        // 定义角度
+        var angleX = 346;
+        var angleY= 60;
+        var angleZ= 0;
+
+        // 定义定时器函数的变量
+        var timer = null;
+
+        // 编写函数 设置ul标签的尺寸和角度
+        function setUlStyle(w,h,angleX,angleY,angleZ){
+             // 设置ul标签的尺寸
+            ul.style["width"] = w + "px";
+            ul.style["height"] = h + "px";
+            // 设置ul标签的角度
+            ul.style["transform"] ="rotateX("+angleX+"deg) rotateY("+angleY+"deg) rotateZ("+angleZ+"deg)";
+        }
+        // 编写函数 设置li标签和span标签的样式（尺寸 ，位移）
+        function setElementStyle(width,height,fontSize){
+            var v1 = width / 2;
+            var fontSize = fontSize || 40;
+            for(var i = 0 ; i < elements.length; i ++){
+                elements[i].style["width"] = width +"px";
+                elements[i].style["height"] = height +"px";
+                elements[i].style["lineHeight"] = height +"px";
+                spans[i].style["width"] = width +"px";
+                spans[i].style["height"] = height +"px";
+                spans[i].style["lineHeight"] = height +"px";
+                spans[i].style["fontSize"] = fontSize +"px";
+            }
+            elements[0].style["transform"] = "rotateX(90deg) translateZ("+v1+"px)";
+            elements[1].style["transform"] = "rotateX(90deg) translateZ(-"+v1+"px)";
+
+            elements[2].style["transform"] = "rotateY(90deg) translateZ("+v1+"px)";
+            elements[3].style["transform"] = "rotateY(90deg) translateZ(-"+v1+"px)";
+
+            elements[4].style["transform"] = "rotateZ(90deg) translateZ("+v1+"px)";
+            elements[5].style["transform"] = "rotateZ(90deg) translateZ(-"+v1+"px)";
+        }
+        // 编写函数 改变角度
+        function autoPlay(){
+            angleY += 1;
+            // angleX += 1;
+            // angleZ += 1;
+            angleY = angleY >= 360 ? 0 : angleY;
+            // angleX = angleX >= 360 ? 0 : angleX;
+            // angleZ = angleZ >= 360 ? 0 : angleZ;
+            // 设置ul标签的角度
+            ul.style["transform"] ="rotateX("+angleX+"deg) rotateY("+angleY+"deg) rotateZ("+angleZ+"deg)";
+        }
+
+        // 设置立方体的大小
+        setElementStyle(width,height);
+        // 设置立方体的角度
+        setUlStyle(w,h,angleX,angleY,angleZ);
+
+        // 设置立方体围绕Y轴循环旋转
+        timer = setInterval(autoPlay,30);
+
+     </script>
+</body>
+</html>
