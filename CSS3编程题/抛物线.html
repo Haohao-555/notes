@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>html5css3 阶段</title>
+    <style>
+        ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            width: 600px;
+            height: 700px;
+            background-color: #ccc;
+            position: relative;
+        }
+        ul li {
+            width: 600px;
+            height: 30px;
+            /* background-color: skyblue; */
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            /* 转换位移 */
+            /* transform: translateY(-400px); */
+            transform: translateY(-0px);
+
+            /* 过渡属性 */
+            transition-property: transform;
+            transition-duration: 2s;
+            transition-timing-function: cubic-bezier(0,1.37, .71,1.48);
+            /* transition-timing-function: cubic-bezier(.09,1.35,.73,1.54); */
+        }
+        ul li span {
+            display: block;
+            width: 30px;
+            height: 30px;
+            background-color: red;
+            border-radius: 50%;
+            /* 转换位移 */
+            /* transform: translateX(500px); */
+            transform: translateX(0px);
+            /* 过渡属性 */
+            transition-property: transform;
+            transition-duration: 2s;
+        }
+
+        /* ul:hover li {
+             transform: translateY(-400px);
+        }
+        ul:hover li span {
+             transform: translateX(500px);
+        } */
+
+        ul.current li {
+             transform: translateY(-400px);
+        }
+        ul.current li span {
+             transform: translateX(500px);
+        }
+        button {
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+    <ul class="box">
+        <li>
+            <span></span>
+        </li>
+    </ul>
+
+    <button class="btn">执行过渡</button>
+
+    <script>
+        // 需求：
+            // 利用过渡属性的运动状态实现抛物线效果
+
+        // 编码：
+        var btn = document.querySelector(".btn");
+        var box = document.querySelector(".box");
+        btn.onclick = function(){
+            box.classList.add("current");
+        }
+    </script>
+</body>
+</html>
