@@ -696,7 +696,9 @@ ul li {
 > 具体看CSS编程题 动画、抛物线
 
 <hr>
+
 ### 监听过渡结束
+
 
 ```html
 <style>
@@ -721,4 +723,98 @@ document.querySelector(".box").addEventListener("transitionend",function(){
 })
 </script>
 ```
+
+
+
+### 列布局
+
+```html
+<style>
+    .container {
+        width: 1200px;
+        margin: 0 auto;
+        
+        /* 划分俩列 */
+        column-count: 2;
+        
+        /* 列间距 */
+        column-gap: 100px;
+        
+        /* 列分割线 */
+        column-rule: 3px dashed #fff;
+    }
+    .container h3 {
+        /* 跨列 */
+        column-span: all;
+        text-align: center;
+        background-color: red;
+    }
+    .container p {
+      /* 缩进 */
+      text-indent: 40px;  
+    }
+</style>
+<!-- 把container标签作为列布局的容器 -->
+<div class="container">
+    <h3>标题</h3>
+    <p>...............</p>
+</div>
+```
+
+
+
+### 表格布局
+
+```html
+<style>
+.container {
+    width: 400px
+    display: grid;
+    /* 设置每一行高度 */
+    grid-template-rows: 100px 100px 100px;
+    /* 设置每一列的宽度 */
+    grid-template-columns: 100px 100px 100px;
+    /* 设置行间距 */
+    grid-row-gap: 20px;
+    /* 设置列间距 */
+    grid-column-gap: 10px;
+
+    /* 设置子元素的位置 （区域）*/
+    grid-template-areas: "b a c"
+                         "e f g"
+                         ". . ."
+}
+.item-1 {
+    /* 代表当前元素的标记 */
+    grid-area: a;
+}
+.item-2 {
+    grid-area: b;
+}
+.item-3 {
+    grid-area: c;
+}
+</style>
+<div class="container">
+    <div class="item-1">1</div>
+    <div class="item-2">2</div>
+    <div class="item-3">3</div>
+    
+    <div class="item-4">4</div>
+    <div class="item-5">5</div>
+    <div class="item-6">6</div>
+    
+    <div class="item-7">7</div>
+    <div class="item-8">8</div>
+    <div class="item-9">9</div>
+</div>
+```
+
+> 不设置子元素的位置前
+>
+> <img src="https://i.loli.net/2021/09/22/VSzyi9TNjreJ5M1.png"  />
+>
+> 设置子元素后
+>
+> ![](https://i.loli.net/2021/09/22/PiCMoTugArbam95.png)
 
