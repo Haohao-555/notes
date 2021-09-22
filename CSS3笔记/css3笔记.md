@@ -595,11 +595,13 @@ ul li {
 }
 ```
 
+> 位移会占用原本位置
+>
 > 多个属性同时使用时需要写在一行
 >
 > 正确
 >
->  transform: translate3d(100px, 100px, 100px)  rotate3d(1,1,0,60deg)
+> transform: translate3d(100px, 100px, 100px)  rotate3d(1,1,0,60deg)
 >
 > 错误
 >
@@ -763,7 +765,7 @@ document.querySelector(".box").addEventListener("transitionend",function(){
 
 
 
-### 表格布局
+### 网格布局
 
 ```html
 <style>
@@ -774,6 +776,19 @@ document.querySelector(".box").addEventListener("transitionend",function(){
     grid-template-rows: 100px 100px 100px;
     /* 设置每一列的宽度 */
     grid-template-columns: 100px 100px 100px;
+  
+    /* 上面俩行等价于 
+       可以只写一行的高度
+       grid-template-rows: 100px;
+       
+       一行显示 1组 每组3列，每一列的宽度为 100px 100px 100px
+       grid-template-columns： repeat(1, 100px 100px 100px)
+    */
+    
+    /* 平分 */
+    /* grid-template-columns 25% 25% 25% 25% */
+    /* grid-template-columns 1fr 1fr 1fr 1fr */
+    
     /* 设置行间距 */
     grid-row-gap: 20px;
     /* 设置列间距 */
@@ -817,4 +832,32 @@ document.querySelector(".box").addEventListener("transitionend",function(){
 > 设置子元素后
 >
 > ![](https://i.loli.net/2021/09/22/PiCMoTugArbam95.png)
+
+
+
+定位网格的位置
+
+<img src="https://i.loli.net/2021/09/22/TfwouYJnjtksKzy.png" style="zoom:80%;" />
+
+```html
+<style>
+    ul {
+        display: grid;
+        grid-template-rows: 100px 100px 100px;
+        grid-template-columns: repeat(1, 100px 100px 100px 100px);
+    }
+    .active {
+        grid-column-start: 2;
+        grid-column-end: 4;
+        
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+</style>
+<ul>
+    <li class="active">单元格</li>
+</ul>
+```
+
+<img src="https://i.loli.net/2021/09/22/tCMznDQr4N6I7XP.png" style="zoom:80%;" />
 
