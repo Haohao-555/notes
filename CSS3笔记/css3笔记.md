@@ -726,7 +726,7 @@ document.querySelector(".box").addEventListener("transitionend",function(){
 </script>
 ```
 
-
+<hr>
 
 ### 列布局
 
@@ -763,7 +763,7 @@ document.querySelector(".box").addEventListener("transitionend",function(){
 </div>
 ```
 
-
+<hr>
 
 ### 网格布局
 
@@ -835,7 +835,7 @@ document.querySelector(".box").addEventListener("transitionend",function(){
 
 
 
-定位网格的位置
+定位单元格的位置
 
 <img src="https://i.loli.net/2021/09/22/TfwouYJnjtksKzy.png" style="zoom:80%;" />
 
