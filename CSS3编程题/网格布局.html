@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>html5css3 阶段</title>
+    <style>
+        body {
+            margin: 0;
+            font-weight: bold;
+            font-size: 30px;
+        }
+        .w {
+            width: 1000px;
+            margin: 0 auto;
+        }
+        .tt-header {
+            height: 100px;
+            line-height: 100px;
+            background-color: #000;
+            color: #fff;
+        }
+        .tt-section {
+            background-color: #f0f0f0;
+        }
+      
+        .container {
+            background-color:pink;
+            /*网格容器  */
+            display: grid;
+            /*指定行的样式 */
+            grid-template-rows: 150px 150px 150px;
+            /* grid-template-columns: repeat(1,500px 500px); */
+            /* 指定列的样式 */
+            grid-template-columns: repeat(1, 1fr 1fr);
+            border-right: 5px solid  #f50;
+            border-bottom: 5px solid  #f50;
+        }
+        .container .item {
+            border-top: 5px solid  #f50;
+            border-left: 5px solid  #f50;
+            background-color: #fff;
+        }
+
+        .container .item  .item-child {
+            width: 50%;
+            height: 100%;
+            box-sizing: border-box;
+            float: left;
+        }
+        .container .item .item-child.bright {
+            border-right: 5px solid #f50;
+        }
+        .tt-footer {
+            height: 100px;
+            line-height: 100px;
+            background-color: #ccc;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <header class="tt-header">
+            <!-- 版心 -->
+            <div class="w">
+                <i>页面头部</i>
+            </div>
+        </header>
+
+        <section class="tt-section">
+            <div class="w">
+                <!-- 网格布局 -->
+                <div class="container">
+                    <div class="item">1</div>
+                    <div class="item">2</div>
+
+                    <div class="item">
+                        <div class="item-child bright">3</div>
+                        <div class="item-child">4</div>
+                    </div>
+                    <div class="item">5</div>
+
+                    <div class="item">
+                        <div class="item-child bright">6</div>
+                        <div class="item-child">7</div>
+                    </div>
+                    <div class="item">
+                        <div class="item-child bright">8</div>
+                        <div class="item-child">9</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="tt-footer">
+            <div class="w">
+                <i>页面尾部</i>
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>
