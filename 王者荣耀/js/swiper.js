@@ -15,6 +15,7 @@
     var $point = $(".adBtn a");
     var adBtn = $point.length
 
+    // 轮播
     var autoPlay = function () {
         index++;
         if (index > len - 1) {
@@ -23,19 +24,20 @@
         }
         $ul.stop(true, true).animate({ left: -(width * index) }, 500);
 
-        ab_index++
-        ab_index = ab_index > adBtn - 1 ? 0 : ab_index
+        ab_index++;
+        ab_index = ab_index > adBtn - 1 ? 0 : ab_index;
         $point.eq(ab_index).addClass("on").siblings().removeClass("on");
     }
 
+    // 定时轮播
     timerId = setInterval(function () {
         autoPlay();
     }, 4000);
 
+    
     $('.rotate').on("mouseenter", function () {
         clearInterval(timerId)
     });
-
     $(".rotate").on("mouseleave", function () {
         timerId = setInterval(function () {
             autoPlay()
@@ -51,13 +53,11 @@
         $ul.stop(true, true).animate({ left: -(width * index) }, 500);
         $point.eq(ab_index).addClass("on").siblings().removeClass("on");
     })
-
     $(".adBtn").on("mouseleave", "a", function (e) {
         e.stopPropagation();
         timerId = setInterval(function () {
             autoPlay()
         }, 4000);
-
-
     })
+
 })()

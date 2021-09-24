@@ -113,6 +113,26 @@ a {
   height: 84px;
   background-color: rgba(0, 0, 0, 0.8);
 }
+
+.banner .J_subNav {
+  position: absolute;
+  top: 83px;
+  width: 100%;
+  height: 285px;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+  padding-top: 15px;
+  padding-bottom: 30px;
+}
+.banner .J_subNav .sub_container {
+  width: 890px;
+  margin: 0 auto;
+  padding-left: 50px;
+  box-sizing: border-box;
+  background-color: red;
+}
+
 .banner > .kv_link {
   width: 1200px;
   height: 440px;
@@ -153,11 +173,11 @@ a {
   box-sizing: border-box;
 }
 .banner .header .h_container .nav .h_active {
-    background: url(../img/index.png) no-repeat;
-    display: inline-block;
+  background: url(../img/index.png) no-repeat;
+  display: inline-block;
 }
 .banner .header .h_container .nav > .h_active > .f_active {
-    color: #d9ad50;
+  color: #d9ad50;
 }
 .banner .header .h_container .nav > li:last-child {
   padding-top: 0px;
@@ -229,9 +249,8 @@ a {
 }
 
 .main {
-    position: relative;
-    top: -559px;
-    
+  position: relative;
+  top: -559px;
 }
 
 /* main_top */
@@ -251,16 +270,15 @@ a {
   position: relative;
 }
 .main .main_top .main_container .rotate .swiper_container {
-   width: 600%;
-   height: 100%;
-   display: flex;
-   justify-content: space-between;
-   position: absolute;
-  
+  width: 600%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
 }
 .main .main_top .main_container .rotate .swiper_container > li {
-    width: 605px;
-    height: 100%;
+  width: 605px;
+  height: 100%;
 }
 .main .main_top .main_container .rotate .swiper_container > li > a {
   height: 100%;
@@ -271,14 +289,14 @@ a {
 }
 .main .main_top .main_container .rotate .adBtn {
   position: absolute;
-   width: 100%;
-   height: 44px;
-   display: flex;
-   bottom: 0px;
-   z-index: 90;
-   background-color: #262626;
+  width: 100%;
+  height: 44px;
+  display: flex;
+  bottom: 0px;
+  z-index: 90;
+  background-color: #262626;
 }
-.main .main_top .main_container .rotate .adBtn > a{
+.main .main_top .main_container .rotate .adBtn > a {
   flex-grow: 1;
   height: 100%;
   line-height: 44px;
@@ -288,7 +306,7 @@ a {
   cursor: pointer;
 }
 .main .main_top .main_container .rotate .adBtn .on {
-  background-color: rgba(255,255,255,0.15);
+  background-color: rgba(255, 255, 255, 0.15);
   color: #d9ad50;
 }
 .main .main_top .main_container .news_center {
@@ -302,21 +320,6 @@ a {
   height: 100%;
   background-color: yellow;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* quick_entrance */
 .main .quick_entrance {
@@ -338,10 +341,9 @@ a {
   height: 100%;
 }
 .main .quick_entrance .main_container > a > img:hover {
-    transform: scale(1.2);
-    transition: transform .4s ease;
+  transform: scale(1.2);
+  transition: transform 0.4s ease;
 }
 .main .quick_entrance .main_container > a:last-child {
   margin-right: 0;
 }
-
