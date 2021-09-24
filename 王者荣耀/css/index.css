@@ -104,7 +104,7 @@ a {
   min-width: 1300px;
   height: 1100px;
   background: url(../img/bg.png) no-repeat;
-  background-size: contain;
+  background-position: center top;
 }
 .banner .header {
   position: absolute;
@@ -230,7 +230,7 @@ a {
 
 .main {
     position: relative;
-    top: -663px;
+    top: -559px;
     
 }
 
@@ -246,7 +246,7 @@ a {
 .main .main_top .main_container .rotate {
   width: 605px;
   height: 100%;
-  background-color: green;
+  /* background-color: green; */
   overflow: hidden;
   position: relative;
 }
@@ -255,6 +255,7 @@ a {
    height: 100%;
    display: flex;
    justify-content: space-between;
+   position: absolute;
   
 }
 .main .main_top .main_container .rotate .swiper_container > li {
@@ -275,15 +276,16 @@ a {
    display: flex;
    bottom: 0px;
    z-index: 90;
+   background-color: #262626;
 }
 .main .main_top .main_container .rotate .adBtn > a{
   flex-grow: 1;
   height: 100%;
-  background-color: #262626;
   line-height: 44px;
   color: #b1b2be;
   font-size: 14px;
   text-align: center;
+  cursor: pointer;
 }
 .main .main_top .main_container .rotate .adBtn .on {
   background-color: rgba(255,255,255,0.15);
