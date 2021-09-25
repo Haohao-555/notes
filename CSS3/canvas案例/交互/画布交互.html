@@ -1,0 +1,56 @@
+<!--
+ * @Date: 2021-09-25 13:38:16
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \交互\index1.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      canvas {
+        display: block;
+        margin: 0 auto;
+        background-color: #f0f0f0;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas">tips</canvas>
+    <script src="./canvas-tool.js"></script>
+    <script>
+      var canvas = document.querySelector("#canvas");
+      canvas.width = 600;
+      canvas.height = 600;
+
+      var ctx = canvas.getContext("2d");
+
+      // 鼠标在canvas的坐标位置 = 鼠标在页面的位置 减去 canvas标签在页面的位置
+      var getPosition = function (pageX, pageY) {
+        // 获取canvas标签在页面的位置
+        var obj = canvas.getBoundingClientRect();
+        return {
+          x: pageX - obj.left,
+          y: pageY - obj.top,
+        };
+      };
+
+      // 鼠标按下事件 （画布）
+      document.onmousedown = function (event) {
+        // 获取鼠标在canvas的位置
+        var point = getPosition(event.pageX, event.pageY);
+        // 绘制圆点
+        drawCircle(ctx, point.x, point.y, 20, 0, 360, "red");
+      };
+
+     
+    </script>
+  </body>
+</html>

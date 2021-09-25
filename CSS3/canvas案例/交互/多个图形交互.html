@@ -1,0 +1,114 @@
+<!--
+ * @Date: 2021-09-25 13:49:55
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \交互\多个图形交互.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      canvas {
+        display: block;
+        margin: 0 auto;
+        background-color: #f0f0f0;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas">tips</canvas>
+    <script>
+      /*
+        原理：在绘制每一个图像时添加交互事件
+      */
+      var canvas = document.querySelector("#canvas");
+      canvas.width = 600;
+      canvas.height = 600;
+
+      var ctx = canvas.getContext("2d");
+
+      // 鼠标在canvas的坐标位置 = 鼠标在页面的位置 减去 canvas标签在页面的位置
+      var getPosition = function (pageX, pageY) {
+        // 获取canvas标签在页面的位置
+        var obj = canvas.getBoundingClientRect();
+        return {
+          x: pageX - obj.left,
+          y: pageY - obj.top,
+        };
+      };
+
+      // 编写函数 绘制矩形
+      var drawRect2 = function (x, y, w, h, color, point, callback) {
+        ctx.beginPath();
+        ctx.fillStyle = color;
+        ctx.rect(x, y, w, h);
+        ctx.closePath();
+        ctx.fill();
+
+        if (point == undefined) return;
+
+        // 根据坐标来判断是否进入到当前绘制的图形中
+        var isMouseDown = ctx.isPointInPath(point.x, point.y);
+
+        if (isMouseDown) {
+          // 在绘制图形上
+          callback(color); // 调用回调函数
+        }
+      };
+
+      // 数据对象
+      var arr = [
+        [100, 50, 200, 50, "red"],
+        [100, 150, 200, 50, "green"],
+        [100, 250, 200, 50, "blue"],
+      ];
+
+      // 绘制图形 初始化
+      for (var i = 0; i < arr.length; i++) {
+        drawRect2(arr[i][0], arr[i][1], arr[i][2], arr[i][3], arr[i][4]);
+      }
+
+      // 交互
+      document.onmousedown = function (event) {
+        // 清除画布
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // 获取鼠标在canvas的位置
+        var point = getPosition(event.pageX, event.pageY);
+
+        // 重新绘制图形
+        for (var i = 0; i < arr.length; i++) {
+          drawRect2(
+            arr[i][0],
+            arr[i][1],
+            arr[i][2],
+            arr[i][3],
+            arr[i][4],
+            point,
+            // 回调函数
+            function (color) {
+              // console.log(color);
+              if (color == "red") {
+                console.log("点击了红色图形");
+                drawRect2(arr[0][0], arr[0][1], arr[0][2], arr[0][3], "pink");
+              }
+              if (color == "green") {
+                console.log("点击了绿色图形");
+              }
+              if (color == "blue") {
+                console.log("点击了蓝色图形");
+              }
+            }
+          );
+        }
+      };
+    </script>
+  </body>
+</html>
