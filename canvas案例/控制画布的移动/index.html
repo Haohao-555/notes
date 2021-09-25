@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="canvas"
+      >当前浏览器如果不支持canvas标签，请换个浏览器试下</canvas
+    >
+
+    <script>
+      var canvas = document.querySelector("#canvas");
+
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      var ctx = canvas.getContext("2d");
+
+      var obj = {
+        x: 120,
+        y: 100,
+        w: 100,
+        h: 100,
+        color: "blue",
+        v1: 50,
+      };
+
+      drawRect(ctx, obj.x, obj.y, obj.w, obj.h, obj.color);
+
+      document.onkeydown = function (event) {
+        // 获取键值
+        var keyCode = event.keyCode;
+        console.log(keyCode);
+
+        // 清除画布
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        if (keyCode == 37) {
+          obj.x -= obj.v1;
+        } else if (keyCode == 38) {
+          obj.y -= obj.v1;
+        } else if (keyCode == 39) {
+          obj.x += obj.v1;
+        } else if (keyCode == 40) {
+          obj.y += obj.v1;
+        }
+
+        // 绘制矩形
+        drawRect(ctx, obj.x, obj.y, obj.w, obj.h, obj.color);
+      };
+      function drawRect(ctx, x, y, w, h, color) {
+        var x = x === undefined ? 100 : x;
+        var y = y === undefined ? 100 : y;
+        var w = w === undefined ? 100 : w;
+        var h = h === undefined ? 100 : h;
+        var color = color === undefined ? "red" : color;
+
+        ctx.beginPath();
+
+        ctx.fillStyle = color;
+
+        ctx.rect(x, y, w, h);
+
+        ctx.closePath();
+        
+        ctx.fill();
+      }
+    </script>
+  </body>
+</html>
