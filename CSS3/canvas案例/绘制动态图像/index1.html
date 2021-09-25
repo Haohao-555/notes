@@ -1,0 +1,56 @@
+<!--
+ * @Date: 2021-09-25 12:57:28
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \绘制动态图像\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <script>
+      var canvas = document.querySelector("#canvas");
+      canvas.width = 600;
+      canvas.height = 600;
+      var ctx = canvas.getContext("2d");
+
+      // 创建图片
+      var img = new Image();
+      img.src = "./imgs/run.png";
+      img.onload = function () {
+        var imageWidth = this.width;
+        var imageHeight = this.height;
+
+        // 每张图片的大小
+        var spaceX = imageWidth * (1 / 4);
+        var spaceY = imageHeight * (1 / 4);
+
+        // 图片坐标
+        var i = 3;
+        var j = 0;
+
+        // 画布坐标
+        var x = 0;
+        var y = 0;
+
+        ctx.drawImage(
+          img,
+          i * spaceX,
+          j * spaceY,
+          imageWidth * (1 / 4),
+          imageHeight * (1 / 4),
+          x,
+          y,
+          imageWidth * (1 / 4),
+          imageHeight * (1 / 4)
+        );
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+<!--
+ * @Date: 2021-09-25 12:39:10
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \绘制图像\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <script>
+      var canvas = document.querySelector("#canvas");
+      canvas.width = 800;
+      canvas.height = 800;
+      var ctx = canvas.getContext("2d");
+
+      // 创建一张图片
+      var img = new Image();
+
+      // 设置图片的路径
+      img.src = "./imgs/photo.jpg";
+
+      // 加载图片
+      img.onload = function () {
+        var w = this.width;
+        var h = this.height;
+
+        // 显示图片  图片资源 画布X轴 画布Y轴
+        // ctx.drawImage(img, 0, 0);
+
+        // 显示图片 图片资源 画布X轴 画布Y轴 图片宽度 图片高度
+        // ctx.drawImage(img, 0, 0, w * (1 / 2), h * (1 / 2));
+
+        // 显示图片 
+        ctx.drawImage(
+          img, // 图片资源
+          120, // 图片资源的X坐标
+          170, // 图片资源的Y坐标
+          140, // 图片资源的宽度
+          128, // 图片资源的高度
+
+          0, // 画布的X坐标
+          0, // 画布的Y坐标
+          140, // 设置图片宽度
+          128 // 设置图片高度
+        );
+      };
+    </script>
+  </body>
+</html>

@@ -253,3 +253,7 @@ ctx.closePath();
 
 <img src="https://i.loli.net/2021/09/25/sIwfJ3mvUWyBbPo.png" style="zoom:67%;" />
 
+### 绘制图像
+
+> 具体看 canvas案例中的绘制图像及动态图像
+

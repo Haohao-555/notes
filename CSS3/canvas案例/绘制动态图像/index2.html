@@ -1,0 +1,68 @@
+<!--
+ * @Date: 2021-09-25 13:11:17
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \绘制动态图像\index2.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <script>
+      var canvas = document.querySelector("#canvas");
+      canvas.width = 600;
+      canvas.height = 600;
+      var ctx = canvas.getContext("2d");
+
+      var img = new Image();
+      img.src = "./imgs/run.png";
+
+      // 定义计数器变量
+      var col = 0;
+      var row = 2; // 0 向前 1 向左 2向右 3 向后
+
+
+      function changeImage(i, j) {
+        // 清除画布
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        var imageWidth = img.width;
+        var imageHeight = img.height;
+
+        // 每张图片的大小
+        var spaceX = imageWidth * (1 / 4);
+        var spaceY = imageHeight * (1 / 4);
+
+        var i = i == undefined ? 0 : i;
+        var j = j == undefined ? 0 : j;
+
+        ctx.drawImage(
+          img,
+          i * spaceX,
+          j * spaceY,
+          imageWidth * (1 / 4),
+          imageHeight * (1 / 4),
+          0,
+          0,
+          imageWidth * (1 / 4),
+          imageHeight * (1 / 4)
+        );
+      }
+
+         // 定时器函数
+         var timer = setInterval(function(){
+            col ++;
+            col = col > 3 ? 0 : col;
+            // row ++;
+            // row = row > 3 ? 0 : row;
+            changeImage(col,row);
+        },150)
+    </script>
+  </body>
+</html>
