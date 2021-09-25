@@ -217,3 +217,39 @@ ctx.fill();
 > rad 弧度
 >
 > false 顺时针
+
+
+
+### 绘制文字
+
+```javascript
+var ctx = canvas.getContext("2d");
+
+// 定义文本
+var str = "hello world!";
+ctx.beginPath();
+
+ctx.strokeStyle = "red";
+
+ctx.fillStyle = "green";
+
+// 定义坐标
+var point = {
+    x: 100,
+    y: 100,
+}
+// 设置字体
+ctx.font = "50px 微软雅黑";
+// 设置文本水平方向对齐 left center right
+ctx.textAligin = "center";
+// 设置文本垂直方向对齐 bottom middle（中） top
+ctx.textBaseline = "middle";
+
+// 绘制文本
+ctx.strokeText(str, 100, 100);
+
+ctx.closePath();
+```
+
+<img src="https://i.loli.net/2021/09/25/sIwfJ3mvUWyBbPo.png" style="zoom:67%;" />
+
