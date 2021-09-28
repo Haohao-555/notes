@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>html5css3 阶段</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        canvas {
+            background-color: #f0f0f0;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas">当前浏览器不支持canvas标签，请您换个浏览器试下!</canvas>
+
+    <script>
+        var data = [
+            { month: "一月份", income: "2200", percent: "0.05", radius: 200, color: "green", total: "40900" },
+            { month: "二月份", income: "3900", percent: "0.10", radius: 170, color: "red", total: "40900" },
+            { month: "三月份", income: "10500", percent: "0.26", radius: 180, color: "blue", total: "40900" },
+            { month: "四月份", income: "8900", percent: "0.22", radius: 160, color: "purple", total: "40900" },
+            { month: "五月份", income: "10000", percent: "0.24", radius: 210, color: "orange", total: "40900" },
+            { month: "六月份", income: "5400", percent: "0.13", radius: 190, color: "pink", total: "40900" }
+        ]
+    </script>
+    <script>
+        // 需求：
+        // 可视化数据图表（饼状图）
+        // 0 - 360 圆形
+        // 弧度 = 角度 * Math.PI / 180
+        // x = Math.cos(弧度) *  半径
+        // y = Math.sin(弧度) *  半径
+
+        // 编码：
+        // 获取canvas标签 （HOME/END）
+        var el = document.querySelector("#canvas");
+        // 获取浏览器可视区尺寸
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+        // 设置画布的大小
+        el.width = w * (10 / 10);
+        el.height = h * (10 / 10);
+        // 获取canvas上下对象
+        var ctx = el.getContext("2d");
+        // 编写绘制圆的函数（封装）
+        var drawCircle = function (x, y, r, s, e, color) {
+            ctx.beginPath();
+            ctx.fillStyle = color || "#ccc";
+            ctx.moveTo(x, y);
+            ctx.arc(
+                x,
+                y,
+                r,
+                s * Math.PI / 180,
+                e * Math.PI / 180,
+                false
+            )
+            ctx.closePath();
+            ctx.fill();
+        }
+
+        // 编写绘制线的函数
+        var drawLine = function (x1, y1, x2, y2, color) {
+            ctx.beginPath();
+            ctx.strokeStyle = color || "#0f0";
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.closePath();
+            ctx.stroke();
+        }
+
+        // 编写绘制文本的函数
+        // h: 水平方向
+        // v: 垂直方向
+        var drawText = function (text, x, y, h, v, color) {
+            ctx.beginPath();
+            ctx.fillStyle = color || "red";
+            ctx.textAlign = h || "center";
+            ctx.textBaseline = v || "middle";
+            ctx.font = "22px  黑体";
+            ctx.fillText(text, x, y);
+            ctx.closePath();
+            ctx.fill();
+        }
+
+        // 编写函数计算角度对应的坐标点
+        var getPos = function (x, y, r, angle) {
+            return {
+                x1: x + Math.cos(angle * Math.PI / 180) * (r - 100),
+                y1: y + Math.sin(angle * Math.PI / 180) * (r - 100),
+
+                x2: x + Math.cos(angle * Math.PI / 180) * (r + 50),
+                y2: y + Math.sin(angle * Math.PI / 180) * (r + 50)
+            }
+        }
+        // console.log(point); // undefined
+        // console.log(point.x); // 报错
+        // 定义中心坐标(圆形)
+        var point = {
+            x: w * (1 / 2),
+            y: h * (1 / 2)
+        }
+        // 记录交角度 360
+        var angle = 360;
+        // 上半年的月份数量
+        var len = data.length;
+        // 记录每月开始角度
+        var start = 0;
+        // 记录每月份结束的角度
+        var end = 0;
+        // 循环（重复）
+        for (var i = 0; i < len; i++) {
+            // 计算每个月份对应的结束角度
+            end = start + data[i].percent * angle;
+            // 绘制每个月份所对应的弧形(扇形)
+            drawCircle(
+                point.x,
+                point.y,
+                data[i].radius,
+                start,
+                end,
+                data[i].color
+            )
+            // 计算下一个月份对应的开始角度
+            start = end;
+        }
+
+
+        // 测试
+        // drawLine(
+        //     point.x,
+        //     point.y,
+        //     point.x + 300,
+        //     point.y,
+        //     "red");
+        // drawText(
+        //     "hello world",
+        //     point.x + 300,
+        //     point.y,
+        //     "center",
+        //     "bottom",
+        //     "green"
+        // )
+        // 测试角度对应的坐标位置
+        var testAngle = data[0].percent * angle * (1 / 2)
+        var option = getPos(
+            point.x,
+            point.y,
+            data[0].radius,
+            testAngle
+        )
+        console.log(option);
+        drawLine(
+            option.x1,
+            option.y1,
+
+            option.x2,
+            option.y2,
+            "#f00");
+
+        drawLine(
+            option.x2,
+            option.y2,
+            option.x2 + 200,
+            option.y2,
+            "#f00");
+
+        drawText(
+            data[0].month,
+            option.x2,
+            option.y2,
+            "left",
+            "bottom"
+        )
+    </script>
+
+    <script>
+             // 绘制一月份
+                //   var startAngle = 0;
+                //   var endAngle = startAngle + data[0].percent * angle;
+                //   drawCircle(
+                //         point.x,
+                //         point.y,
+                //         data[0].radius,
+                //         startAngle,
+                //         endAngle,
+                //         data[0].color
+                //     )
+
+            // 绘制二月份
+                //二月份的开始角度
+                // startAngle = endAngle;
+                //二月份的结束角度
+                // endAngle = startAngle + data[1].percent * angle;
+                // drawCircle(
+                //     point.x,
+                //     point.y,
+                //     data[1].radius,
+                //     startAngle,
+                //     endAngle,
+                //     data[1].color
+                // )
+    </script>
+</body>
+
+</html>

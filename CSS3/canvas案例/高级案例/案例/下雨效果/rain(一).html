@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>下雨效果</title>
+    <style>
+        html , body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        body {
+            margin: 0;
+            background-color: #000;
+        }
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas">tips</canvas>
+    <script>
+        // 画布标签
+        var canvas = document.querySelector("#canvas");
+        // 窗口大小
+        var winWidth = window.innerWidth;
+        var winHeight = window.innerHeight;
+        // 画布大小
+        canvas.width = winWidth;
+        canvas.height = winHeight;
+        // 画布上下文对象
+        var ctx = canvas.getContext("2d");
+
+        // 编码方式：面向对象
+        // 实现一滴雨水从天而降的效果
+        // 构造函数
+        function Rain(){ 
+            this.ctx  = ctx;
+         }
+        // 原型对象
+        // 初始化
+        Rain.prototype.init = function(){
+            // 坐标(矩形/圆)
+            // this.x = this.random(0,winWidth);
+            // this.y = this.random(0,100);
+            this.x = 100;
+            this.y = 50;
+
+            // 尺寸(矩形)
+            // this.w = this.random(2,6);
+            // this.h = this.random(8,10);
+            this.w = 6;
+            this.h = 10;
+            //步长1(矩形)
+            this.vy = this.random(5,10);
+            // 半径(圆)
+            this.r = 50;
+            // 步长2(圆)
+            this.vr = 0.5;
+            // 地面的高度
+            this.height = this.random(winHeight - 100, winHeight);
+        
+        }
+        // 随机数
+        Rain.prototype.random = function(min,max){
+            return Math.floor(Math.random() * (max-min) + min);
+        }
+        // 绘制矩形
+        Rain.prototype.drawRect = function(){
+            this.ctx.beginPath();
+            this.ctx.fillStyle = "rgba(0,255,0,1)";
+            this.ctx.rect(
+                this.x,
+                this.y,
+                this.w,
+                this.h
+            )
+            this.ctx.closePath();
+            this.ctx.fill();
+        }
+        // 绘制圆形
+        Rain.prototype.drawCircle = function(){
+            this.ctx.beginPath();
+            this.ctx.strokeStyle = "rgba(0,255,0,1)";
+            this.ctx.arc(
+                this.x,
+                this.y,
+                this.r,
+                0,
+                2 * Math.PI,
+                false
+            )
+            this.ctx.closePath();
+            this.ctx.stroke();
+        }
+        // 动画
+        Rain.prototype.animate = function(){
+            // 判断条件
+            this.y += this.vy;
+
+
+            // 绘制矩形
+            this.draw();
+        }
+        // 绘制雨滴
+        Rain.prototype.draw = function(){
+            // 判断条件
+
+            // 绘制
+            this.drawRect();
+        }
+
+        // 创建雨滴
+        var d = new Rain()
+        d.init();
+        // 编写函数 重复执行雨滴下落
+        var autoPlay = function(){
+            // 绘制遮罩层
+            ctx.fillStyle = "rgba(0,0,0,0.05)";
+            ctx.fillRect(0,0,winWidth,winHeight);
+            d.animate();
+        }
+        // 执行定时器函数(1秒执行60次)
+        var timer = setInterval(function(){
+            autoPlay();
+        },1000/60)
+
+    </script>
+</body>
+</html>

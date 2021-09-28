@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>下雨效果</title>
+    <style>
+        html , body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        body {
+            margin: 0;
+            background-color: #000;
+        }
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas">tips</canvas>
+    <script>
+        // 画布标签
+        var canvas = document.querySelector("#canvas");
+        // 窗口大小
+        var winWidth = window.innerWidth;
+        var winHeight = window.innerHeight;
+        // 画布大小
+        canvas.width = winWidth;
+        canvas.height = winHeight;
+        // 画布上下文对象
+        var ctx = canvas.getContext("2d");
+
+        // 编码方式：面向对象
+            // 实现一滴雨水从天而降的效果
+       
+        // 构造函数
+        function Rain(){ 
+            this.ctx  = ctx;
+         }
+        // 原型对象
+        // 初始化
+        Rain.prototype.init = function(){
+            // 坐标(矩形/圆)
+            this.x = this.random(0,winWidth);
+            this.y = this.random(0,100);
+            // 尺寸(矩形)
+            this.w = this.random(2,6);
+            this.h = this.random(8,10);
+            //步长1(矩形)
+            this.vy = this.random(5,6);
+            // 半径(圆)
+            this.r = 0;
+            // 步长2(圆)
+            this.vr = 0.5;
+            // 地面的高度
+            this.height = this.random(winHeight - 200, winHeight);
+        
+        }
+        // 随机数
+        Rain.prototype.random = function(min,max){
+            return Math.floor(Math.random() * (max-min) + min);
+        }
+        // 绘制矩形
+        Rain.prototype.drawRect = function(){
+            this.ctx.beginPath();
+            this.ctx.fillStyle = "rgba(0,255,0,1)";
+            this.ctx.rect(
+                this.x,
+                this.y,
+                this.w,
+                this.h
+            )
+            this.ctx.closePath();
+            this.ctx.fill();
+        }
+        // 绘制圆形
+        Rain.prototype.drawCircle = function(){
+            this.ctx.beginPath();
+            this.ctx.strokeStyle = "rgba(0,255,0,1)";
+            this.ctx.arc(
+                this.x + 2,
+                this.y,
+                this.r,
+                0,
+                2 * Math.PI,
+                false
+            )
+            this.ctx.closePath();
+            this.ctx.stroke();
+        }
+        // 动画
+        Rain.prototype.animate = function(){
+            // 判断条件 雨滴是否小于地面高度
+            if(this.y < this.height){
+                // 是，雨滴小于地面高度,雨滴一直落下
+                this.y += this.vy;
+            }else {
+                // 否则，雨滴大于地面高度
+                // 设置圆的半径不能超过50
+                if( this.r < 50){
+                    // 小于50 一直扩散圆
+                    this.r += this.vr;
+                }else {
+                    // 大于等于50 就重置雨滴的数据
+                    this.init();
+                }
+            }
+            // 绘制矩形
+            this.draw();
+        }
+        // 绘制雨滴
+        Rain.prototype.draw = function(){
+            // 判断条件
+            if(this.y < this.height){
+                // 绘制矩形
+                this.drawRect();
+            }else {
+                // 绘制圆
+                this.drawCircle();
+            }
+        }
+
+        // 创建50个雨滴
+        // 定义数组 记录50个雨滴实例
+        var rainArarry = [];
+        // 定义计数器变量
+        var count = 50;
+        // 循环 ,重复创建雨滴
+        for(var i = 0 ; i < count ; i ++){
+            // 延迟创建雨滴
+            var delay = setTimeout(function(){
+                // 创建一个雨滴
+                var rain = new Rain();
+                // 调用初始化方法
+                rain.init();
+                // 添加到数组中
+                rainArarry.push(rain);
+                // 释放延迟函数的变量值
+                delay = null;
+            },100 * i);
+        }
+        // 编写函数 重复执行雨滴下落
+        var autoPlay = function(){
+            // 绘制遮罩层
+            ctx.fillStyle = "rgba(0,0,0,0.05)";
+            ctx.fillRect(0,0,winWidth,winHeight);
+            // 循环雨滴数组 给每一滴雨水添加动画
+            for(var j = 0 ; j < rainArarry.length ; j ++){
+                // 执行动画
+                rainArarry[j].animate();
+            }
+        }
+        // 执行定时器函数(1秒执行60次)
+        var timer = setInterval(function(){
+            autoPlay();
+        },1000/60)
+
+    </script>
+</body>
+</html>
