@@ -262,3 +262,4 @@ ctx.closePath();
 ### 交互
 
 > 具体看 canvas案例中的交互
+

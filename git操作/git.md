@@ -12,7 +12,43 @@
 
   <img src="https://i.loli.net/2021/08/01/Jp6to824MrG9aXk.png" style="zoom:80%;" />
 
-### 三、在创建项目并提交到本地仓库的操作
+### 三、常用命令
+
+* git init  初始化一个本地git仓库
+
+* git status  检查当前环境是否新增/修改文件
+
+* git add [文件名称]  把文件添加到暂存区
+
+* git add .  把所有的文件添加到暂存区
+
+* git commit -m "说明日志"  把文件提交到本地git仓库
+
+* git remote add origin [远程仓库地址]  与远程git仓库建立联系（连接）
+
+* git push -u  origin   master  把项目文件推送到远程git仓库的主分支上
+
+* 推送代码时遇到冲突，可以执行以下命令  git push -f  || git push -f origin master  强制推送项目文件
+
+* git  clone  克隆远程git仓库的项目文件（下载）
+
+* git pull  拉取项目文件到本地
+
+* git fetch origin  master 把远程git仓库主分支项目文件拉取到本地git仓库
+
+*  git checkout master  把本地git仓库的项目文件签出到工作区
+
+* git reflog  查看提交的日志所有的历史记录
+
+* git reset --hard 【 ID号】 回退到指定的版本
+
+* **git remote rm origin 删除远程地址**
+
+* git rm  1.txt   当工作区删除了1.txt文件时 可以在本地git环境中 移除 1.txt 。
+
+
+
+### 四、在创建项目并提交到本地仓库的操作
 
 打开 git 创建项目目录 text （mkdir text）
 
@@ -116,7 +152,7 @@ git add 后 再次查看 git status
 
 
 
-### 四、查看提交日志并进行版本控制
+### 五、查看提交日志并进行版本控制
 
 1、查看提交日志
 
