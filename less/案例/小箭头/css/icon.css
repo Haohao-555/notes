@@ -1,0 +1,112 @@
+[class^="icon"] {
+  display: inline-block;
+  vertical-align: middle;
+}
+.icon-arrow-right {
+  width: 180px;
+  height: 100px;
+  background-color: transparent;
+  position: relative;
+}
+.icon-arrow-right::before,
+.icon-arrow-right::after {
+  content: "";
+  display: block;
+  position: absolute;
+}
+.icon-arrow-right::before {
+  width: 80px;
+  height: 50px;
+  background-color: #000;
+  left: 0;
+  top: 25px;
+}
+.icon-arrow-right::after {
+  width: 0;
+  height: 0;
+  border: 50px solid transparent;
+  border-left-width: 100px;
+  border-left-color: #000;
+  left: 80px;
+}
+.icon-1 {
+  width: 180px;
+  height: 100px;
+  background-color: transparent;
+  position: relative;
+}
+.icon-1::before,
+.icon-1::after {
+  content: "";
+  display: block;
+  position: absolute;
+}
+.icon-1::before {
+  width: 80px;
+  height: 50px;
+  background-color: red;
+  left: 0;
+  top: 25px;
+}
+.icon-1::after {
+  width: 0;
+  height: 0;
+  border: 50px solid transparent;
+  border-left-width: 100px;
+  border-left-color: red;
+  left: 80px;
+}
+.icon-2 {
+  width: 180px;
+  height: 100px;
+  background-color: transparent;
+  position: relative;
+}
+.icon-2::before,
+.icon-2::after {
+  content: "";
+  display: block;
+  position: absolute;
+}
+.icon-2::before {
+  width: 80px;
+  height: 50px;
+  background-color: green;
+  left: 0;
+  top: 25px;
+}
+.icon-2::after {
+  width: 0;
+  height: 0;
+  border: 50px solid transparent;
+  border-left-width: 100px;
+  border-left-color: green;
+  left: 80px;
+}
+.icon-3 {
+  width: 180px;
+  height: 100px;
+  background-color: transparent;
+  position: relative;
+}
+.icon-3::before,
+.icon-3::after {
+  content: "";
+  display: block;
+  position: absolute;
+}
+.icon-3::before {
+  width: 80px;
+  height: 50px;
+  background-color: blue;
+  left: 0;
+  top: 25px;
+}
+.icon-3::after {
+  width: 0;
+  height: 0;
+  border: 50px solid transparent;
+  border-left-width: 100px;
+  border-left-color: blue;
+  left: 80px;
+}

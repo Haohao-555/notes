@@ -1,0 +1,54 @@
+// 制作箭头
+[class^="icon"] {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+// 代码块（混合语法）
+.icon-arrow(@color: #000) {
+    width: 180px;
+    height: 100px;
+    background-color: transparent;
+    position: relative;
+    &::before ,
+    &::after 
+    {
+        content: "";
+        display: block;
+        position: absolute;
+    }
+    &::before {
+        width: 80px;
+        height: 50px;
+        background-color: @color;
+        left: 0;
+        top: 25px;
+    }
+    &::after {
+        width: 0;
+        height: 0;
+        border: 50px solid transparent;
+        border-left-width: 100px;
+        border-left-color: @color;
+        left: 80px;
+    }
+}
+
+//  类名
+// .icon-arrow-right {
+//     .icon-arrow(purple);
+// }
+.icon-arrow-right {
+    .icon-arrow();
+}
+.icon-1 {
+    .icon-arrow(red);
+}
+
+.icon-2 {
+    .icon-arrow(green);
+}
+
+.icon-3 {
+    .icon-arrow(blue);
+}
