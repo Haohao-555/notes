@@ -16,21 +16,8 @@ $(function () {
     $(".header .nav").on("mouseleave", "li", function () {
         $(this).removeClass("h_active").find("a em").removeClass("f_active");
     })
-    $(document).on("mousemove", function (e) {
-        var max;
-        var min = $(".banner")[0].offsetTop;
-        var v = $(e)[0].pageY;
-        max = nav_flag ? 410 : 125;
-        if (!big && !audio) {
-            if (v >= min && v <= max) {
-                $(".J_subNav").slideDown(300);
-                nav_flag = true
-            } else {
-                $(".J_subNav").slideUp(300);
-                nav_flag = false
-            }
-        }
-    })
+    var v = $(e)[0].pageY;
+    $("")
 
     $(".ost_left .l_item-2").on("mouseenter", function () {
         if (nav_flag) $(".J_subNav").slideUp(300);
