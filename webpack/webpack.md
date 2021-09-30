@@ -1,5 +1,7 @@
 ## Webpack 笔记
 
+
+
 ###  安装 webpack
 
 > 前置条件安装了 node
@@ -7,6 +9,8 @@
 * 全局安装 webpack 及 webpack-cli
   *  npm install -g  webpack  --registry=https://registry.npm.taobao.org
   * npm instal -g   webpack-cli  --registry=https://registry.npm.taobao.org           
+
+
 
 ### 快速入门
 
@@ -228,5 +232,35 @@ module.exports = {
     ],
   },
 };
+```
+
+
+
+### 编译ES6语法
+
+> 安装 babel-loader
+>
+> npm install -D babel-loader @babel/core @babel/preset-env
+>
+> D 等价于 save-dev
+
+```javascript
+module: {
+  rules: [
+    {
+      test: /\.m?js$/,
+      // 排除 node_modules 目录下的文件
+      exclude: /node_modules/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: [
+            ['@babel/preset-env', { targets: "defaults" }]
+          ]
+        }
+      }
+    }
+  ]
+}
 ```
 
