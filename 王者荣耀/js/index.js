@@ -1,8 +1,11 @@
 $(function () {
-
-    var nav_flag = false; // true 已经显示 false 
-    var big = false;
-    var audio = false;
+    var top = $(".banner")[0].offsetTop;
+    var header_height = $(".header")[0].offsetHeight;
+   
+    var newcenter_width = $(".news_center")[0].offsetWidth;
+    
+   
+    
     $(".header .nav").on("mouseenter", "li", function () {
         var len = $(".header .nav").children().length;
         var index = $(this).index()
@@ -16,27 +19,53 @@ $(function () {
     $(".header .nav").on("mouseleave", "li", function () {
         $(this).removeClass("h_active").find("a em").removeClass("f_active");
     })
-    var v = $(e)[0].pageY;
-    $("")
+    
+
+    $(".header").on("mouseenter", function() {
+        $(".J_subNav").slideDown(300);
+    })
+    $(".header").on("mouseleave", function(e) {
+        if($(e)[0].pageY < top)  $(".J_subNav").slideUp(300);
+    })
+
+    $(".J_subNav").on("mouseleave", function(e) {
+        if($(e)[0].pageY > top + header_height) $(".J_subNav").slideUp(300);
+    })
+  
+
 
     $(".ost_left .l_item-2").on("mouseenter", function () {
-        if (nav_flag) $(".J_subNav").slideUp(300);
-        big = true;
         $(".ost_d").css({ display: "block" });
     })
     $(".ost_d").on("mouseleave", function () {
         $(".ost_d").css({ display: "none" });
-        big = false;
+       
     })
 
-    // $(".ost_right .r_item_2").on("mouseenter", function () {
-    //     if (nav_flag) $(".J_subNav").slideUp(300);
-    //     $(".ost_pop").css({ display: "block" });
-    //     audio = true;
-    // })
-    // $(".ost_pop").on("mouseleave", function () {
+
+
+    $(".ost_right .r_item_2").on("mouseenter", function () {
+        $(".ost_pop").css({ display: "block" });
        
-    //     $(".ost_pop").css({ display: "none" });
-    //     audio = false;
-    // })
+    })
+    $(".ost_pop").on("mouseleave", function () {
+        $(".ost_pop").css({ display: "none" });
+    })
+
+    
+    $(".new_top").on("mouseenter", "li", function(e) {
+        var index = $(this).index();
+        $(this).addClass("on").siblings().removeClass("on");
+        $(".new_center_container").stop(true,true).animate({left: -(index * newcenter_width)+ "px"});
+    })
+
+
+    $(".item_subnav").on("mouseenter", "a", function(e) {
+        $(".item_subnav").children().eq($(this).index()).addClass("on").siblings().removeClass("on")
+    })
+
+
+    $(".strategy_center .title").on("mouseenter", "a", function(e) {
+        $(".strategy_center .title").children().eq($(this).index()).addClass("on").siblings().removeClass("on")
+    })
 })

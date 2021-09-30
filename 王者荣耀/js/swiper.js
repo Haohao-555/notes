@@ -46,18 +46,9 @@
 
 
     $(".adBtn").on("mouseenter", "a", function (e) {
-        if (timerId) clearInterval(timerId);
-        e.stopPropagation();
         ab_index = $(this).index();
         index = $(this).index();
         $ul.stop(true, true).animate({ left: -(width * index) }, 500);
         $point.eq(ab_index).addClass("on").siblings().removeClass("on");
     })
-    $(".adBtn").on("mouseleave", "a", function (e) {
-        e.stopPropagation();
-        timerId = setInterval(function () {
-            autoPlay()
-        }, 4000);
-    })
-
 })()
