@@ -60,12 +60,24 @@ $(function () {
     })
 
 
-    $(".item_subnav").on("mouseenter", "a", function(e) {
-        $(".item_subnav").children().eq($(this).index()).addClass("on").siblings().removeClass("on")
+    $(".strategy_center .sub1").on("mouseenter", "a", function(e) {
+        $(".strategy_center .sub1").children().eq($(this).index()).addClass("on").siblings().removeClass("on")
     })
-
+    $(".strategy_center .sub2").on("mouseenter", "a", function(e) {
+        $(".strategy_center .sub2").children().eq($(this).index()).addClass("on").siblings().removeClass("on")
+    })
+    
 
     $(".strategy_center .title").on("mouseenter", "a", function(e) {
         $(".strategy_center .title").children().eq($(this).index()).addClass("on").siblings().removeClass("on")
     })
+
+
+    $(".skin_center .sub3").on("mouseenter", "a", function() {
+        var index = $(this).index();
+        var width = $(".skin_center")[0].offsetWidth;
+        $(this).addClass("on").siblings().removeClass("on");
+        $(".slide-list").stop(true,true).animate({left: -(index * width)+ "px"});
+    })
+
 })
