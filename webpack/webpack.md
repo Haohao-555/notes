@@ -48,9 +48,17 @@
   }
   ```
 
+> 多入口文件时
+>
+> entry: {
+>
+> ​     index: "./src/index.js",
+>
+> ​     detail: "./src/detail.js",
+>
+> }
 
-
-* 入口文件
+* 入口文件（index.js）
 
   ```javascript
   var rd = function (min, max) {
@@ -208,7 +216,7 @@ module.exports = {
 
 
 
-### 打包图片
+### 打包图片文件
 
 > 安装 url-loader
 >
@@ -261,6 +269,180 @@ module: {
       }
     }
   ]
+}
+```
+
+
+
+### 处理 html 模板
+
+> 安装 html-webpack-plugin
+>
+> npm i -D html-webpack-plugin
+
+
+
+```javascript
+// 打包项目所需的插件
+const HtmlWebpackPlugin = require('html-webpack-plugin');//处理html模板文件
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');//处理dist目录多余的文件(冗余)
+
+// 处理路径的模块
+var path = require("path");
+// 在模块系统下进行配置
+module.exports = {
+    // 入口文件 (多文件)
+    entry: {
+        "index": "./src/index.js",
+        "detail": "./src/detail.js"
+    },
+    //  打包模式 development | production
+    mode: "production",
+    // 输入设置
+    output: {
+        // 路径
+        path: path.resolve(__dirname, "dist"),
+        // 名称
+        filename: "js/bundle-[name].js"
+    },
+    module:{},
+    //  配置插件
+    plugins: [
+        // 处理html模板
+        new HtmlWebpackPlugin({
+            title: "首页", // 网页标题
+            template: "./src/views/index.html",//网页模板
+            filename: "index.html",// 文件名称
+            chunks:["index"] // 添加的脚本 和entry对象下的key是一一对应！！
+        }),
+        new HtmlWebpackPlugin({
+            title: "详情页",
+            template: "./src/views/detail.html",
+            filename: "detail.html",
+            chunks:["detail"]
+        }),
+		new CleanWebpackPlugin()
+    ]
+}
+```
+
+
+
+处理模板
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=htmlWebpackPlugin.options.title%></title>
+</head>
+<body>
+    <h1>Hello world</h1>
+</body>
+</html>
+```
+
+
+
+### 完整版
+
+```javascript
+// 打包项目所需的插件
+const HtmlWebpackPlugin = require('html-webpack-plugin');//处理html模板文件
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');//处理dist目录多余的文件(冗余)
+
+// 处理路径的模块
+var path = require("path");
+// 在模块系统下进行配置
+module.exports = {
+    // 1.0 入口文件 (多文件)
+    entry: {
+        "index": "./src/index.js",
+        "detail": "./src/detail.js"
+    },
+    // 2.0 打包模式 development | production
+    mode: "production",
+    // 3.0 输入设置
+    output: {
+        // 路径
+        path: path.resolve(__dirname, "dist"),
+        // 名称
+        filename: "js/bundle-[name].js"
+    },
+    // 4.0 配置loader模块
+    module: {
+        rules: [
+            // 打包css文件
+            {
+                test: /\.css$/i,
+                use: [
+                    "style-loader",
+                    "css-loader"
+                ]
+            },
+            // 打包scss文件（sass）
+            {
+                test: /\.s[ac]ss$/i,
+                use: [
+                    // 3. 最后把javascript写入到 bundle.js 文件中
+                    "style-loader",
+                    // 2. 再把css转成 javascript
+                    "css-loader",
+                    // 1. 将sass编译为css
+                    "sass-loader"
+                ]
+            },
+            // 打包图片文件
+            {
+                test: /\.(png|jpg|gif)$/i,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            // 1KB = 1024Bytes  
+                            // 如果图片大小限制 小于等于8192Bytes  转base64格式字符串（图片文件）
+                            // 如果超过8192Bytes 就是显示原来的图片
+                            limit: 8192
+                        }
+                    }
+                ]
+            },
+            // 编译ES6
+            {
+                test: /\.m?js$/,
+                // 排除node_modules目录的JS文件
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [
+                            ['@babel/preset-env', { targets: "defaults" }]
+                        ]
+                    }
+                }
+            }
+        ]
+    },
+    // 5.0 配置插件
+    plugins: [
+        // 处理html模板
+        new HtmlWebpackPlugin({
+            title: "首页", // 网页标题
+            template: "./src/views/index.html",//网页模板
+            filename: "index.html",// 文件名称
+            chunks:["index"] // 添加的脚本 和entry对象下的key是一一对应！！
+        }),
+        new HtmlWebpackPlugin({
+            title: "详情页",
+            template: "./src/views/detail.html",
+            filename: "detail.html",
+            chunks:["detail"]
+        }),
+		new CleanWebpackPlugin()
+    ]
 }
 ```
 
