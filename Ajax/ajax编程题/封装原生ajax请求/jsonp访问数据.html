@@ -40,8 +40,7 @@
         // 把src标签添加到head标签中
         head.appendChild(script);
         // 定义函数(处理数据的函数)
-        window[jsonpCallback] = function (res) {
-          console.log(res);
+        window[jsonpName] = function (res) {
           if (option.success) option.success(res);
         };
       }
