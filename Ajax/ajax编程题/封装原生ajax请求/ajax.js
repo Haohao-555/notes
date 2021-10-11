@@ -7,7 +7,7 @@ function ajax(option) {
     // 记录提交的参数
     var data = option.data;
     //记录异步的布尔值（不够传入的值是什么，都为 ture）
-    var async = option.async == false ? option.async : true;
+    var async = option.async == false ? true : option.async;
     // 记录响应的数据格式 / 表示跨域的标记
     var dataType = option.dataType;
 
