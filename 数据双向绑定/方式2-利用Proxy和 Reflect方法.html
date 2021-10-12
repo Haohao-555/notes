@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>数据双向绑定</title>
+    <style>
+      input {
+        width: 500px;
+        height: 40px;
+        padding-left: 20px;
+        font-size: 20px;
+      }
+      button {
+        padding: 10px 20px;
+      }
+      div.item-box {
+        font-size: 20px;
+        margin-top: 10px;
+        width: 520px;
+        background-color: #f0f0f0;
+      }
+    </style>
+  </head>
+  <body>
+    <!--渲染区域-->
+    <ul></ul>
+
+    <button>模拟向后台请求数据</button>
+    
+    <!-- 导入插件包 -->
+    <script src="./unit.js"></script>
+
+    <script>
+      let btn = document.querySelectorAll("button");
+
+      // 数据集合
+      let data = {
+        list: [],
+        b: 0,
+      };
+
+     
+      // 将 data 中的 list 进行双向绑定
+      data = binding(data, "list");
+
+      // 初始化数据（为了方便演示）
+      data.list = [
+        { id: 1, name: "产品1" },
+        { id: 2, name: "产品2" },
+        { id: 3, name: "产品3" },
+        { id: 4, name: "产品4" },
+      ];
+
+      // 发送请求
+      btn[0].onclick = () => {
+        // 向后端请求回来的数据
+        let res = [
+          { id: 5, name: "产品5" },
+          { id: 6, name: "产品6" },
+          { id: 7, name: "产品7" },
+          { id: 8, name: "产品8" },
+        ];
+        // 将后端数据放到数据集合中的 list
+        data.list = data.list.concat(res);
+      };
+    </script>
+  </body>
+</html>
