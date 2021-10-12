@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        padding: 50px;
+      }
+      .box-image {
+        width: 350px;
+        height: 350px;
+        border: 5px solid #000;
+        position: relative;
+        float: left;
+      }
+      .box-image .photo {
+        width: 350px;
+        height: 350px;
+        background-color: pink;
+        opacity: 0;
+      }
+      .show-image {
+        width: 200px;
+        height: 200px;
+        float: left;
+        margin-left: 50px;
+        overflow: hidden;
+        border: 1px solid #ccc;
+        position: relative;
+      }
+      .show-image .tip {
+        display: block;
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        text-align: center;
+        line-height: 200px;
+        font-size: 30px;
+        color: #666;
+      }
+      .show-image img {
+        width: 300px;
+        vertical-align: middle;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box-image">
+      <form action="">
+        <input type="file" class="photo" />
+      </form>
+    </div>
+    <div class="show-image">
+      <img src="" alt="" class="photo-img" />
+      <span class="tip">预览图片</span>
+    </div>
+    <script>
+      let boxImage = document.querySelector(".box-image");
+      let photo = document.querySelector(".photo");
+      let photoImg = document.querySelector(".photo-img");
+
+      boxImage.ondragenter = () => {
+        // 设置当前标签的边框
+        boxImage.style["borderColor"] = "skyblue";
+        boxImage.style["borderStyle"] = "dashed";
+      };
+
+      boxImage.ondragleave = () => {
+        // 设置当前标签的边框
+        boxImage.style["borderColor"] = "#f50";
+        boxImage.style["borderStyle"] = "solid";
+      };
+
+      // 读取图片信息
+      photo.onchange = (event) => {
+        // 获取事件源
+        let el = event.target;
+        // 获取图片信息
+        let imgInfo = el.files[0];
+        // 获取名称
+        let imgName = imgInfo.name;
+        // 获取大小
+        let imgSize = imgInfo.imgSize; // xx / 1024 = ?kb
+        // 判断文件类型
+        if(imgName.includes(".png")) {
+           // 拼接图片路径
+           let url = `./img/${imgName}`;
+           photoImg.src = url;
+
+        }else {
+            // 提示
+            alert("不是图片文件格式");
+        }
+      };
+    </script>
+  </body>
+</html>
