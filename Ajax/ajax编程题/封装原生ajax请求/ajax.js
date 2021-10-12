@@ -1,177 +1,97 @@
-// 封装 ajax 函数 
 function ajax(option) {
-    // 记录接口地址
+    // 获取请求 url 地址
     var url = option.url;
-    // 记录请求方式
-    var type = option.type || "get";
-    // 记录提交的参数
-    var data = option.data;
-    //记录异步的布尔值（不够传入的值是什么，都为 ture）
-    var async = option.async == false ? true : option.async;
-    // 记录响应的数据格式 / 表示跨域的标记
+    // 获取请求类型
     var dataType = option.dataType;
+    // 获取请求方式
+    var type = option.type;
+    // 获取请求数据
+    var data = option.data;
+    // 获取是否异步
+    var async = option.async === false ? true : option.async;
 
-
-    // 处理 data 对象（把对象转成指定格式的字符串）
     var str = "";
-    if (typeof data == "object") {
-        for (var key in data) {
-            str += key + "=" + data[key] + "&"
-        }
-        str = str.slice(0, str.length - 1);
-    }
-
-    // 判断执行 XMLHttpRequest 逻辑
-    if (dataType != "jsonp") {
-        var xhr;
-        if (window.XMLHttpRequest) {
-            xhr = new XMLHttpRequest()
-        } else {
-            xhr = new ActiveXObject("Microsoft.XMLHTTP"); // 低版本IE5/6
-        }
-
-        // 监听客户端请求和服务器端响应的状态
-        xhr.onreadystatechange = function () {
-            // console.log("监听请求和响应")
-            // 根据请求状态码调用相关的回调函数
-            if (xhr.readyState <= 1) {
-                // 判断是否存在当前的回调函数 beforeSend
-                if (option.beforeSend) option.beforeSend();
-            }
-
-            // 判断请求是否完成
-            if (xhr.readyState == 4) {
-                // 响应是否成功
-                if (xhr.status == 200) {
-                    // 处理响应报文
-                    var _type = xhr.getResponseHeader("content-type")
-                    // 接受处理结果
-                    var res;
-                    if (_type.indexOf("json") > -1) {
-                        // 把字符串转成对象格式
-                        res = JSON.parse(xhr.responseText);
-                    } else if (_type.indexOf("xml") > -1) {
-                        // xml 是一种存储数据的标记语言
-                        res = xhr.responseXML;
-                    } else {
-                        // 普通文档内容
-                        res = xhr.responseText;
-                    }
-                    // 调用 success 回调函数
-                    if (option.success) option.success(res);
-                } else {
-                    // 调用 error 回调函数
-                    if (option.error) option.error("请求失败")
-                }
-
-                // 当状态码等于 4 的时候
-                if (option.complete) option.complete();
-            }
-        }
-
-        // 判断请求方式是否为 get
-        if (type == "get" || type == "get") {
-            // 发起请求
-            if (str.length == 0) {
-                xhr.open(type, url, async)
-            } else {
-                // get 方式提交参数，参数是拼接再url的后面（地址栏）
-                xhr.open(type, url + "?" + str, async)
-            }
-            // 发送请求主体
-            xhr.send();
-
-        } else if (type == "post" || type == "POST") {
-            // 发起请求
-            xhr.open(type, url, async)
-            // 设置请求头信息
-            xhr.setRequestHeader("content-type", "application/x-www-form-urlendcoded");
-            // 发送请求主体
-            xhr.send(str);
-        }
-    } else { // 判断执行 json 逻辑
-        // 定义回调函数的名称
-        var jsonpName = option.jsonpCallback;
-        // 判断是否存在jsonp属性
-        if (option.jsonp) {
-            str += "&" + option.jsonp + "=" + jsonpName;
-        }
-
-        if (typeof data == "object") {
-            for (var key in data) {
-                str += key + "=" + data[key] + "&";
-            }
-            str = str.slice(0, str.length - 1);
-        }
-
-        // 创建script标签
-        var script = document.createElement("script");
-        /// 利用src 属性读取数据文档
-        script.src = url + "?" + str;
-        // 获取head标签
-        var head = document.querySelector("head");
-        // 把src标签添加到head标签中
-        head.appendChild(script);
-        // 定义函数(处理数据的函数)
-        window[jsonpName] = function (res) {
-            // console.log(res);
-            // 调用回调函数 获取script标签当中的内容
-            if (option.success) option.success(res);
-        };
-    }
-}
-
-// 封装 get 函数
-function _get(url, success, error, data) {
-    var str = "";
+    // 将数据转成字符串
     if (typeof data === "object") {
-        for (var key in data) {
-            str += key + "=" + data[key] + "&"
-        }
-        str += str.slice(0, str.length - 1);
-    }
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-                if (success) success(xhr.responseText);
-            } else {
-                if (error) error("请求失败");
-            }
-        }
-    };
-    xhr.open("get", url + "?" + str, true);
-    xhr.send();
-}
-
-// 封装 post 函数
-function _post(url, data, success, error) {
-    var str = "";
-    if (data) {
         for (var key in data) {
             str += key + "=" + data[key] + "&";
         }
-        str = str.slice(0, str.length - 1);
+        str.slice(0, str.length - 1);
     }
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-                if (success) success(xhr.responseText);
-            } else {
-                if (error) error("请求失败");
+
+    if (dataType != "jsonp") {
+        // 创建 XMLHttpRequest 实例化对象
+        var xhr = new XMLHttpRequest();
+        // 监听准备状态变化
+        xhr.onreadystatechange = function () {
+            // 请求前
+            if (xhr.readyState <= 1) {
+                if (option.beforeSend) option.beforeSend()
+            }
+
+            // 请求完成
+            if (xhr.readyState == 4) {
+                var res;
+                if (option.complete) option.complete();
+                // 响应完成
+                if (xhr.status === 200) {
+                    // 判断响应数据类型
+                    var _type = xhr.getResponseHeader("content-Type");
+                    if (_type.indexOf("json") > -1) {
+                        res = JSON.parse(xhr.responseText);
+                    } else if (_type.indexOf("xml") > -1) {
+                        res = xhr.responseXML;
+                    } else {
+                        // 普通文本
+                        res = xhr.responseText;
+                    }
+                    if (option.success) option.success(res);
+                } else {
+                    if (option.error) option.error()
+                }
             }
         }
-    };
-    xhr.open("post", url, true);
-    xhr.setRequestHeader(
-        "content-type",
-        "application/x-www-form-urlencoded"
-    );
-    xhr.send(str);
-}
+        // 判断请求的方式
+        if (type === "get" || type === "GET") {
+            // 判断请求的数据是否存在
+            if (str.length == 0) {
+                // 发起请求
+                xhr.open(type, url, async)
+            } else {
+                // 发起请求
+                xhr.open(type, url + "?" + str, async)
+            }
+            // 发送请求
+            xhr.send(null)
+        } else if (type === "post" || type === "POST") {
+            // 发起请求
+            xhr.open(type, url, async);
+            // 设置请求头
+            xhr.setRequestHeader("content-Type", "application/x-www-form-urlencoded");
+            // 发送请求
+            xhr.send(str);
+        }
+    } else {// jsonp
+        // 获取回调函数的名称
+        var jsonName = option.jsonpCallback;
+        // 判断 option 中是否存在 json 属性
+        if(option.json) {
+            str += "&" + option.json + "=" + jsonName;
+        }
+        // 创建 script 标签
+        var script = document.createElement("script");
+        // 设置 src
+        script.src = url + "?" + str;
+        // 获取 head
+        var head = document.querySelector("head");
+        // 添加 script
+        head.appendChild(script);
+        // 设置回调函数
+        window[jsonName] = function(res) {
+            if(option.success) option.success(res);
+        }
+    }
 
-var $ = {};
-$.ajax = ajax;
-$.get = _get;
-$.post = _post;
+}
+$ = {}
+$.ajax = ajax
