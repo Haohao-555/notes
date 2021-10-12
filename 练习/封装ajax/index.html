@@ -1,0 +1,82 @@
+<!--
+ * @Date: 2021-10-10 15:07:39
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \练习\封装ajax\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="./ajax.js"></script>
+    <script>
+      // jsonp
+      $.ajax({
+        url: "https://suggest.taobao.com/sug",
+        dataType: "jsonp",
+        jsonpCallback: "jsonp295",
+        data: {
+          area: "c2c",
+          bucketid: "17",
+          callback: "jsonp295",
+          code: "utf-8",
+          k: "1",
+          q: "鞋子",
+          _ksTS: "1631092227707_294",
+        },
+        success: function (res) {
+          console.log(res);
+        },
+      });
+
+      // get
+      $.ajax({
+        url: "https://cloud-music-api-sandy.vercel.app/top/playlist",
+        type: "get",
+        async: true,
+        data: {
+          limit: 20,
+        },
+        beforeSend: function () {
+          console.log("请求前");
+        },
+        success: function (res) {
+          console.log(res);
+        },
+        error: function (error) {
+          console.log(error);
+        },
+        complete: function () {
+          console.log("请求完成");
+        },
+      });
+      // post
+      $.ajax({
+        url: "http://nudianli.com:8082/login",
+        type: "post",
+        async: true,
+        data: {
+          uname: "admin",
+          upass: 123456,
+        },
+        beforeSend: function () {
+          console.log("请求前");
+        },
+        success: function (res) {
+          console.log(res);
+        },
+        error: function (error) {
+          console.log("请求失败");
+        },
+        complete: function () {
+          console.log("请求完成");
+        },
+      });
+    </script>
+  </body>
+</html>

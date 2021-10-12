@@ -1,0 +1,45 @@
+<!--
+ * @Date: 2021-10-09 19:37:46
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \练习\原生ajax\原生ajax（post）.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原生ajax（post）</title>
+</head>
+<body>
+    <script>
+        var url = "http://nudianli.com:8082/login"
+        var data = "uname=admin&upass=123456"
+        // 创建 XMLHttpRequest 实例对象
+        var xhr = new XMLHttpRequest();
+        // 监听准备状态变化
+        xhr.onreadystatechange = function() {
+            // 请求前
+            if(xhr.readyState <= 1) {
+                console.log("请求前");
+            }
+
+            
+            if(xhr.readyState === 4) {
+                if(xhr.status === 200) {
+                    var res = JSON.parse(xhr.responseText);
+                    console.log(res);
+                }else {
+                    console.log("响应错误", xhr.status);
+                }
+            }
+        }
+        // 发起请求
+        xhr.open("post", url, true);
+        // 设置请求头
+        xhr.setRequestHeader("content-Type", "application/x-www-form-urlencoded");
+        xhr.send(data);
+    </script>
+</body>
+</html>

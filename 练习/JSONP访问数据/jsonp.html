@@ -1,0 +1,60 @@
+<!--
+ * @Date: 2021-10-10 13:45:29
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \练习\JSONP访问数据\jsonp.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function jsonp(option) {
+        var url = option.url;
+        var data = option.data;
+        var jsonName = option.jsonpCallback;
+        var str = "";
+        if (option.json) {
+          str += option.json + "=" + jsonName + "&";
+        }
+
+        if (typeof data === "object") {
+          for (var key in data) {
+            str += key + "=" + data[key] + "&";
+          }
+          str = str.slice(0, str.length - 1);
+        }
+
+        var script = document.createElement("script");
+        script.src = url + "?" + str;
+        var head = document.querySelector("head");
+        head.appendChild(script);
+        window[jsonName] = function(res) {
+            if(option.success) option.success(res);
+        }
+      }
+      jsonp({
+        url: "https://suggest.taobao.com/sug",
+        // jsonp:"cb",// req.query.jsonp
+        jsonpCallback: "jsonp295", // url?cb=jsonp295
+        data: {
+          area: "c2c",
+          bucketid: "17",
+          callback: "jsonp295",
+          code: "utf-8",
+          k: "1",
+          q: "鞋子",
+          _ksTS: "1631092227707_294",
+        },
+        success: function (res) {
+          console.log(res);
+        },
+      });
+    </script>
+  </body>
+</html>
