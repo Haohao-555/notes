@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      input {
+        width: 500px;
+        height: 40px;
+        padding-left: 20px;
+        font-size: 20px;
+      }
+      button {
+        padding: 10px 20px;
+      }
+      div.item-box {
+        font-size: 20px;
+        margin-top: 10px;
+        width: 520px;
+        background-color: #f0f0f0;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <input type="text" placeholder="请输入数据" />
+    </div>
+    <div>
+      <div class="item-box"></div>
+      <div class="item-box"></div>
+      <div class="item-box"></div>
+    </div>
+    <button>点击一下（重置）</button>
+    <script>
+      let inpEl = document.querySelector("input[type='text']");
+      let itemBoxs = document.querySelectorAll(".item-box");
+
+      // 数据
+      let data = {};
+
+      // 监听对象的属性（数据）变化
+      Object.defineProperty(data, "message", {
+        get() {
+          // 更新视图层渲染
+          for (let i = 0; i < itemBoxs.length; i++) {
+            itemBoxs[i].style["background"] = "skyblue";
+          }
+          // 将文本框内容设置为空
+          inpEl.value = "";
+
+          return this.value;
+        },
+        set(v1) {
+
+          // 更新视图层渲染
+          for (let i = 0; i < itemBoxs.length; i++) {
+            itemBoxs[i].innerHTML = v1;
+          }
+
+          // 数据层赋值
+          this.value = v1;
+        },
+      });
+
+      //   data.message = 123;
+
+      // 利用 input 标签的事件
+      inpEl.oninput = () => {
+        // 获取输入的值
+        let v1 = inpEl.value;
+        // 赋值
+        data.message = v1;
+      };
+
+      var btn = document.querySelector("button");
+      btn.onclick = () => {
+        // 获取值（get）
+        console.log(data.message); 
+        // 内容设置为空
+        data.message = "";
+        console.log(data.message);
+      };
+    </script>
+  </body>
+</html>
