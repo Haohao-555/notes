@@ -1,0 +1,35 @@
+<!--
+ * @Date: 2021-10-13 09:48:34
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \Jquery\控制元素的类名.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <script src="./jquery-3.6.0.min.js"></script>
+    <script>
+        // 添加类 bg-red
+        $("div").eq(0).addClass("bg-red");
+
+        // 移除类 bg-green
+        $("div").eq(1).removeClass("bg-green");
+
+        // 切换类名
+        $("div").eq(3).toggleClass("bg-red");
+
+        // 判断类名是否存在
+        var flag = $("div").eq(0).hasClass("bg-red");
+        console.log(flag);
+    </script>
+  </body>
+</html>

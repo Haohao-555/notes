@@ -1,0 +1,69 @@
+<!--
+ * @Date: 2021-10-13 09:32:03
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \练习\Jquery\选择器.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="nav">
+        <ul>
+          <li>颜色</li>
+          <li>颜色</li>
+          <li>颜色</li>
+          <li class="active">黄色</li>
+          <li>紫色</li>
+          <li>粉色</li>
+          <li>淡蓝色</li>
+          <li>黄绿色</li>
+        </ul>
+      </div>
+    </div>
+    <script src="./jquery-3.6.0.min.js"></script>
+    <script>
+      $(function () {
+        // 选中 .nav 标签
+        // $(".nav").css({background: "red"});
+
+        // 选中 .nav 标签的父元素
+        // console.log($(".nav").parent());
+
+        // 选中 .nav 标签的子元素
+        // console.log($('.nav').children());
+
+        //选中 .nav 标签下所有的li元素
+        //  console.log($(".nav").find("li"));
+
+        // 选中 .active标签的上一个元素
+        // console.log($('.active').prev());
+
+        // 选中 .active标签的下一个元素
+        // console.log($('.active').next());
+
+        // 选中 .active以外的所有 li 元素
+        //  console.log($('.active').siblings());
+
+        // 选中 ul li 列表中第一个 li 标签
+        // console.log($(".nav li").first());
+
+        // 选中 ul li 列表中最后一个 li 标签
+        // console.log($('.nav li').last());
+
+        // 通过索引值选中元素
+        // console.log($('.nav li').eq(3));
+
+        // 选中倒数第二个li
+        // var len = $(".nav li").length;
+        // console.log($(".nav li").eq(len -2))
+      });
+    </script>
+  </body>
+</html>

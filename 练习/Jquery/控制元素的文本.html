@@ -1,0 +1,35 @@
+<!--
+ * @Date: 2021-10-13 09:54:21
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \Jquery\控制元素的文本.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="text-1">
+      <!-- 双标签 -->
+      <span>天空突然下了点雨</span>
+      <span>123</span>
+    </div>
+    <div class="form-1">
+      <!-- 单标签 -->
+      <input type="text" value="现在天气又好转了" />
+    </div>
+  </body>
+  <script src="./jquery-3.6.0.min.js"></script>
+  <script>
+    //   console.log($('.text-1').html());
+    // console.log($(".text-1").text());
+    // console.log($('input[type=text]').val());
+
+    $('input[type=text]').val("测试");
+    $(".text-1").text("123")
+  </script>
+</html>
