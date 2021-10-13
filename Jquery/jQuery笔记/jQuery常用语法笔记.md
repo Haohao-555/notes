@@ -155,7 +155,7 @@ $(document).ready(function(){
 #### JQuery 控制元素的文本
 
 ```html
-<div>
+<div class='text-1'>
    <!-- 双标签 -->
   <span>天空突然下了点雨</span>
 </div>
