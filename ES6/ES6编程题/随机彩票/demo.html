@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ES6 阶段</title>
+    <style>
+        .btn-click {
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-left: 40px;
+        }
+        ul {
+            list-style: none;
+        }
+        ul li {
+            margin-top: 20px;
+        }
+        ul li span {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            vertical-align: middle;
+            border-radius: 50%;
+            background-color: #ccc;
+            text-align: center;
+            line-height: 50px;
+            color: #fff;
+        }
+        ul li span.red {
+            background-color: #f00;
+        }
+        ul li span.blue {
+            background-color: #00f;
+        }
+        
+    </style>
+    <script>
+        // 编写加载事件函数
+        window.onload = function(){
+            // 需求：
+                // 点击按钮,生成随机一注彩票
+                // 红色数字6个（随机不重复的） 蓝色数字1个
+
+            // 编码：
+            let btnClick = document.querySelector(".btn-click");
+            let ulElement = document.querySelector(".num-box ul");
+
+            // 编写渲染数据的函数
+            // let template = function(arr){}
+            let template = (arr) => {
+                let str = '';
+                for(var i = 0 ; i < arr.length ; i ++){
+                    str += `
+                        <span class="${arr[i].color}">${arr[i].num}</span>
+                    `
+                }
+                let liCreate = document.createElement("li");
+                liCreate.innerHTML = str;
+                ulElement.appendChild(liCreate);
+            }
+            // 编写返回随机索引值的函数
+            let getRandomIndex = function(len){
+                return Math.floor(Math.random()*len);
+            }
+            // 编写处理数据的逻辑
+            // 点击事件
+            // btnClick.onclick = function(){}
+            btnClick.onclick = () => {
+                // 红色数据
+                let redData = [];
+                // 蓝色数据
+                let blueData = [];
+                // 循环33次
+                for(var count = 1 ; count <= 33 ; count ++){
+                    redData.push(count);
+                    if(count <= 16){
+                        blueData.push(count);
+                    }
+                }
+                // 定义数据 记录幸运号码
+                let res = [];
+                // 循环红色
+                for(let i = 0 ; i < 6 ; i ++){
+                    // 随机索引值
+                    let  index = getRandomIndex(redData.length);
+                    // 获取随机数字 数组.splice(索引值,长度)
+                    let array = redData.splice(index,1);
+                    // 值
+                    let v1 = array[0];
+                    // 添加红色数字
+                    res.push({
+                        num: v1,
+                        color: "red"
+                    })
+                }
+                 // 添加蓝色数字
+                 let len = blueData.length;
+                 let key = getRandomIndex(len);
+                 res.push({
+                        num: blueData[key],
+                        color: "blue"
+                })
+                // console.log(res);
+                // 渲染数据
+                template(res);
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="header">
+        <button class="btn-click">点击生成随机彩票</button>
+    </div>
+    <div class="section">
+        <div class="num-box">
+            <ul>
+                <!-- <li>
+                    <span class="red">0</span>
+                    <span class="red">0</span>
+                    <span class="red">0</span>
+                    <span class="red">0</span>
+                    <span class="red">0</span>
+                    <span class="red">0</span>
+                    <span class="blue">0</span>
+                </li> -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+
+
+    </script>
+</body>
+</html>
