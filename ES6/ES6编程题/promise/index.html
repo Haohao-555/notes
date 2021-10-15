@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ES6</title>
+    <style>
+        .hide {
+            display: none;
+        }
+        .layout input {
+            height: 30px;
+            width: 450px;
+            margin-bottom: 10px;
+        }
+        .layout button {
+            padding: 10px 20px;
+        }
+
+        .mask {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0);
+        }
+        .mask .content {
+            width: 200px;
+            height: 80px;
+            background-color: #fff;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-top: -40px;
+            margin-left: -100px;
+            border: 1px solid #333;
+            border-radius: 10px;
+        }
+        .mask .content p {
+            padding: 5px 0 5px 20px;
+            text-align: center;
+        }
+        .mask .close {
+            position: absolute;
+            right: 0;
+            top: 0;
+            cursor: pointer;
+            border: 0;
+            background-color: transparent;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 功能1: 登录 -->
+    <div class="layout">
+        <h3>用户登录</h3>
+        <div class="form">
+            <div>
+                <input type="text" id="account" placeholder="请输入账号">
+            </div>
+            <div>
+                <input type="text" id="password" placeholder="请输入密码">
+            </div>
+            <div>
+                <button id="loginId">登录</button>
+            </div>
+        </div>
+    </div>
+    <!-- 功能2: 创建订单 -->
+    <div class="layout hide">
+        <h3>创建订单</h3>
+        <button id="orderId">创建</button>
+    </div>
+
+    <!-- 功能3：支付 -->
+    <div class="layout hide">
+        <h3>用户支付</h3>
+        <button id="payId">支付</button>
+    </div>
+
+    <!-- 功能4：自定义弹窗 -->
+    <!-- 
+        <div class="mask">
+            <div class="content">
+            <p>提示：xxxx </p>
+            <button class="close">关闭</button>
+            </div>
+        </div> 
+    -->
+
+    <script src="./jquery/jquery-3.6.0.js"></script>
+    <!-- 处理逻辑脚本文件 -->
+    <script src="./js/index.js"></script>
+  
+</body>
+
+</html>
