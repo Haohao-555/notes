@@ -1,0 +1,51 @@
+<!--
+ * @Date: 2021-11-12 08:53:12
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \vue\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #app .childen{
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <children :value="value"></children>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        let children = {
+            name: "children",
+            props: {
+                value: String
+            },
+            template: `<div class='childen'>{{value}}</div>`,
+        }
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+                    value: "测试"
+                }
+            },
+            components: {
+                children
+            }
+        })
+
+    </script>
+</body>
+
+</html>

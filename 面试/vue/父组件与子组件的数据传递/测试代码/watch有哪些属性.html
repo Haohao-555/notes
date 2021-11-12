@@ -1,0 +1,139 @@
+<!--
+ * @Date: 2021-11-12 09:13:50
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \vue\watch有哪些属性.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2>父组件的数据</h2>
+      <div>{{obj.name}}</div>
+      <div>{{value}}</div>
+      基本数据类型<input type="text" v-model="value" /> 引用数据类型<input
+        type="text"
+        v-model="obj.name"
+      />
+      <br />
+      <h2>子组件的数据</h2>
+      <children :obj="obj" :value="value"></children>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+      let children = {
+        name: "children",
+        props: {
+          obj: Object,
+          value: String,
+        },
+        data() {
+          return {
+              v1: this.value
+          } 
+        },
+        template: `<div class="children">
+                           <div>{{obj.name}}</div>
+                           <div>{{value}}</div>
+                           基本数据类型<input type="text" v-model="value">
+                           引用数据类型<input type="text" v-model="obj.name">
+                       </div>`,
+
+        watch: {
+          // 这种方式都无法监听到
+          // 侦听基本数据类型
+          value: function() {
+              console.log("侦听到基本数据类型")
+            //   this.value = "试图修改基本数据类型"
+          },
+          // 侦听引用数据类型
+          obj: function() {
+              console.log("侦听到引用数据类型")
+            //   this.obj.name = "视图修改引用数据类型"
+          },
+          v1: function() {
+              console.log("v1");
+          }
+          // deep 无法监听到
+          // value: {
+          //   handler: function () {
+          //     console.log("侦听到基本数据类型");
+          //     this.value = "试图修改基本数据类型";
+          //   },
+          //   deep: true,
+          // },
+          // // 侦听引用数据类型
+          // obj: {
+          //   handler: function () {
+          //      console.log("侦听到引用数据类型");
+          //      this.obj.name = "视图修改引用数据类型";
+          //   },
+          //   deep: true,
+          // }
+
+          
+          // immediate  成功
+            // value: {
+            //   handler: function () {
+            //     console.log("侦听到基本数据类型");
+            //     // 报错 （地址发生改变了）
+            //     // this.value = "试图修改基本数据类型";
+            //   },
+            //   immediate: true,
+            // },
+            // obj: {
+            //   handler: function () {
+            //     console.log("侦听到引用数据类型");
+            //   //   this.obj.name = "子组件修改引用数据类型";
+            //   },
+            //   immediate: true,
+            // },
+          /*
+             是否能够侦听本质上是：地址是否改变
+
+             immediate 组件在初始化时就执行一次
+             
+             子组件一旦修改父组件传递来的数据，会实时更新父组件的数据。
+             只不过对于
+             引用数据类型修改，不会报错（值改变，地址没改变）
+             而基本数据类型会报错（值改变，进而导致地址改变）
+
+             
+
+             为什么会报错：触发地址改变
+                    引用数据类型：引用的是地址 （地址里面存放值）
+                    基本数据类型：引用的是值（每一个值所对应的地址是不一样的）
+             在 vue项目中， 父组件与子组件之间数据的传递：必须遵循一个规则：指向的地址必须一致，值可以任意 
+             
+
+             基本数据类型
+             (2) 尝试修改父组件传递过来的数据时，会报错
+             
+             引用数据类型
+             尝试修改父组件传递过来的数据时，能够修改，但会影响到父组件中传递过来的数据
+          */
+        },
+      };
+      new Vue({
+        el: "#app",
+        data() {
+          return {
+            obj: {
+              name: "引用数据类型",
+            },
+            value: "基本数据类型",
+          };
+        },
+        components: {
+          children,
+        },
+      });
+    </script>
+  </body>
+</html>

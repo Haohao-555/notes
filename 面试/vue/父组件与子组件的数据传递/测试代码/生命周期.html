@@ -1,0 +1,86 @@
+<!--
+ * @Date: 2021-11-12 10:44:06
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \vue\生命周期.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <children :obj="obj"></children>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+      let children = {
+        name: "Children",
+        template: `<div class="children">
+                      子组件
+                      <input type="text" v-model="obj.name">
+                   </div>`,
+        props: {
+          obj: Object,
+        },
+        data() {
+          return {};
+        },
+        beforeCreate() {
+            console.log("z beforeCreate")
+        },
+        created() {
+            console.log("z created")
+        },
+        beforeMount() {
+            console.log("z beforeMount")
+        },
+        mounted() {
+            console.log("z mounted")
+        },
+        beforeUpdate() {
+            console.log("z beforeUpdate")
+        },
+        updated() {
+            console.log("z updated") 
+        },
+      };
+      new Vue({
+        el: "#app",
+        components: {
+          children,
+        },
+        data() {
+          return {
+            obj: {
+              name: "测试",
+            },
+          };
+        },
+        beforeCreate() {
+            console.log("f beforeCreate")
+        },
+        created() {
+            console.log("f created")
+        },
+        beforeMount() {
+            console.log("f beforeMount")
+        },
+        mounted() {
+            console.log("f mounted")
+        },
+
+        beforeUpdate() {
+            console.log("f beforeUpdate")
+        },
+        updated() {
+            console.log("f updated") 
+        },
+      });
+    </script>
+  </body>
+</html>

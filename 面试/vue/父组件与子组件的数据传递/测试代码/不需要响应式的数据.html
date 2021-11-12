@@ -1,0 +1,47 @@
+<!--
+ * @Date: 2021-11-12 09:03:59
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \vue\不需要响应式的数据.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        从始至终都未曾改变过，这种死数据，既然不改变，
+        那也就不需要对他做响应式处理了，不然只会做一些无用功消耗性能
+     -->
+    <div id="app">
+        <button @click="update">修改内容</button>
+        <!-- 
+            这里无法更新报错
+         -->
+        <span>{{text1}}</span>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data() {
+                // 不需要与视图成产生响应式更新
+                text1: "死数据"
+                return {
+                  // 这里面可以与视图产生交互    
+                }
+            },
+            methods: {
+                update() {
+                    this.text1 = "改变内容"
+                    console.log(this.text1) // 可以实现更新数据
+                }
+            },
+        })
+    </script>
+</body>
+</html>
