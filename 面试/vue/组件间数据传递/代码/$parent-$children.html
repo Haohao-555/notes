@@ -1,0 +1,74 @@
+<!--
+ * @Date: 2021-11-13 14:03:54
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \代码\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <children :value="value"></children>
+      <button @click="parentTest">父组件</button>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+      let children = {
+        name: "children",
+        template: `<div class='children'>
+                          <div>{{value}}</div>
+                          <button @click="childrenTest">子组件</button>
+                       </div>`,
+        props: {
+          value: String,
+        },
+        data() {
+          return {
+            v2: "v2",
+          };
+        },
+        methods: {
+          childrenTest() {
+            // 调用父组件方法
+            this.$parent.test();
+            // 使用父组件属性
+            console.log(this.$parent.value);
+          },
+          test() {
+            console.log("子组件方法");
+          },
+        },
+      };
+      new Vue({
+        el: "#app",
+        name: "app",
+        data() {
+          return {
+            value: "text",
+            v1: "text1",
+          };
+        },
+        components: {
+          children,
+        },
+        methods: {
+          test() {
+            console.log("父组件方法");
+          },
+          parentTest() {
+            // 调用子组件方法
+            this.$children[0].test();
+            // 使用子组件属性
+            console.log(this.$children[0].v2);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,104 @@
+<!--
+ * @Date: 2021-11-13 15:07:00
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \code\$attrs-$listeners.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #app {
+        width: 400px;
+        height: 400px;
+        background-color: red;
+        padding-top: 100px;
+        box-sizing: border-box;
+      }
+      .childrenA {
+        margin: 0px 0px 0px 100px;
+        width: 300px;
+        height: 300px;
+        background-color: orange;
+        padding-top: 100px;
+        box-sizing: border-box;
+      }
+      .childrenB {
+        margin: 0px 0px 0px 100px;
+        width: 200px;
+        height: 180px;
+        background-color: yellowgreen;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <children-a @demo="demo" :name="name" :age="age" :list="list"></children-a>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+      let childrenB = {
+        name: "childrenB",
+        template: `<div class="childrenB">
+                          <div @click="demo">组件B{{$attrs}}</div>
+                       </div>`,
+        data() {
+          return {
+            name: "B",
+          };
+        },
+        methods: {
+            demo(){
+                this.$emit('demo');
+            }
+        },
+      };
+      let childrenA = {
+        /*
+         B组件中能直接触发buttonClick的原因在于 APP组件调用B组件时 使用 v-on 绑定了$listeners 属性 
+         通过v-bind 绑定$attrs属性，B组件可以直接获取到APP组件中传递下来的props（除了A组件中props声明的） 
+        */ 
+        name: "childrenA",
+        template: `<div class="childrenA">
+                          组件A {{name}} - {{age}} - {{$attrs}}
+                          <children-b v-bind="$attrs" v-on="$listeners"></children-b>
+                       </div>`,
+        props: {
+           name: String,
+           age: String,
+        },
+        data() {
+          return {
+           
+            
+          };
+        },
+        components: {
+          childrenB,
+        },
+      };
+      new Vue({
+        el: "#app",
+        components: {
+          childrenA,
+        },
+        data() {
+            return {
+                name: "名字",
+                age: "年龄",
+                list: [{id: 1, name: "小米1"},{id: 2, name: "小米2"},{id: 3, name: "小米3"}]
+            }
+        },
+        methods: {
+            demo() {
+            console.log("buttonClick...");
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+<!--
+ * @Date: 2021-11-13 14:38:17
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \code\$bus.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <child-a></child-a>
+        <child-b></child-b>
+        <child-c></child-c>
+    </div>
+    <script src="./vue.js"></script>
+    <!-- 
+        安装
+        npm install vue-bus --save
+        
+        main.js文件
+        import VueBus from "vue-bus";
+        import Vue from "vue";
+        Vue.use(VueBus);
+     -->
+    <script src="./vue-bus.min.js"></script>
+    <script>
+        let childA = {
+            name: "childA",
+            template: `<button @click="clickA">组件一</button>`,
+            data() {
+                return {
+                    name: "组件A"
+                }
+            },
+            methods: {
+                clickA: function() {
+                    this.$bus.emit("child-a", this.name);
+                }                
+            },
+        };
+        let childB = {
+            name: "childB",
+            template: `<button @click="clickB">组件二</button>`,
+            data() {
+                return {
+                    name: "组件B"
+                }
+            },
+            methods: {
+                clickB: function() {
+                    this.$bus.emit("child-b", this.name);
+                }                
+            },
+        };
+        let childC = {
+            name: "childC",
+            template: `<button>组件三</button>`,
+            created() {
+              this.$bus.on("child-a", this.getData);
+              this.$bus.on("child-b", this.getData);
+            },
+            methods: {
+                getData(data) {
+                    console.log("组件三接收到数据", data)     
+                }   
+            },
+            /*
+               由于 Vue 是一个单页面项目，因此再页面消除时，需要消除掉
+               在vue页面销毁时，同时移除EventBus事件监听
+            */
+            beforeDestroy() {
+              this.$bus.off("child-a", this.getData);
+              this.$bus.off("child-b", this.getData);
+            },
+        }
+        
+        new Vue({
+            el: "#app",
+            components: {
+                childC,
+                childA,
+                childB
+            }
+        })
+        /*
+           因为有时不确定何时会触发事件，一般会在created钩子中来监听，
+           然后beforeDestroy钩子中通过this.bus.off注销自定义事件。
+
+           通过一个空的 Vue 实例作为中央事件总线（事件中心），用它来触发事件和监听事件，巧妙而轻量地实现了任何组件间的通信，包括父子、兄弟、跨级。
+           注意：记得销毁自定义事件，否则容易造成内存泄露。
+        */
+    </script>
+</body>
+</html>
