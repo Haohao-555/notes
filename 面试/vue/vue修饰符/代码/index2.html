@@ -1,0 +1,46 @@
+<!--
+ * @Date: 2021-11-14 14:27:08
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \代码\index2.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+     
+      <children @click="event(`haohao`)"></children>
+
+      <children @click.native="event('haohao')"></children>
+
+      <div @click.native="event('haohao')">普通标签</div>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+      let children = {
+        name: "children",
+        template: `<div>子组件</div>`,
+      };
+      new Vue({
+        el: "#app",
+        data() {
+          return {};
+        },
+        components: {
+          children,
+        },
+        methods: {
+          event(type) {
+            console.log(type);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

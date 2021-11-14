@@ -1,0 +1,61 @@
+<!--
+ * @Date: 2021-11-14 14:40:54
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \代码\index3.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="value" @keyup.enter="event">
+        <input type="text" v-model="v2" @keyup.ctrl="event1">
+        <input type="text" v-model="v3" @keyup.ctrl.67="event2">
+
+        <!-- 
+            此时按下 只要点击按钮，和 ctrl 就能触发，
+            并且在点击其他键（系统、普通）也会触发事件
+         -->
+        <button @click.ctrl="event3('text')">text</button>
+
+        <!-- 在 vue2.5 中 -->
+        <!-- 这里是 限制系统修饰键 这里只有至少按下 ctrl 才会触发，
+            如果在此基础上按下系统键是不触发的
+        --> 
+        <button @click.ctrl.exact="event3('text1')">text</button>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+                   value: "",
+                   v2: "",
+                   v3: "",
+                }
+            },
+            methods: {
+                event() {
+                   console.log(this.value)
+                },
+                event1() {
+                   console.log(this.v1)
+                },
+                event2() {
+                   console.log(this.v2)
+                },
+                event3(str) {
+                    console.log(str);
+                }
+            },
+        })
+    </script>
+</body>
+</html>

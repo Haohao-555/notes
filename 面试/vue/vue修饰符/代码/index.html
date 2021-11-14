@@ -1,0 +1,65 @@
+<!--
+ * @Date: 2021-11-14 13:30:22
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \代码\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        .blue {
+            width: 300px;
+            height: 40px;
+            background-color: blue;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 表单修饰符 -->
+
+      <!-- .lazy -->
+      <!-- <input type="text" v-model.lazy="value">
+        <p>{{value}}</p> -->
+
+      <!-- .trim -->
+      <!-- <input type="text" v-model.trim="value">
+        <p>{{value}}</p> -->
+
+      <!-- .number -->
+      <!-- <input type="text" v-model.number="value">
+        <p>{{value}}</p> -->
+
+
+    <!-- 事件修饰符 -->
+    <!-- 
+        .stop
+        .prevent
+     -->
+     <div class="blue" @click="shout(2)">
+         <button @click="shout(1)">ok</button>
+     </div>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data() {
+          return {
+            value: "",
+          };
+        },
+        methods: {
+            shout(data) {
+                console.log(data);
+            }
+        },
+      });
+    </script>
+  </body>
+</html>

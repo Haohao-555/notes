@@ -1,0 +1,86 @@
+<!--
+ * @Date: 2021-11-14 14:10:04
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \代码\index1.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .item-a {
+            width: 400px;
+            height: 400px;
+            background-color: greenyellow;
+            margin-top: 20px;
+        }
+        .item-b {
+            width: 300px;
+            height: 300px;
+            background-color: yellow;
+        }
+        .item-c {
+            width: 200px;
+            height: 200px;
+            background-color: green;
+        }
+        .item-d {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!--  d c b a 点 d-->
+        <div class="item-a" @click="event('a')">
+            <div class="item-b" @click="event('b')">
+                <div class="item-c" @click="event('c')">
+                    <div class="item-d" @click="event('d')"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- a b d c 点 d -->
+        <div class="item-a" @click.capture="event('a')">
+            <div class="item-b" @click.capture="event('b')">
+                <div class="item-c" @click="event('c')">
+                    <div class="item-d" @click="event('d')"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- b d c a 点d -->
+        <div class="item-a" @click="event('a')">
+            <div class="item-b" @click.capture="event('b')">
+                <div class="item-c" @click="event('c')">
+                    <div class="item-d" @click="event('d')"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        new Vue ({
+            el: "#app",
+            data() {
+                return {
+                    
+                }
+            },
+            methods: {
+                event(type) {
+                    console.log(type);
+                }
+            },
+        })
+
+    </script>
+</body>
+</html>
