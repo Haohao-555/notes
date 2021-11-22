@@ -428,6 +428,7 @@ p:last-child {
 - :empty	
 
 **介绍**：选择器匹配没有子元素（包括文本节点）的每个元素。
+
 ```css
 p:empty { 
 background:#ff0000;
@@ -500,7 +501,8 @@ p:first-letter{
 
 - :first-line 伪元素
 
-**介绍**：CSS 中允许使用:first-letter 伪元素向文本的首行设置特殊样式。
+**介绍**：CSS 中允许使用:first-line 伪元素向文本的首行设置特殊样式。
+
 ```css
 p:first-line {
   color:#ff0000;
@@ -727,7 +729,7 @@ p.demo {
 </style>
 <style>
     /*    不占位置
-          右三角： border-width 的右边框长度为 0
+          左三角： border-width 的右边框长度为 0
                   border-color 的左边给颜色
         
     */
@@ -949,7 +951,7 @@ box-sizing: content-box (默认) | border-box
   5. 利用双伪元素:before :after 清除浮动
 
      ```css
-     父元素:after,
+     父元素:before,
      父元素:after {
        content:""; 
        display:block; /*将文本转为块级元素*/
