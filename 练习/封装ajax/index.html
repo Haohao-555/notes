@@ -13,7 +13,7 @@
     <title>Document</title>
   </head>
   <body>
-    <script src="./ajax03.js"></script>
+    <script src="./ajax04.js"></script>
     <script>
       // jsonp
       // $.ajax({
@@ -35,34 +35,12 @@
       // });
 
       // get
-      // $.ajax({
-      //   url: "https://cloud-music-api-sandy.vercel.app/top/playlist",
-      //   type: "get",
-      //   async: true,
-      //   data: {
-      //     limit: 20,
-      //   },
-      //   beforeSend: function () {
-      //     console.log("请求前");
-      //   },
-      //   success: function (res) {
-      //     console.log(res);
-      //   },
-      //   error: function (error) {
-      //     console.log(error);
-      //   },
-      //   complete: function () {
-      //     console.log("请求完成");
-      //   },
-      // });
-      // post
       $.ajax({
-        url: "http://nudianli.com:8082/login",
-        type: "post",
+        url: "https://cloud-music-api-sandy.vercel.app/top/playlist",
+        type: "get",
         async: true,
         data: {
-          uname: "admin",
-          upass: 123456,
+          limit: 20,
         },
         beforeSend: function () {
           console.log("请求前");
@@ -71,12 +49,34 @@
           console.log(res);
         },
         error: function (error) {
-          console.log("请求失败");
+          console.log(error);
         },
         complete: function () {
           console.log("请求完成");
         },
       });
+      // post
+      // $.ajax({
+      //   url: "http://nudianli.com:8082/login",
+      //   type: "post",
+      //   async: true,
+      //   data: {
+      //     uname: "admin",
+      //     upass: 123456,
+      //   },
+      //   beforeSend: function () {
+      //     console.log("请求前");
+      //   },
+      //   success: function (res) {
+      //     console.log(res);
+      //   },
+      //   error: function (error) {
+      //     console.log("请求失败");
+      //   },
+      //   complete: function () {
+      //     console.log("请求完成");
+      //   },
+      // });
     </script>
   </body>
 </html>
