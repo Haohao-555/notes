@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="./promise-ajax.js"></script>
+    <script>
+        http({
+            url: "https://cloud-music-api-sandy.vercel.app/top/playlist",
+            data: {
+                limit: 20,
+            },
+            type: "get"
+        }).then(res => {
+            console.log(res);
+        }).catch(error => {
+            console.log(error)
+        })
+    </script>
+</body>
+</html>

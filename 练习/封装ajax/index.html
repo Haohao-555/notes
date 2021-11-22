@@ -13,48 +13,48 @@
     <title>Document</title>
   </head>
   <body>
-    <script src="./ajax.js"></script>
+    <script src="./ajax03.js"></script>
     <script>
       // jsonp
-      $.ajax({
-        url: "https://suggest.taobao.com/sug",
-        dataType: "jsonp",
-        jsonpCallback: "jsonp295",
-        data: {
-          area: "c2c",
-          bucketid: "17",
-          callback: "jsonp295",
-          code: "utf-8",
-          k: "1",
-          q: "鞋子",
-          _ksTS: "1631092227707_294",
-        },
-        success: function (res) {
-          console.log(res);
-        },
-      });
+      // $.ajax({
+      //   url: "https://suggest.taobao.com/sug",
+      //   dataType: "jsonp",
+      //   jsonpCallback: "jsonp295",
+      //   data: {
+      //     area: "c2c",
+      //     bucketid: "17",
+      //     callback: "jsonp295",
+      //     code: "utf-8",
+      //     k: "1",
+      //     q: "鞋子",
+      //     _ksTS: "1631092227707_294",
+      //   },
+      //   success: function (res) {
+      //     console.log(res);
+      //   },
+      // });
 
       // get
-      $.ajax({
-        url: "https://cloud-music-api-sandy.vercel.app/top/playlist",
-        type: "get",
-        async: true,
-        data: {
-          limit: 20,
-        },
-        beforeSend: function () {
-          console.log("请求前");
-        },
-        success: function (res) {
-          console.log(res);
-        },
-        error: function (error) {
-          console.log(error);
-        },
-        complete: function () {
-          console.log("请求完成");
-        },
-      });
+      // $.ajax({
+      //   url: "https://cloud-music-api-sandy.vercel.app/top/playlist",
+      //   type: "get",
+      //   async: true,
+      //   data: {
+      //     limit: 20,
+      //   },
+      //   beforeSend: function () {
+      //     console.log("请求前");
+      //   },
+      //   success: function (res) {
+      //     console.log(res);
+      //   },
+      //   error: function (error) {
+      //     console.log(error);
+      //   },
+      //   complete: function () {
+      //     console.log("请求完成");
+      //   },
+      // });
       // post
       $.ajax({
         url: "http://nudianli.com:8082/login",
