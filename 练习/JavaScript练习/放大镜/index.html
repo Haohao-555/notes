@@ -1,0 +1,105 @@
+<!--
+ * @Date: 2021-11-22 18:56:26
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \放大镜\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .wrapper {
+        width: 500px;
+        height: 500px;
+        border: 1px solid red;
+        margin: 20px 120px;
+        position: relative;
+      }
+      .small {
+        width: 100%;
+        height: 100%;
+      }
+      .small img {
+        width: 100%;
+      }
+      .big {
+        width: 500px;
+        height: 500px;
+        border: 2px solid #ddd;
+        position: absolute;
+        top: 0;
+        left: 520px;
+        overflow: hidden;
+        display: none;
+      }
+      .mask {
+        /* 
+            遮罩层 x / 小图片 = 展示图片的宽度x / 大图片 
+                        500       500            800
+          */
+        width: calc(500 / 800 * 500px);
+        height: calc(500 / 800 * 500px);
+        background-color: rgba(255, 255, 40, 0.4);
+        position: absolute;
+        top: 0;
+        left: 0;
+        cursor: move;
+        display: none;
+      }
+      .big img {
+            position: absolute;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="small">
+        <img src="./images/small.jpg" alt="" />
+        <div class="mask"></div>
+      </div>
+      <div class="big">
+        <img src="./images//big.jpg" alt="" />
+      </div>
+    </div>
+  </body>
+  <script>
+ var wrapper = document.querySelector(".wrapper");
+    var small = document.querySelector(".small");
+    var mask = document.querySelector(".mask");
+    var big = document.querySelector(".big");
+    var bigImg = document.querySelector(".big img");
+
+    small.onmouseover = function () {
+      mask.style.display = "block";
+      big.style.display = "block";
+    };
+    small.onmouseout = function () {
+      mask.style.display = "none";
+      big.style.display = "none";
+    };
+    small.onmousemove = function (event) {
+      var e = event || window.event;
+      var x = e.clientX - wrapper.offsetLeft - mask.offsetWidth / 2;
+      var y = e.clientY - wrapper.offsetTop - mask.offsetHeight / 2;
+      var maxX = small.offsetWidth - mask.offsetWidth;
+      var maxY = small.offsetHeight - mask.offsetHeight;
+      x = x < 0 ? 0 : x;
+      y = y < 0 ? 0 : y;
+      x = x > maxX ? maxX : x;
+      y = y > maxY ? maxY : y;
+      mask.style.left = x + "px";
+      mask.style.top = y + "px";
+
+      bigImg.style.left = - (x / small.offsetWidth) * big.offsetWidth + "px";
+      bigImg.style.top = - (y / small.offsetHeight) * big.offsetHeight + "px";
+    }
+  </script>
+</html>
