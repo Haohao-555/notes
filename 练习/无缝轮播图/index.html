@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      ul,
+      li {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+      .swiper {
+        width: 600px;
+        height: 400px;
+        margin: 120px auto;
+        position: relative;
+        overflow: hidden;
+      }
+      .container {
+          position: absolute;
+        width: 600%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+      }
+      .container li {
+        width: 600px;
+        height: 100%;
+      }
+      .container li img {
+        width: 100%;
+        height: 100%;
+      }
+      .point {
+        width: 120px;
+        height: 40px;
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+      }
+      .point span {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: #fff;
+      }
+      .point .active {
+        background-color: orange;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="swiper">
+      <ul class="container">
+        <li>
+          <img src="./images/1.png" alt="" />
+        </li>
+        <li>
+          <img src="./images/2.jpg" alt="" />
+        </li>
+        <li>
+          <img src="./images/3.jpg" alt="" />
+        </li>
+        <li>
+          <img src="./images/4.jpg" alt="" />
+        </li>
+        <li>
+          <img src="./images/5.jpg" alt="" />
+        </li>
+        <li>
+          <img src="./images/1.png" alt="" />
+        </li>
+      </ul>
+      <div class="point">
+        <span class="active"></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <script src="./jquery-3.6.0.min.js"></script>
+    <script src="./swiper.js"></script>
+  </body>
+</html>
