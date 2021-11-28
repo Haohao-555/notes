@@ -1,0 +1,81 @@
+<!--
+ * @Date: 2021-11-28 14:43:24
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \瀑布流\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+
+      #waterfall {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+      }
+      #waterfall .container {
+        width: 1200px;
+        margin: 0 auto;
+      }
+      #waterfall .container ul {
+        width: 100%;
+        position: relative;
+      }
+      #waterfall .container ul li {
+        width: 230px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        box-shadow: 0 2px 10px deepskyblue inset;
+        position: absolute;
+        left: 0;
+        top: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="waterfall">
+      <div class="container">
+        <ul>
+          <li style="height: 360px">1</li>
+          <li style="height: 250px">2</li>
+          <li style="height: 400px">3</li>
+          <li style="height: 320px">4</li>
+          <li style="height: 420px">5</li>
+          <li style="height: 280px">6</li>
+          <li style="height: 220px">7</li>
+          <li style="height: 290px">8</li>
+          <li style="height: 340px">9</li>
+          <li style="height: 410px">10</li>
+          <li style="height: 230px">11</li>
+          <li style="height: 360px">12</li>
+          <li style="height: 310px">13</li>
+          <li style="height: 350px">14</li>
+          <li style="height: 450px">15</li>
+          <li style="height: 360px">12</li>
+          <li style="height: 310px">13</li>
+          <li style="height: 350px">14</li>
+          <li style="height: 450px">15</li>
+        </ul>
+      </div>
+    </div>
+    <script src="./jquery-3.6.0.min.js"></script>
+    <script src="./waterfall.js"></script>
+    <script>
+      $(function() {
+        $("#waterfall").waterFall()
+      })
+    </script>
+  </body>
+</html>
