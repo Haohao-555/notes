@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <style src="./tools/index.css"></style>
+        <style src="./main.css"></style>
+    </head>
+    <script type="module">
+        import { Tools } from './tools/index';
+        class App extends Element {
+            tools;
+            componentDidMount() {
+                if (!this.tools) this.tools = new Tools();
+                // 回调函数
+                let clickCallback = (res) => {
+                    let { title, content, type } = res;
+                    let consoleStyle = document.$(".console").style;
+
+                    Object.assign(consoleStyle, {
+                        top: "100px"
+                    });
+
+                    document.$(".console-title").innerText = title;
+                    document.$(".console-content").innerText = content;
+                    document.$(".console-type").innerText = type;
+
+                    setTimeout(() => {
+                        Object.assign(consoleStyle, {
+                            top: "-400%",
+                        });
+                    }, 3000);
+                }
+                // 初始化
+                this.tools.init({
+                    w: 280,
+                    space: 15,
+                    el: "#tools",
+                    clickCallback,
+                });
+            }
+            render() {
+                return <div class="container">
+                         <div class="form">
+                            <div class="form-item">
+                                <label for="title">title：</label>
+                                <input id="title"></input>
+                            </div>
+                            <div class="form-item">
+                                <label for="content">content：</label>
+                                <textarea id="content" placeholder="按输入格式输出"></textarea>
+                            </div>
+                            <div class="form-item">
+                                <label for="content">type：</label>
+                                <select id="type">
+                                    <option selected>success</option>
+                                    <option>error</option>
+                                    <option>info</option>
+                                    <option>warn</option>
+                                </select>
+                            </div>
+                            <div class="btn-group">
+                                <button id="send" class="btn" onclick={() => {this.send()}}>send</button>  
+                            </div>
+                         </div>
+                         <div class="console">
+                              <div class="console-item">
+                                 <label for="">标题：</label>  
+                                 <span class="console-title"></span>
+                              </div>
+                              <div class="console-item">
+                                 <label for="">内容：</label>  
+                                 <pre class="console-content"></pre>
+                              </div>
+                              <div class="console-item">
+                                 <label for="">类型：</label>  
+                                 <span class="console-type"></span>
+                              </div>
+                         </div>
+                         <div id="test"></div>
+                         <div id="tools"></div>
+                       </div>
+            }
+            send() {
+                let title = document.$("#title").value || ' Transferts reussis';
+                let content = document.$("#content").value || 'Tous les fichiers ont ete transferes';
+                let type = document.$("#type").value;
+                this.tools.add({
+                    title, // 标题
+                    content, // 内容
+                    type, // 类型,
+                    time: Date.now(), // 时间
+                    itemH: 118 // 通知高度
+                });
+            }
+        }
+        document.body.content(<App/>);
+    </script>
+    <body></body>
+</html>

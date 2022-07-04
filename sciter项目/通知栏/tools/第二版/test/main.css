@@ -1,0 +1,67 @@
+html {
+    border-radius: 6px;
+}
+.container {
+    padding: 12px;
+    box-sizing: border-box;
+    position: relative;
+}
+.a {
+    text-align: center;
+}
+.form-item {
+    width: 100%;
+    flow: horizontal;
+    margin-top: 12px;
+}
+.add {
+    width: 40px;
+    height: 40px;
+    border: 1px dashed #333;
+    line-height: 40px;
+    text-align: center;
+}
+.add:hover {
+    border-color: red;
+    color: red;
+    cursor: pointer;
+}
+label {
+    display: block;
+    width: 60px;
+}
+textarea { 
+    overflow: hidden;
+    display:block; 
+    width:*; 
+    height: 10em;
+    padding: 6px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+.btn-group {
+    text-align: center;
+    margin-top: 12px;
+}
+.btn {
+   width: 4em;
+}
+.console {
+    position: absolute;
+    left: auto;
+    right: auto;
+    top: -400%;
+    margin: auto;
+    z-index: 100;
+    background-color: rgb(32, 45, 62);
+    border-radius: 6px;
+    transition: top 0.3s;
+    color: #fff;
+    padding: 12px;
+    box-sizing: border-box;
+    font-size: 14px;
+    backdrop-filter: blur(20dip);
+}
+.console-item {
+    margin: 12px;
+}

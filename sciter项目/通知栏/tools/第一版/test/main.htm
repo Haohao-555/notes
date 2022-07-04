@@ -1,0 +1,84 @@
+<html window-frame="transparent">
+    <head>
+        <meta charset="utf-8"/>
+        <style>
+            html {
+                border-radius: 6px;
+            }
+            h1 {
+                text-align: center;
+            }
+            body > .table { size:*; padding:8dip; }
+      
+           .table { flow: row(label, select input div textarea button); border-spacing: 6dip;}
+           .table > label { padding:4dip; white-space:nowrap; horizontal-align:right; }
+
+            body > div { size:*; }
+            
+            input {
+                padding: 6px;
+                width: *;
+            }
+
+            textarea { 
+                overflow: hidden;
+                display:block; 
+                width:*; 
+                height: 10em;
+                padding: 6px;
+                box-sizing: border-box;
+                border-radius: 5px;
+            }
+            .btn-group {
+                text-align: center;
+                margin-top: 12px;
+            }
+            .btn {
+               width: 4em;
+            }
+        </style>
+    </head>
+    <script type="module">
+        import { Tools } from './tools/index';
+        class App extends Element {
+            tools;
+            componentDidMount() {
+                if (!this.tools) this.tools = new Tools();
+                // 初始化
+                this.tools.init({
+                    w: 300,
+                    space: 15
+                })
+            }
+            render() {
+                return <div class="container">
+                           <h1>通知</h1>
+                          <div class="table">
+                              <label for="title">标题：</label>
+                              <input type="text" id="title"/>
+                              <label for="content">内容：</label>
+                              <textarea id="content"></textarea>
+                          </div>
+                          <div class="btn-group">
+                            <button id="send" class="btn" onclick={() => {this.send()}}>发布</button>  
+                          </div>
+                       </div>
+            }
+            send() {
+                let title = document.$("#title").value || '通知';
+                let content = document.$("#content").value || '内容';
+               
+                this.tools.add({
+                    title,
+                    content,
+                    style: {
+                        content: {},
+                        title: {}
+                    }
+                });
+            }
+        }
+        document.body.content(<App/>);
+    </script>
+    <body></body>
+</html>

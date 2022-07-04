@@ -1,0 +1,115 @@
+<html window-frame="transparent">
+    <head>
+        <meta charset="utf-8"/>
+        <style>
+            html {
+               background: transparent;
+            }
+            body {
+                margin:  0;
+            }
+            #tools {
+                size: *;
+            }
+            .tools-container {
+               position: relative;  
+               overflow: hidden;
+               padding: 0px 5px;
+               box-sizing: border-box;
+               size: *;
+               /* background: red; */
+            }
+            .tools-item {
+               position: absolute;
+               z-index: 100;
+               padding: 6px;
+               box-sizing: border-box;
+               height: 100px;
+               width: 100%;
+               border-radius: 6px;
+               background-color: #fff;
+               /* bottom: 10px; */
+            }
+            h3 {
+               margin-top: 0;
+               margin-bottom: 10px;
+               text-align: center;
+            }
+            .content {
+                overflow: hidden;
+                width: 100%;
+                height: 40px;
+                flex: horizontal;
+                border-spacing: *;
+                font-size: 12px;
+                line-height: 20px;
+            }
+        </style>
+    </head>
+    <script type="module">
+         class Toolscomponent extends Element {
+            w = Window.this.parameters.w || 240;
+            space = Window.this.parameters.space || 10;
+            toolsList = [];
+            render() {
+               return <div id="tools">
+                          <div class="tools-container">
+                        
+                          </div>
+                       </div>
+            }
+           
+            componentUpdate(data) {
+                this.toolsList = data.toolsList.slice(0);
+                this.showData();
+            }
+            componentDidMount() {
+                let arr = Window.this.screenBox('workarea', 'dimension');
+                let w = this.w;
+                Window.this.minSize = [w, arr[1]];
+                Window.this.move(arr[0] - w - 10, 0, w, arr[1])
+            }
+            showData() {
+                let container = document.$(".tools-container");
+                let fragment = document.createDocumentFragment();
+                let len = this.toolsList.length;
+                // let dom = "";
+                // for (let i = 0; i < len; i++) {
+                //     dom += `<div class="tools-item">
+                //                    <h3>${this.toolsList[i].title}</h3>
+                //                    <div class="content">${this.toolsList[i].content}</div>
+                //                 </div>`
+                // }
+                // container.innerHTML = dom;
+
+                for (let i = 0; i < len; i++) {
+                    let item = document.createElement("div");
+                    item.classList.add("tools-item");
+                    item.style.bottom = (i * (100 + this.space)) + this.space +"px";
+
+                    let h3 = document.createElement("h3");
+                    h3.innerText = this.toolsList[i].title;
+
+                    let content = document.createElement("div");
+                    content.classList.add("content");
+                    content.innerText = this.toolsList[i].content;
+                    
+                    item.appendChild(h3);
+                    item.appendChild(content);
+
+                    fragment.appendChild(item);
+                }
+                container.appendChild(fragment);
+                
+            }
+            // setTimerClose() {
+            //     setTimeout(() => {
+            //         document.$(".tools-container").clear();
+            //     }, 5000);
+            // }
+           
+        }
+        document.body.content(<Toolscomponent/>);  
+    </script>
+    <body></body>
+</html>
