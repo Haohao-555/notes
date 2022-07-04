@@ -1,0 +1,110 @@
+.searchHead {
+    width: *;
+    height: 52px;
+    background-color: #fff;
+    padding: 12px 0px 12px 12px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 12px;
+    box-sizing: border-box;
+    flow:horizontal;
+}
+.searchHead .search {
+    position: relative;
+    width: 214px;
+    height: 32px;
+    overflow: auto;
+    color: #999;
+    font-size: 16px;
+}
+.searchHead .search input {
+    width: 214px;
+    height: 32px;
+    border: 1px solid #DCDFE6;
+    border-radius: 3px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    color: #606266;
+}
+.searchHead .search input.focus {
+      border-color: var(--primaryColor);
+}
+.searchHead .search .searchIcon {
+    position: absolute;
+    top: 10px;
+    left: 6px;
+    display: block;
+    color: #606266;
+}
+.searchHead .caption {
+    width: *;
+    height: 52px;
+}
+
+.searchHead .option{
+    height: 18px;
+    flow:horizontal;
+}
+.searchHead .option .item {
+    margin-right: 10px;
+    color: #999;
+    position: relative;
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    line-height: 18px;
+}
+.searchHead .option .item .guo-btn {
+    background: none;
+    border: none;
+    color: #999;
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+}
+.searchHead .option .item:not(:first-child):hover {
+    cursor: pointer;
+    color: var(--hovercolor);
+}
+.searchHead .option .item:last-child {
+    margin-right: 0px;
+}
+.searchHead .option .item .tool{
+    position: absolute;
+    box-shadow: 0 1px 6px 0 rgba(0,0,0,.12);
+    color: #222;
+    height: 24px;
+    line-height: 24px;
+    padding: 0 10px;
+    font-size: 12px;
+    z-index: 100;
+    background-color: #fff;
+    display: none;
+    top: 24px;
+}
+.searchHead .option .item:hover .tool {
+    display: block;
+    left: -12px;
+}
+.searchHead .option .item .langs-list {
+    position: absolute;
+    top: 24px;
+    left: -16px;
+    line-height: 24px;
+    padding: 0 10px;
+    font-size: 12px;
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 1px 6px 0 rgba(0,0,0,.12);
+    display: none;
+}
+.searchHead .option .item .langs-list li {
+    padding: 3px;
+}
+
+.searchHead .option .item .guo-btn:hover {
+    color: var(--hoverColor);
+} 
+.searchHead .option .item .langs-list li:hover {
+    color:  var(--hoverColor);
+}

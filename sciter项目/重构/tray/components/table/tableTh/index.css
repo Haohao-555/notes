@@ -1,0 +1,33 @@
+table thead tr td{
+    height: 27px;
+    border: 1px solid rgb(220, 223, 230);
+    border-bottom: none;
+    line-height: 27px;
+    padding: 0px 0px 0px 12px;
+    box-sizing: border-box;
+    text-align: left;
+    font-weight: bolder;
+    flow:horizontal; 
+    color: rgb(154, 156, 161);
+} 
+table thead tr td .icon-group {
+    margin-left: 3px;
+    width: 10px;
+    height: 20px;
+    margin-top: 5px;
+}
+table thead tr td .icon-group .icon {
+     height: 8px;
+     width: 10px;
+     color: #c0c4cc;  
+}
+table thead tr td .icon-group .icon:hover {
+     cursor: pointer;
+     color: var(--hoverColor);
+}
+table thead tr td .icon-group .icon.active {
+     color: var(--activeColor);
+}
+table thead tr td:first-child .icon-group {
+     display: none;
+}

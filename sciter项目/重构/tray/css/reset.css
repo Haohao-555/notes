@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+ul,li {
+    list-style: none;
+}
+html {
+    margin: 0px;
+    padding: 0px;
+    background-color: transparent;
+    position: relative;
+}
+body {
+    width: 1*;
+    height: 1*;
+    margin: 0px;
+    padding: 0px;
+}
+.bodyPadding {
+    padding:7px;
+}

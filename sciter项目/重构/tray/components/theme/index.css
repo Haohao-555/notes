@@ -1,0 +1,90 @@
+.themeModel {
+    width: 590px;
+    top: 80px;
+}
+.themeModel-body {
+    height: 350px;
+    flow: horizontal-wrap;
+    padding: 30px 45px;
+    box-sizing: border-box;
+}
+.themeModel-body .item {
+    width: 200px;
+    height: 145px;
+    margin-right: 100px;
+}
+.themeModel-body .item:nth-child(2n) {
+    margin-right: 0px;
+}
+.themeModel-body .item .theme-label {
+    font-size: 12px;
+    height: 17px;
+    line-height: 17px;
+    margin: 9px 0;
+    color: #606266;
+}
+.themeModel-body .item .change-theme-container {
+    width: 200px;
+    height: 110px;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    color: #606266;
+    flow:horizontal;
+}
+.themeModel-body .item .change-theme-container .sidebar {
+    width: 50px;
+    height: 110px;
+    position: relative;
+    overflow: hidden;
+}
+.themeModel-body .item .change-theme-container .sidebar .hover {
+    top: 16px;
+    width: 50px;
+    height: 8px;
+    position: absolute;
+}
+.themeModel-body .item .change-theme-container .panel {
+    width: 150px;
+    height: 110px;
+    padding: 12px;
+    box-sizing: border-box;
+}
+.themeModel-body .item .change-theme-container .panel .top {
+    flow:horizontal;
+}
+.themeModel-body .item .change-theme-container .panel .top .circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    opacity: .08;
+}
+.themeModel-body .item .change-theme-container .panel .top .rect {
+    margin-left: 17px;
+}
+.themeModel-body .item .change-theme-container .panel .top .rect .rect-item {
+    width: 73px;
+    height: 8px;
+    opacity: .08;
+    margin-bottom: 8px;
+}
+.themeModel-body .item .change-theme-container .panel .rect-item {
+    width: 118px;
+    height: 8px;
+    margin-bottom: 8px;
+    opacity: .08;
+}
+.themeModel-body .item .change-theme-container .panel .rect-item:last-child {
+    width: 73px;
+    height: 8px;
+    margin-bottom: 8px;
+    opacity: .08;
+}
+.themeModel-body .item .change-theme-container img {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    width: 30px;
+    height: 30px;
+}

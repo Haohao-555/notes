@@ -1,0 +1,41 @@
+.pw {
+    width: 424px;
+    top: 90px;
+}
+ .pw .body {
+     height: 171px;
+     width: 100%;
+     padding: 30px 60px 30px 20px;
+     box-sizing: border-box;
+ }
+ .pw .body .item {
+    margin-bottom: 18px;
+    color: #606266;
+    font-size: 14px;
+    word-break: break-all;
+    height: 27px;
+    flow:horizontal;
+ }
+ .pw .body .item label {
+    font-size: 12px;
+    font-weight: 400;
+    width: 100px;
+    line-height: 28px;
+    vertical-align: middle;
+    padding: 0 12px 0 0;
+    box-sizing: border-box;
+    text-align: right;
+ }
+ .pw .body .item input {
+    height: 28px;
+    line-height: 28px;
+    border-radius: 4px;
+    border: 1px solid #dcdfe6;
+    background-color: #fff;
+    box-sizing: border-box;
+    color: #606266;
+    display: inline-block;
+    padding: 0 15px;
+    width: 240px;
+    font-size: 10px;
+ }

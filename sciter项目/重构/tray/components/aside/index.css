@@ -1,0 +1,138 @@
+.aside {
+    width: 178px;
+    height: *;
+    background-color: var(--backgroundColor);
+}
+.aside .user {
+   height: 109px;
+   border-bottom: 1px solid var(--userborder);
+   text-align: center;
+}
+.aside .user .head-option {
+   height: 20px;
+   padding-left: 4px;
+   padding-top: 4px;
+   box-sizing: border-box;
+   flow: horizontal;
+}
+.aside .user .head-option span {
+  width: 13px;
+  height: 13px;
+  display: block;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+.aside .user .head-option .close{
+   background-color: rgb(244, 96, 90);
+}
+.aside .user .head-option .close:hover {
+   background-image: url(../../static/icon/close.png);
+}
+.aside .user .head-option .lesson{
+   background-color: rgb(244, 182, 50);
+   margin-left: 4px;
+}
+.aside .user .head-option .lesson:hover {
+   background-image: url(../../static/icon/lesson.png);
+}
+.aside .user .ava {
+   position: relative;
+   margin-top: 10px;
+}
+.aside .user .ava .pic{
+    width: 51px;
+    height: 51px;
+    margin: auto;
+}
+.aside .user .ava .state {
+   width: 21px;
+   height: 21px;
+   position: absolute;
+   display: block;
+   top: 34px;
+   left: 91px;
+}
+.aside .user .ava .state img {
+    width: 100%;
+    height: 100%;
+}
+.aside .user .name {
+   width: 70px;
+   text-align: center;
+   font-size: 12px;
+   color: #fff;
+   flow: horizontal;
+   margin: 10px auto;
+   padding-left: 25px;
+   position: relative;
+}
+.aside .user .name i {
+   display: block;
+   width: 10px;
+   height: 10px;
+   vertical-align: middle;
+   margin-top: 3px;
+   margin-left: 9px;
+}
+.aside .user .name i:hover {
+   cursor: pointer;
+}
+.aside .user .name .none {
+   display: none;
+}
+.aside .user .name .login-option {
+   position: absolute;
+   background-color: #fff;
+   z-index: 100px;
+   border-radius: 4px;
+   color: rgb(34, 34, 34);
+   top: 20px;
+   left: 20px;
+   width: 100px;
+   box-sizing: border-box;
+   line-height: 20px;
+   font-size: 14px;
+   line-height: 36px;
+   text-align: left;
+   padding-left: 6px;
+   padding-top: 6px;
+   padding-bottom: 6px;
+}
+.aside .user .name .login-option li:hover {
+   color: var(--hoverColor);
+   cursor: pointer;
+}
+.down-triangle {
+   background: url(../../static/icon/down-triangle.png); 
+   background-position: center;
+}
+.i-active {
+   transform:rotate(180deg);
+   transition: transform .3s;
+}
+.aside .list {
+   margin-top: 12px;
+}
+.aside .list .item {
+   height: 42px;
+   line-height: 40px;
+   color: rgb(132, 164, 195);
+   font-size: 14px;
+   flow: horizontal;
+   vertical-align: middle;
+   padding-left: 20px;
+   box-sizing: border-box;
+}
+.aside .list .item:hover {
+   cursor: pointer;
+   background-color: var(--hoverColor);
+}
+.aside .list .item.active {
+   background-color: var(--activeColor);
+   color: #fff;
+}
+.aside .list .item i {
+   margin-right: 14px;
+}

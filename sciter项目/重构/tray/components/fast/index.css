@@ -1,0 +1,120 @@
+.fast {
+    width: 600px;
+    top: 70px;
+    position: relative;
+}
+ .fast .body {
+     overflow-y: scroll-indicator;
+     vertical-scrollbar: "v-vertical-indicator";  
+     height: 350px;
+     padding: 30px 20px;
+     box-sizing: border-box;
+ }
+ .fast .body .body-container .operation-container .title {
+    font-size: 16px;
+    height: 22px;
+    line-height: 22px;
+    font-weight: 700;
+    margin: 16px 0px;
+    color: #606266;
+ }
+ .fast .body .body-container .operation-container .operation-wrapper {
+     width: 100%;
+     flow:horizontal-wrap;  
+ }
+ .fast .body .body-container .operation-container .operation-wrapper .item {
+    width: 100px;
+    height: 70px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    color: #606266;
+    position: relative;
+ }
+ .fast .body .body-container .operation-container .operation-wrapper .item:last-child .wait-to-add {
+    width: 40px;
+    height: 40px;
+    line-height: 36px;
+    font-size: 40px;
+    font-weight: 400;
+    border: 1px dashed #222;
+    text-align: center;
+    opacity: .2;
+    margin: auto;
+ }
+ .fast .body .body-container .operation-container .operation-wrapper .item.none {
+    display: none;
+ }
+ .fast .body .body-container .operation-container .operation-wrapper .item:hover {
+   color: var(--activeColor);
+   cursor: pointer;
+ }
+ .fast .body .body-container .operation-container .operation-wrapper .item .img-box {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    margin: 0px auto 10px auto;
+ }
+ .fast .body .body-container .operation-container .operation-wrapper .item .img-box i {
+    position: absolute;
+    right: -6px;
+    top: -6px;
+    width: 16px;
+    height: 16px;
+    display: block;
+    border-radius: 50%;
+ }
+ .fast .body .body-container .operation-container .operation-wrapper .item .img-box img {
+     width: 100%;
+     height: 100%;
+ }
+ .fast .body .body-container .operation-container .operation-wrapper .item span {
+    font-size: 14px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    display: block;
+    margin: auto;
+}
+.fast .body .body-container .operation-container .bbb .item .add-img {
+   width: 16px;
+   height: 16px;
+   position: absolute;
+   right: 28px;
+   bottom: 30px;
+   display: none;
+}
+.fast .body .body-container .operation-container .bbb .item:hover .add-img {
+   display: block;
+}
+.fast .body .body-container .operation-container .bbb .item .add-img img {
+   width: 16px;
+   height: 16px;
+}
+ .fast .fast-footer {
+    flow: horizontal;
+    border-spacing: *;
+ }
+ .fast-footer .text {
+    text-align: right;
+    font-size: 14px;
+    line-height: 48px;
+    color: var(--activeColor);
+    flow:horizontal;
+ }
+ .fast-footer .text:hover {
+    cursor: pointer;
+ }
+ .fast-footer .text i {
+     display: block;
+ }
+ .fast .defined-none {
+    display: none;
+ }
+ .fast .definedMask {
+    width: *;
+    height: *;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+ }

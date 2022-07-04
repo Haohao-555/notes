@@ -1,0 +1,97 @@
+.setting {
+    width: 590px;
+    top: 90px;
+}
+.set-body {
+    height: 304px;
+    padding: 10px 0px;
+    box-sizing: border-box;
+    flow:horizontal;  
+}
+.set-body .left {
+    width: 156px;
+    height: 304px;
+    overflow-y: scroll-indicator;
+    vertical-scrollbar: "v-vertical-indicator";  
+    border-right: 2px solid #ccc;
+}
+.set-body .left .left-container {
+    padding-bottom: 10px;
+}
+.set-body .left .left-container li {
+    height: 28px;
+    line-height: 28px;
+    padding: 0px 20px 0px 20px;
+    box-sizing: border-box;
+    font-size: 12px;
+}
+.set-body .left .left-container li.title {
+    opacity: .5;
+    color: #606266;
+}
+.set-body .left .left-container li.option {
+    flow:horizontal;
+    color: #606266;
+}
+.set-body .left .left-container li.option:hover {
+    background-color: var(--primaryColor);
+    color: #fff;
+    cursor: pointer;
+}
+.set-body .left .left-container li.active {
+    background-color: var(--primaryColor);
+    color: #fff;
+}
+.set-body .left .left-container li.option span {
+    display: block;
+    width: 97px;
+    margin-left: 3px;
+    line-height: 28px;
+    height: 28px;
+}
+.set-body .left .left-container li.option i {
+    color: #fff;
+}
+.set-body .right {
+    width: *;
+    height: *;
+    overflow-y: scroll-indicator;
+    vertical-scrollbar: "v-vertical-indicator";  
+}
+.set-body .right .right-container {
+    color: #606266;
+}
+.set-body .right .right-container .item:first-child {
+    padding-top: 20px;
+}
+.set-body .right .right-container .item {
+    margin-bottom: 18px;
+    color: #606266;
+    font-size: 14px;
+    word-break: break-all;
+    height: 27px;
+    flow:horizontal;
+}
+.set-body .right .right-container .item label {
+    font-size: 12px;
+    font-weight: 400;
+    width: 100px;
+    line-height: 28px;
+    vertical-align: middle;
+    padding: 0 12px 0 0;
+    box-sizing: border-box;
+    text-align: right;
+}
+.set-body .right .right-container .item input {
+    height: 28px;
+    line-height: 28px;
+    border-radius: 4px;
+    border: 1px solid #dcdfe6;
+    background-color: #fff;
+    box-sizing: border-box;
+    color: #606266;
+    display: inline-block;
+    padding: 0 15px;
+    width: 240px;
+    font-size: 10px;
+}

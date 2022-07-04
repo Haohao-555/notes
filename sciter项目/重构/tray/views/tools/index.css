@@ -1,0 +1,45 @@
+.ip-base {
+    width: *;
+    padding: 20px 16px 0px 16px;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+.ip-base .body {
+    width: *;
+    height: *;
+}
+.ip-base .body .tool-item {
+    margin-bottom: 20px;
+}
+.ip-base .body .tool-item .title {
+    font-size: 18px;
+    height: 25px;
+    line-height: 25px;
+    margin-bottom: 30px;
+}
+.ip-base .body .tool-item .tool-container {
+    flow:horizontal-wrap; 
+}
+.ip-base .body .tool-item .tool-container .opeartion {
+    margin-bottom: 30px;
+    width: 130px;
+    text-align: center;
+}
+.ip-base .body .tool-item .tool-container .opeartion:hover {
+    cursor: pointer;
+}
+.ip-base .body .tool-item .tool-container .opeartion img {
+    margin: 0px auto 10px auto;
+    width: 40px;
+    height: 40px;
+    display: block;
+}
+.ip-base .body .tool-item .tool-container .opeartion .name {
+    font-size: 14px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+}
+.ip-base .body .tool-item .tool-container .opeartion .name:hover {
+    color: var(--hoverColor)
+}

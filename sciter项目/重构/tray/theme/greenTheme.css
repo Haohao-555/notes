@@ -1,0 +1,20 @@
+:root {
+    --backgroundColor: rgb(2, 106, 56);
+    --activeColor: rgb(48, 133, 95);
+    --hoverColor: rgb(48, 133, 95);
+    /* 审批按钮 */
+    --btnColor: rgb(48, 133, 95);
+    --btnColorhover: #599d7f;
+    --primaryColor: rgb(48,133,95);
+    --primaryColorhover: #599d7f;
+    --primaryColorScroll: rgba(48,133,95, 0.5);
+    /* 文件扫描 */
+    --scanbgc: rgba(48,133,95,0.08);
+    --scanboderc: rgba(48,133,95,0.16);
+    --userborder: rgb(65, 143, 104);
+    --cancelbgc: #eaf3ef;
+    --cancelborder: #c1dacf;
+    --tableHover: rgb(238, 245, 242);
+    --fileOpenbc: #c1dacf;
+    --fileOpenbgc: #eaf3ef;
+ }

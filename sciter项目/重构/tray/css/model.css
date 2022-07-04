@@ -1,0 +1,95 @@
+/* 模态框样式 */
+.model-container {
+   box-shadow: 0 8px 24px 0 rgba(0,0,0,.32);
+   border-radius: 5px;
+   overflow: hidden;
+   position: absolute;
+   box-sizing: border-box;
+   box-shadow: 0 8px 24px 0 rgba(0,0,0,.32);
+   border-radius: 5px;
+   overflow: hidden;
+   background-color: #fff;
+}
+.model-container.marginauto {
+   left: 0;
+   right: 0;
+   margin: auto;
+}
+.header {
+    padding: 0;
+    text-align: center;
+    font-size: 14px;
+    line-height: 36px;
+    height: 36px;
+    background-color: #f6f6f6;
+    border-bottom: 1px solid #dddee0;
+    position: relative;
+    color: #222;
+    width: 100%;
+}
+.header .header-title {
+   width: calc(100%- 24px);
+   margin-left: 24px;
+}
+.header .header-title:hover {
+   cursor: move;
+}
+.header .close {
+    background-color: rgb(244, 96, 90);
+    width: 13px;
+    height: 13px;
+    display: block;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    position: absolute;
+    left: 10px;
+    top: 6px;
+ }
+ .header .close:hover {
+    cursor: pointer;
+    background-image: url(../static/icon/close.png); 
+ }
+ .footer {
+    padding: 0 15px;
+    text-align: right;
+    font-size: 14px;
+    line-height: 48px;
+    height: 48px;
+    background-color: #f6f6f6;
+    border-top: 1px solid #dddee0;
+ }
+ .footer .primate {
+    height: 12px;
+    background: none;
+    color: #fff;
+    background-color: var(--primaryColor);
+    border-color: var(--primaryColor);
+    font-size: 12px;
+    border-radius: 3px;
+    padding: 7px 15px;
+    margin-top: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+ }
+ .footer .primate:hover {
+    background: var(--primaryColorhover);
+    border-color: var(--primaryColorhover);
+ }
+ .footer .btn {
+    background: none;
+    height: 12px;
+    padding: 7px 15px;
+    margin-top: 10px;
+    font-size: 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    background: #fff;
+    border: 1px solid #dcdfe6;
+}
+.footer .btn:hover {
+    color: var(--primaryColor);
+    border-color: var(--cancelborder);
+    background-color: var(--cancelbgc);
+}

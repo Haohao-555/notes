@@ -1,0 +1,184 @@
+.login-container {
+    border: 1px solid #ccc;
+    position: absolute;
+    width: 375px;
+    height: 452px;
+    overflow: hidden;
+    background-color: #fff;
+    left: 0;
+    right: 0;
+    margin: auto;
+    /* border-radius: 8px; */
+}
+.login-form {
+    width: *;
+    height: *;
+    padding: 0 50px;
+    box-sizing: border-box;
+    text-align: center;
+}
+.head-option {
+    height: 20px;
+    padding-left: 4px;
+    padding-top: 4px;
+    box-sizing: border-box;
+    flow: horizontal;
+ }
+.head-option span {
+    width: 13px;
+    height: 13px;
+    display: block;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.head-option .close {
+    background-color: rgb(244, 96, 90);
+}
+
+.head-option .close:hover {
+    background-image: url(../../static/icon/close.png);
+    cursor: pointer;
+}
+
+.head-option .lesson {
+    background-color: rgb(244, 182, 50);
+    margin-left: 4px;
+}
+
+.head-option .lesson:hover {
+    background-image: url(../../static/icon/lesson.png);
+    cursor: pointer;
+}
+.title-container {
+   width: *;
+   height: 116px;
+}
+.title-container img {
+    display: block;
+    width: 84px;
+    height: 84px;
+    margin: auto;
+}
+.login-container .login-form .title-container h3 {
+    font-size: 20px;
+    margin: -18px auto 40px auto;
+    text-align: center;
+    height: 28px;
+    line-height: 28px;
+    font-weight: 400;
+}
+.login-container .login-form .form-item {
+    height: 32px;
+    margin-bottom: 22px;
+    border-bottom: 1px solid #dbdbdb;
+    color: #222;
+    flow: horizontal;
+}
+.login-container .login-form .form-item:nth-child(2) span.user{
+    display: block;
+    width: 14px;
+    height: 32px;
+    margin-right: 14px;
+    background: url(../../static/img/user.png) no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+.login-container .login-form .form-item:nth-child(3) .suo{
+    display: block;
+    width: 15px;
+    height: 32px;
+    margin-right: 14px;
+    background: url(../../static/img/suo.png) no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+.login-container .login-form .form-item:nth-child(3) {
+    position: relative;
+}
+.login-container .login-form .form-item:nth-child(3) span:hover {
+    cursor: pointer;
+}
+.login-container .login-form .form-item:nth-child(3) .bi{
+    display: block;
+    position: absolute;
+    width: 16px;
+    height: 32px;
+    right: 0;
+    top: 0;
+    background: url(../../static/img/close.png) no-repeat;
+    background-size: contain;
+    background-position: center;
+    z-index: 100;
+}
+.login-container .login-form .form-item:nth-child(3) .open {
+    display: block;
+    position: absolute;
+    width: 16px;
+    height: 32px;
+    right: 0;
+    top: 0;
+    background: url(../../static/img/open.png) no-repeat;
+    background-size: contain;
+    background-position: center;
+    z-index: 100;
+}
+.login-container .login-form .form-item input[type="text"],
+.login-container .login-form .form-item input[type="password"]
+{
+     border: none;
+     height: 32px;
+     box-sizing: border-box;
+     width: 220px;
+     font-size: 12px;
+}
+.login-container .login-form button {
+    background:none;
+    width: 100%;
+    margin-bottom: 30px;
+    color: #fff;
+    background-color: var(--primaryColor);
+    border-color: var(--primaryColor);
+    cursor: pointer;
+    font-weight: 500;
+    padding:0px 20px;
+    font-size: 14px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    height: 40px;
+}
+.login-container .login-form button:hover {
+    background: var(--primaryColorhover);
+    border-color: var(--primaryColorhover);
+}
+.login-container .login-form .form-item:last-child {
+    border: none;
+    flow:horizontal;
+    border-spacing: *;
+}
+.login-container .login-form .form-item:last-child .item {
+    flow:horizontal;
+    color: #606266;
+}
+.login-container .login-form .form-item:last-child .item:hover {
+    cursor: pointer;
+}
+.login-container .login-form .form-item:last-child .item.active {
+    color: var(--primaryColor);
+}
+.login-container .login-form .form-item:last-child .item .checkbox {
+    width: 13px;
+    height: 13px;
+    border: 1px solid #dcdfe6;
+    border-radius: 2px;
+    margin-top: 2px;
+}
+.login-container .login-form .form-item:last-child .item span {
+    display: inline-block;
+    line-height: 19px;
+    font-size: 14px;
+    width: 70px;
+    height: 19px;
+}

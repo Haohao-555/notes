@@ -1,0 +1,17 @@
+.btn {
+   border: none; 
+   color: #FFF;
+   background-color: var(--btnColor);
+    border-color: var(--btnColor);
+    padding: 12px 20px;
+    display: inline-block;
+    border-radius: 4px;
+}
+.btn:last-child {
+    margin-left: 10px;
+}
+.btn:hover {
+    background: var(--btnColorhover);
+    border-color: var(--btnColorhover);
+    cursor: pointer;
+}

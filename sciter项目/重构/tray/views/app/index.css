@@ -1,0 +1,82 @@
+@set v-vertical-indicator {
+    .slider {
+      background:var(--primaryColor);
+    }
+}
+@set v-vertical-indicator-ban {
+    .slider {
+      background: var(--primaryColorScroll);
+      opacity: 0.4;
+    }
+}
+
+@set v-horizontal-indicator {
+    .slider{
+      background:var(--primaryColor);
+    }
+    .base {
+        min-height: 6px;
+        height: 6px;
+    }
+}
+.wrapper {
+    width: *;
+    height: *;
+    flow: horizontal;
+    position: relative;
+}
+/* 主体 */
+.wrapper .appMain {
+   width: *;
+   height: *;
+   background-color: rgb(243, 243, 243);
+}
+.container {
+    width: *;
+    height: *;
+}
+/* 内容 */
+.wrapper .appMain .module {
+    width: *;
+    height: *;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: rgb(243, 243, 243);
+    overflow-y: scroll-indicator;
+    vertical-scrollbar: "v-vertical-indicator";  
+}
+.wrapper .appMain .module .content {
+     width: *;
+     background-color: #fff;
+     margin-bottom: 6px;
+}
+.wrapper .mask {
+   position: absolute;
+   width: *;
+   height: *;
+   top: 0;
+   left: 0;
+   color: #fff;
+}
+.wrapper .help-mask {
+   position: fixed;
+   top: 0;
+   left: 0;
+   bottom: 0;
+   right: 0;
+   background-color: rgba(0, 0, 0, 0.1);
+   z-index: 3;
+}
+.wrapper .mask.none, 
+.wrapper .help-mask.none {
+    display: none;
+}
+.wrapper .help-mask .mask-box {
+    position: relative;
+    width: 300px;
+    height: 30px;
+    background-color: rgba(255, 255, 255);
+    top: 310px;
+    left: 435px;  
+    z-index: 0;
+}
