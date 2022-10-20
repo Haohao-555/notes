@@ -356,11 +356,29 @@
 
 <hr/>
 
+### 抽离公共代码
+
+背景：
+
+<hr/>
+
+### 懒加载
+
+<hr/>
+
+### 异步加载JS
+
+<hr/>
+
 ### 面试题
 
 1、前端代码为何要进行构建和打包
 
 2、module、chunk、bundle 分别是什么意思，有何区别？
+
+* module - 各个源码文件，Webpack中一切皆模块
+* chunk - 多模块合并成的，如`entry`、`improt()`、`splitChunk`
+* bundle - 最终的输出文件
 
 3、loader 和 plugin 的区别？
 
@@ -370,5 +388,21 @@
 
 * 线上打包生成的js和css命名使用hash戳
 * 抽离压缩css文件
+* 抽离公共代码及第三方包
 
-6、babel-runtime 和 babel-polyfill 的区别
+6、如何优化打包构建速度 - 开发体验和效率
+
+* 优化 babel-loader（ES6 转成 ES5 性能消耗大）
+* IgnorePlugin
+* noParse
+* happyPack（多进程构建）
+* paralleIUglifyPlugin（多进程压缩）
+* 自动刷新
+* 热更新
+* DllPlugin （第三方库）
+
+7、优化产出代码 - 产品性能
+
+
+
+7、babel-runtime 和 babel-polyfill 的区别
