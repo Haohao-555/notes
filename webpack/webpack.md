@@ -358,11 +358,122 @@
 
 ### 抽离公共代码
 
-背景：
+背景：在多个文件中我们可能会引用同一份代码。比如下面的例子
+
+在入口文件 `index.js`中引入了`math.js`文件
+
+```javascript
+import { sum } from './math'
+const sumRes = sum(10, 20)
+console.log('sumRes', sumRes)
+
+console.log('index.js')
+```
+
+同样在 `other.js`中也引入 `main.js`文件
+
+```javascript
+import { sum } from './math'
+const sumRes = sum(10, 20)
+console.log('sumRes', sumRes)
+
+console.log('other.js')
+```
+
+这样正常打包完成后，就会出现在`index.js`以及`other.js`都同时包含了math中的代码。
+
+```javascript
+// index.js
+const sum = (a, b) => a + b
+const sumRes = sum(10, 20)
+console.log('sumRes', sumRes)
+console.log('index.js')
+
+// other.js
+const sum = (a, b) => a + b
+const sumRes = sum(10, 20)
+console.log('sumRes', sumRes)
+console.log('other.js')
+```
+
+在实际开发环境下问题不是很大，但在线上环境下，如果`main.js`文件很大的情况下，就会造成文件过大。
+
+正确的做法是：**在生产环境下打包，我们应该把公共代码抽离成一个文件，使用是直接使用外链引入即可**。
+
+下面以打包两个入口文件为例：
+
+* webpack.common.js
+
+```javascript
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+module.exports = {
+    entry: {
+        index: './src/index.js',
+        other: './src/other.js'
+    },
+    module: {},
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './src/index.html',
+            filename: 'index.html',
+            // index: 对应 entry 字段 index
+            // vendor，common: 对应分割代码中的 chunk 分组
+            chunks: ['index', 'vendor', 'common']
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/index.html',
+            filename: 'other.html',
+            chunks: ['other', 'vendor', 'common']
+        })
+    ]
+}
+```
+
+* webpack.drod.js
+
+```javascript
+const webpackCommonConf = require('./webpack.common.js')
+const { smart } = require('webpack-merge')
+module.exports = smart(webpackCommonConf, {
+    mode: 'production',
+    output: {
+        filename: '[name].[contentHash:8].js',
+        path: './dist'
+    },
+    module: {},
+    plugins: [
+        splitChunks: {
+           chunks: 'all',
+           cacheGroups: {
+               vendor: {
+                  // chunk 名称
+                  name: 'vendor',
+                  // 优先级 （权限越高，优先抽离）
+                  priority: 1, 
+                  test: /node_modules/,
+                  minSize: 0, // 当包大小超过该值100kb时，就抽离出来
+                  minChunks: 1, // 当包被引用次数超过1次，就抽离出来
+               }，
+               common: {
+                    name: 'common',
+                    priority: 0,
+                    minSize: 0,
+                    minChunks: 2
+               }
+           }
+        }
+    ]
+})
+```
+
+>   上述例子是基于webpack4.0版本的，在webpack5.0中， 无需配置`chunks: ['other', 'vendor', 'common']`，会根据入口文件中引入什么模块就自动引入，就算配置了` chunks: ['other', 'vendor', 'common']`，也不会生效。
+>
 
 <hr/>
 
 ### 懒加载
+
+
 
 <hr/>
 
