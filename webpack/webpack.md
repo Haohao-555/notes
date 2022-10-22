@@ -445,6 +445,7 @@ module.exports = smart(webpackCommonConf, {
         splitChunks: {
            chunks: 'all',
            cacheGroups: {
+               // 第三方包
                vendor: {
                   // chunk 名称
                   name: 'vendor',
@@ -473,11 +474,56 @@ module.exports = smart(webpackCommonConf, {
 
 ### 懒加载
 
+```javascript
+// index.js
+setTimeout(() => {
+    // 会单独产生一个 chunks
+    import('./dynamic-data.js').then(res => {
+        console.log(res.defult.message)
+    })
+}, 1500)
+```
 
+```javascript
+export default {
+    message: 'this is dynamic data'
+}
+```
+
+> webpack 默认支持的语法
 
 <hr/>
 
-### 异步加载JS
+### 加载 vue、react 
+
+* 加载 react
+
+  ```javascript
+  // npm install --save-dev @babel/preset-react
+  
+  // .babelrc
+  {
+      "presets": ["@babel/preset-react"],
+      "plugins": []
+  }
+  ```
+
+* 加载 vue
+
+  ```javascript
+  // 下载 vue-loader
+  module.exports = {
+      module: {
+          rules: [
+              {
+                  test: /\.vue$/,
+                  loader: ['vue-loader'],
+                  include: './src'
+              }
+          ]
+      }
+  }
+  ```
 
 <hr/>
 
