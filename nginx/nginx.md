@@ -1,4 +1,4 @@
-### 一、Nginx 最小单元配置
+##  最小单元配置
 
 ```nginx
 worker_processes 1; # 工作的进程个数
@@ -41,7 +41,44 @@ http {
 }
 ```
 
-### 二、配置二级域名转发
+<hr/>
+
+## 二级域名转发
+
+> 根据不同的二级域名返回不同的站点
+>
+> 如：
+>
+> * 域名 blog.hhmax.xyz 返回博客站点
+> * 域名 www.hhmax.xyz 返回主站站点
+
+原理：将不同的二级域名都指向同一个 IP 地址，在通过 Nginx 在转发时，根据不同的二级域名，返回不同的站点
+
+下面通过俩种方式进行演示：
+
+### 内网模拟站点映射
+
+在 `C:\Windows\System32\drivers\etc\hosts` 文件中添加
+
+```
+39.104.61.35 blog.hhmax.xyz
+39.104.61.35 www.hhmax.xyz
+```
+
+测试是否映射成功
+
+```cmake
+ping blog.hhmax.xyz
+```
+
+![](nginx/1.png)
+
+```
+ping www.hhmax.xyz
+```
+![](nginx/1-1692099400461-2.png)
+
+接下来进行 Nginx 配置，配置内容如下：
 
 ```nginx
 http {
@@ -50,21 +87,74 @@ http {
   sendfile on;
   keepalive_timeout 65;  
   server {
-     listen: 81,
+     listen: 80,
      server_name www.hhmax.xyz;  
      location / {
-        root html;
+        root html; # 转发到 nginx/html/index.html 或 index.htm
         index index.html index.htm
      }   
   },
   server {
      listen: 80,
-     server_name blog.hhmax.xyz blog1.hhmax.xyz;  
+     server_name blog.hhmax.xyz;  
      location / {
-        root blog;
+        root blog; # 转发到 nginx/blog/index.html 或 index.htm
         index index.html index.htm
      }   
   }       
 }
 ```
 
+<hr/>
+
+### 外网模拟站点映射
+
+> 需要购买域名以及一台服务器，并且服务器要备案成功才能映射成功
+
+![](nginx/1-1692099901447-4.png)
+
+选中域名解析，并添加记录
+
+![](nginx/1-1692100009908-6.png)
+
+需要设置的字段
+
+* 记录类型：这里选择 A - 将域名指向一个 IPV4 的地址
+* 主机记录：可以填写一个二级域名（即我们要设置的 blog 和 www）
+* 记录值：映射的地址（即我们要映射的服务器IP地址）
+> 可添加多条记录，并映射到其他 IP 或相同 IP
+
+接下来进行 Nginx 配置，配置内容如下：
+
+```nginx
+http {
+  include mime.types; 
+  default_type application/octet-stream;
+  sendfile on;
+  keepalive_timeout 65;  
+  server {
+     listen: 80,
+     server_name www.hhmax.xyz;  
+     location / {
+        root html; # 转发到 nginx/html/index.html 或 index.htm
+        index index.html index.htm
+     }   
+  },
+  server {
+     listen: 80,
+     server_name blog.hhmax.xyz;  
+     location / {
+        root blog; # 转发到 nginx/blog/index.html 或 index.htm
+        index index.html index.htm
+     }   
+  }       
+}
+```
+
+**注意：上述 Nginx 配置监听的端口是 80 端口，服务器可能需要开启**
+
+![](nginx/1-1692100528968-8.png)
+
+![](nginx/1-1692100561765-10.png)
+
+<hr/>
