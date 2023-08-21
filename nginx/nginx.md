@@ -512,3 +512,132 @@ http {
 ```
 
 随着技术的发展，特别是前后端分离的开发模式，上述情况也不复存在，后端也不用考虑到静态资源该怎么处理，都转移给到前端了
+
+<hr/>
+
+## 资源反盗链
+
+概念：
+
+请求header 中添加 Referer，来源
+
+http 协议规定的，由浏览器来遵守
+
+第一次请求时，没有携带 Referer,
+
+后续请求中，才会携带 Referer
+
+```nginx
+ http {
+  include mime.types; 
+  default_type application/octet-stream;
+  sendfile on;
+  keepalive_timeout 65;  
+
+  server {
+     listen: 80,
+     server_name blog.hhmax.xyz;  
+     location / {
+       proxy_pass http://192.168.6.52     
+     }
+     location ~*/(css|img|js) {     
+       valid_referers blog.hhmax.xyz;
+       if ($invalid_referer) {
+          return 403;
+       }     
+       # 路径中有 /css /img /js 使会指向 nginx/html 中的 css、img、js     
+       root html;
+       index index.html index.htm     
+     }   
+  }       
+}
+```
+
+```nginx
+http {
+  include mime.types; 
+  default_type application/octet-stream;
+  sendfile on;
+  keepalive_timeout 65;  
+
+  server {
+     listen: 80,
+     server_name blog.hhmax.xyz;  
+     location / {
+       proxy_pass http://192.168.6.52     
+     }
+     location ~*/(css|img|js) {     
+       valid_referers none blog.hhmax.xyz;
+       if ($invalid_referer) {
+          return 403;
+       }     
+       # 路径中有 /css /img /js 使会指向 nginx/html 中的 css、img、js     
+       root html;
+       index index.html index.htm     
+     }   
+  }       
+}
+```
+
+
+
+错误页面
+
+```nginx
+http {
+  include mime.types; 
+  default_type application/octet-stream;
+  sendfile on;
+  keepalive_timeout 65;  
+
+  server {
+     listen: 80,
+     server_name blog.hhmax.xyz;  
+     location / {
+       proxy_pass http://192.168.6.52     
+     }
+     location ~*/(css|img|js) {     
+       valid_referers blog.hhmax.xyz;
+       if ($invalid_referer) {
+          return 401;
+       }     
+       # 路径中有 /css /img /js 使会指向 nginx/html 中的 css、img、js     
+       root html;
+       index index.html index.htm     
+     }
+     error_page 401 /401.html
+     location = /401.html {
+        root html;    
+     }       
+  }       
+}
+```
+
+错误图片
+
+```nginx
+http {
+  include mime.types; 
+  default_type application/octet-stream;
+  sendfile on;
+  keepalive_timeout 65;  
+
+  server {
+     listen: 80,
+     server_name blog.hhmax.xyz;  
+     location / {
+       proxy_pass http://192.168.6.52     
+     }
+     location ~*/(css|img|js) {     
+       valid_referers blog.hhmax.xyz;
+       if ($invalid_referer) {
+          return ^/ /img/x.png break;
+       }     
+       # 路径中有 /css /img /js 使会指向 nginx/html 中的 css、img、js     
+       root html;
+       index index.html index.htm     
+     }   
+  }       
+}
+```
+
