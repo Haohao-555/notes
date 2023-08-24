@@ -1,4 +1,10 @@
-##  最小单元配置
+## 🎨 前言
+
+本篇文章有些概念性的东西，是结合自己的理解表达出来的，可能有些理解不到位的地方。希望掘友们多多指教，谢谢大家。
+
+红包献上 🧧🧧🧧🧧🧧🧧🧧🧧🧧🧧🧧🧧🧧🧧🧧🧧🧧🧧🧧🧧🧧🧧🧧🧧🧧🧧
+
+##  🎨 最小单元配置
 
 ```nginx
 worker_processes 1; # 工作的进程个数
@@ -43,7 +49,7 @@ http {
 
 <hr/>
 
-## 二级域名转发
+## 🎨 二级域名转发
 
 > 根据不同的二级域名返回不同的站点
 >
@@ -56,7 +62,7 @@ http {
 
 下面通过俩种方式进行演示：
 
-### 内网模拟站点映射
+### 🎉 内网模拟站点映射
 
 在 `C:\Windows\System32\drivers\etc\hosts` 文件中添加
 
@@ -107,7 +113,7 @@ http {
 
 <hr/>
 
-### 外网模拟站点映射
+### 🎉 外网模拟站点映射
 
 > 需要购买域名以及一台服务器，并且服务器要备案成功才能映射成功
 
@@ -159,9 +165,9 @@ http {
 
 <hr/>
 
-## 反向代理
+## 🎨 反向代理
 
-### 正向代理
+### 🎉 正向代理
 
 概念：**代理服务器充当客户端的中间人，代表客户端向目标服务器发送请求**。在正向代理中，**客户端通过代理服务器来访问互联网上的资源，而不是直接与目标服务器通信**。
 
@@ -169,7 +175,7 @@ http {
 
 好处：隐藏客户端的真实 IP 地址和身份，增加了匿名性和安全性
 
-### 反向代理
+### 🎉 反向代理
 
 概念：**代理服务器接收客户端请求，并将请求转发给后端服务器**。在反向代理中，**客户端不直接与后端服务器通信，而是与代理服务器进行通信**。
 
@@ -190,7 +196,7 @@ Nginx 与 Tomcat 形成内网，Tomcat 不能直接绕过 Nginx 通过网关，�
 
 衍生出一种模式： **Nginx 只处理进来的请求，而出去的数据不经过 Nginx 进行转发。Tomcat 直接将数据通过网关发送给到用户**（中间会经过其他网关进行转发）。这种模式称为 **DR 模式**
 
-### 反向代理配置
+### 🎉 反向代理配置
 
 ```nginx
 http {
@@ -221,11 +227,11 @@ http {
 
 <hr/>
 
-## 负载均衡
+## 🎨 负载均衡
 
 概念：用于在多个服务器之间分配和平衡工作负载，以提高系统的性能、可靠性和可扩展性。当一个服务器无法处理所有的请求时，**负载均衡将请求分发给其他可用的服务器，以确保每个服务器都能够处理适当的负载**。
 
-### 普通轮询
+### 🎉 普通轮询
 
 ```nginx
 http {
@@ -253,7 +259,7 @@ http {
 
 `192.168.5.51:80`、`192.168.6.51:80`、`192.168.7.51:80` 三台服务器提供的服务都一样。
 
-### 权重轮询
+### 🎉 权重轮询
 
 ```nginx
 http {
@@ -307,11 +313,11 @@ http {
 > }
 > ```
 
-### 轮询缺点
+### 🎉 轮询缺点
 
 由于是轮询，所以导致**没法保存会话信息**，如在 `192.168.5.51:80` 用户登录成功。当用户再次访问该站点时，被 Nginx 轮询到`192.168.7.51:80` ，此时这台服务器是不知道用户已经登录了，所以需要重新在登录。
 
-### 解决方案
+### 🎉 解决方案
 
 随着技术的发展，为了解决轮询带来的会话信息无法保存，衍生出了两种方案来解决上述问题
 
@@ -448,7 +454,7 @@ router.get('/getUserInfo', async (ctx, next) => {
 })
 ```
 
-### 方案对比
+### 🎉 方案对比
 
 共同点：为了解决：登录和存储登录用户信息
 不同点：
@@ -481,7 +487,7 @@ Session 的不足：
 
 <hr/>
 
-## 动静分离
+## 🎨 动静分离
 
 在还没有前后端分离的开发模式的情况下（MVC），一些静态资源都是集中和后端代码放在 Tomcat 。而这些静态资源大多数情况下都是不变的，如：图片，JavaScript 代码。
 
@@ -515,17 +521,27 @@ http {
 
 <hr/>
 
-## 资源反盗链
+## 🎨 资源防盗链
 
-概念：
+保护网站资源不被其他网站盗用的技术措施
 
-请求header 中添加 Referer，来源
+防盗链的实现原理：
 
-http 协议规定的，由浏览器来遵守
+* 服务器收到请求后，获取请求头中的`referer`字段
+* 验证`referer`字段是否符合预设的规则，例如是否在允许的域名列表中
+* 如果`referer`验证通过，则允许访问资源；否则，拒绝访问或返回特定的错误页面
 
-第一次请求时，没有携带 Referer,
+情况一：页面引用图片请求头中会携带 `referer` 头，值就是引用该资源的这个地址
 
-后续请求中，才会携带 Referer
+![](nginx/微信截图_20230824192745.png)
+
+情况二：单独复制该图片地址，重新打开窗口访问时，请求该图片时，`referer` 头就不会携带给到后端
+
+![](nginx/微信截图_20230824193341.png)
+
+<br/>
+
+配置一：两种情况都不能访问资源（图片）
 
 ```nginx
  http {
@@ -537,21 +553,25 @@ http 协议规定的，由浏览器来遵守
   server {
      listen: 80,
      server_name blog.hhmax.xyz;  
-     location / {
-       proxy_pass http://192.168.6.52     
-     }
-     location ~*/(css|img|js) {     
+     location /img {     
        valid_referers blog.hhmax.xyz;
        if ($invalid_referer) {
           return 403;
-       }     
-       # 路径中有 /css /img /js 使会指向 nginx/html 中的 css、img、js     
-       root html;
+       }   
+            
+       # 路径中有 /nginx/img    
+       root img;
        index index.html index.htm     
      }   
   }       
 }
 ```
+
+> `valid_referers`：配置的值得跟` server_name` 一样
+
+![](nginx/微信截图_20230824194453.png)
+
+配置二：仅第二种情况可以访问资源
 
 ```nginx
 http {
@@ -563,25 +583,29 @@ http {
   server {
      listen: 80,
      server_name blog.hhmax.xyz;  
-     location / {
-       proxy_pass http://192.168.6.52     
-     }
-     location ~*/(css|img|js) {     
+     location /img {     
        valid_referers none blog.hhmax.xyz;
        if ($invalid_referer) {
           return 403;
-       }     
-       # 路径中有 /css /img /js 使会指向 nginx/html 中的 css、img、js     
-       root html;
+       }   
+            
+       # 路径中有 /nginx/img    
+       root img;
        index index.html index.htm     
      }   
   }       
 }
 ```
 
+> `valid_referers`：配置的值得跟 `server_name` 一样
 
+配置后：
 
-错误页面
+![](nginx/微信截图_20230824194145.png)
+
+没有权限访问图片，也可以配置返回一个错误页面，或者一个错误图片
+
+* 错误页面
 
 ```nginx
 http {
@@ -593,16 +617,12 @@ http {
   server {
      listen: 80,
      server_name blog.hhmax.xyz;  
-     location / {
-       proxy_pass http://192.168.6.52     
-     }
-     location ~*/(css|img|js) {     
+     location /img) {     
        valid_referers blog.hhmax.xyz;
        if ($invalid_referer) {
           return 401;
-       }     
-       # 路径中有 /css /img /js 使会指向 nginx/html 中的 css、img、js     
-       root html;
+       }         
+       root img;
        index index.html index.htm     
      }
      error_page 401 /401.html
@@ -613,7 +633,7 @@ http {
 }
 ```
 
-错误图片
+* 错误图片
 
 ```nginx
 http {
@@ -625,19 +645,17 @@ http {
   server {
      listen: 80,
      server_name blog.hhmax.xyz;  
-     location / {
-       proxy_pass http://192.168.6.52     
-     }
-     location ~*/(css|img|js) {     
+     location /img {     
        valid_referers blog.hhmax.xyz;
        if ($invalid_referer) {
           return ^/ /img/x.png break;
        }     
-       # 路径中有 /css /img /js 使会指向 nginx/html 中的 css、img、js     
        root html;
        index index.html index.htm     
      }   
   }       
 }
 ```
+
+通过正常手段，访问或者引用资源（图片），通过上述方法是可以避免资源被盗用的。因为`referer` 字段通过某些手段是可以被伪造或篡改。因此防盗链并不能完全阻止盗链行为。为了增加安全性，可以结合其他技术手段，如加密链接、动态生成链接等，来提高防盗链的效果。
 
